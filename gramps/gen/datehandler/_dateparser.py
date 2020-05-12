@@ -853,7 +853,7 @@ class DateParser:
             text_parser = self.parser[cal]
             (text, bc) = self.match_bce(match.group('year'))
             start = self._parse_subdate(text, text_parser, cal)
-            if start == Date.EMPTY and text != "":
+            if (start == Date.EMPTY and text != "") or (start[0] != 0) or (start[1] != 0): # reject dates where the day or month have been set
                 return 0
             if bc:
                 start = self.invert_year(start)
