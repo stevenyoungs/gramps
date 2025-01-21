@@ -63,9 +63,9 @@ class RelationshipPathBetween(Rule):
         "path between two persons."
     )
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.map = set()
+        self.map: Set[str] = set()
         try:
             root1_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
             root2_handle = db.get_person_from_gramps_id(self.list[1]).get_handle()
@@ -76,7 +76,7 @@ class RelationshipPathBetween(Rule):
     def reset(self):
         self.map = ()
 
-    def desc_list(self, handle, map, first):
+    def desc_list(self, handle: str, map, first: bool):
         if not first:
             map.add(handle)
 
@@ -88,7 +88,9 @@ class RelationshipPathBetween(Rule):
                     if child_ref.ref:
                         self.desc_list(child_ref.ref, map, 0)
 
-    def apply_filter(self, rank, handle, plist, pmap):
+    def apply_filter(
+        self, rank: int, handle: str, plist: Set[str], pmap: Dict[str, int]
+    ):
         if not handle:
             return
         person = self.db.get_person_from_handle(handle)
@@ -108,12 +110,12 @@ class RelationshipPathBetween(Rule):
     def apply(self, db, person):
         return person.handle in self.map
 
-    def init_list(self, p1_handle, p2_handle):
-        firstMap = {}
-        firstList = set()
-        secondMap = {}
-        secondList = set()
-        common = []
+    def init_list(self, p1_handle: str, p2_handle: str):
+        firstMap: Dict[str, int] = {}
+        firstList: Set[str] = set()
+        secondMap: Dict[str, int] = {}
+        secondList: Set[str] = set()
+        common: List[str] = []
         rank = 9999999
 
         self.apply_filter(0, p1_handle, firstList, firstMap)
@@ -131,7 +133,7 @@ class RelationshipPathBetween(Rule):
         path2 = set([p2_handle])
 
         for person_handle in common:
-            new_map = set()
+            new_map: Set[str] = set()
             self.desc_list(person_handle, new_map, 1)
             path1.update(new_map.intersection(firstMap))
             path2.update(new_map.intersection(secondMap))

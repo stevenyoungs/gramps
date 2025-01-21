@@ -59,8 +59,8 @@ class IsDescendantOf(Rule):
     category = _("General filters")
     description = _("Matches descendant families of the specified family")
 
-    def prepare(self, db, user):
-        self.map = set()
+    def prepare(self, db: Database, user):
+        self.map: Set[str] = set()
         first = False if int(self.list[1]) else True
         root_family = db.get_family_from_gramps_id(self.list[0])
         self.init_list(db, root_family, first)
@@ -71,7 +71,7 @@ class IsDescendantOf(Rule):
     def apply(self, db, family):
         return family.handle in self.map
 
-    def init_list(self, db, family, first):
+    def init_list(self, db: Database, family: Family, first: bool) -> None:
         """
         Initialise family handle list.
         """

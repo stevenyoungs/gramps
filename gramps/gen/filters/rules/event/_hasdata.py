@@ -66,7 +66,7 @@ class HasData(Rule):
         self.event_type = None
         self.date = None
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """
         Prepare the rule. Things we only want to do once.
         """

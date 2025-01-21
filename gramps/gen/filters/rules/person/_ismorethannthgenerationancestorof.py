@@ -62,9 +62,9 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
         "of a specified person at least N generations away"
     )
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.map = set()
+        self.map: Set[str] = set()
         person = db.get_person_from_gramps_id(self.list[0])
         if person:
             root_handle = person.get_handle()

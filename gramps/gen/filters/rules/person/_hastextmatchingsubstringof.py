@@ -62,15 +62,15 @@ class HasTextMatchingSubstringOf(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.person_map = set()
-        self.event_map = set()
-        self.source_map = set()
-        self.repo_map = set()
-        self.family_map = set()
-        self.place_map = set()
-        self.media_map = set()
+        self.person_map: Set[str] = set()
+        self.event_map: Set[str] = set()
+        self.source_map: Set[str] = set()
+        self.repo_map: Set[str] = set()
+        self.family_map: Set[str] = set()
+        self.place_map: Set[str] = set()
+        self.media_map: Set[str] = set()
         try:
             if int(self.list[1]):
                 self.case_sensitive = True
@@ -118,7 +118,7 @@ class HasTextMatchingSubstringOf(Rule):
             return True
         return False
 
-    def search_family(self, family_handle):
+    def search_family(self, family_handle: str):
         if not family_handle:
             return False
         # search inside the family and cache the result to not search a family twice
@@ -142,7 +142,7 @@ class HasTextMatchingSubstringOf(Rule):
                 self.family_map.add(family_handle)
         return family_handle in self.family_map
 
-    def search_event(self, event_handle):
+    def search_event(self, event_handle: str):
         if not event_handle:
             return False
         # search inside the event and cache the result (event sharing)
@@ -164,7 +164,7 @@ class HasTextMatchingSubstringOf(Rule):
                 self.event_map.add(event_handle)
         return event_handle in self.event_map
 
-    def search_place(self, place_handle):
+    def search_place(self, place_handle: str) -> bool:
         if not place_handle:
             return False
         # search inside the place and cache the result
@@ -174,7 +174,7 @@ class HasTextMatchingSubstringOf(Rule):
                 self.place_map.add(place_handle)
         return place_handle in self.place_map
 
-    def search_media(self, media_handle):
+    def search_media(self, media_handle: str) -> bool:
         if not media_handle:
             return False
         # search inside the media object and cache the result

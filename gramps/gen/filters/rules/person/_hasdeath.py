@@ -62,7 +62,7 @@ class HasDeath(Rule):
     category = _("Event filters")
     allow_regex = True
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         if self.list[0]:
             self.date = parser.parse(self.list[0])
         else:

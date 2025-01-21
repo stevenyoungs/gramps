@@ -62,9 +62,9 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
         "person at least N generations away"
     )
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.map = set()
+        self.map: Set[str] = set()
         try:
             root_person = db.get_person_from_gramps_id(self.list[0])
             self.init_list(root_person, 0)
@@ -77,7 +77,7 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
     def apply(self, db, person):
         return person.handle in self.map
 
-    def init_list(self, person, gen):
+    def init_list(self, person: Person, gen: int) -> None:
         if not person:
             return
         if gen >= int(self.list[1]):

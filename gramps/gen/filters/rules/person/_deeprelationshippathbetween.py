@@ -54,12 +54,12 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 
 
-def get_family_handle_people(db, exclude_handle, family_handle):
-    people = set()
+def get_family_handle_people(db: Database, exclude_handle: str, family_handle: str):
+    people: Set[str] = set()
 
     family = db.get_family_from_handle(family_handle)
 
-    def possibly_add_handle(h):
+    def possibly_add_handle(h: str):
         if h is not None and h != exclude_handle:
             people.add(h)
 
@@ -73,10 +73,12 @@ def get_family_handle_people(db, exclude_handle, family_handle):
     return people
 
 
-def get_person_family_people(db, person, person_handle):
-    people = set()
+def get_person_family_people(
+    db: Database, person: Person, person_handle: str
+) -> Set[str]:
+    people: Set[str] = set()
 
-    def add_family_handle_list(fam_list):
+    def add_family_handle_list(fam_list: List[str]):
         for family_handle in fam_list:
             people.update(get_family_handle_people(db, person_handle, family_handle))
 
@@ -86,7 +88,9 @@ def get_person_family_people(db, person, person_handle):
     return people
 
 
-def find_deep_relations(db, user, person, target_people):
+def find_deep_relations(
+    db: Database, user, person: Person, target_people: List[str]
+) -> Set[str]:
     """This explores all possible paths between a person and one or more
     targets.  The algorithm processes paths in a breadth first wave, one
     remove at a time.  The first path that reaches a target causes the target
@@ -95,12 +99,12 @@ def find_deep_relations(db, user, person, target_people):
     The function stores to do data and intermediate results in an ordered dict,
     rather than using a recursive algorithm because some trees have been found
     that exceed the standard python recursive depth."""
-    return_paths = set()  # all people in paths between targets and person
+    return_paths: Set[str] = set()  # all people in paths between targets and person
     if person is None:
         return return_paths
     todo = deque([person.handle])  # list of work to do, handles, add to right,
     #                                pop from left
-    done = {}  # The key records handles already examined,
+    done: Dict[str, Union[str, None]] = {}  # The key records handles already examined,
     # the value is a handle of the previous person in the path, or None at
     # head of path.  This forms a linked list of handles along the path.
     done[person.handle] = None
@@ -152,7 +156,7 @@ class DeepRelationshipPathBetween(Rule):
         " the shortest path."
     )
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         root_person_id = self.list[0]
         root_person = db.get_person_from_gramps_id(root_person_id)
 

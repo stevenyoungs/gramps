@@ -62,7 +62,7 @@ class IsDuplicatedAncestorOf(Rule):
         "Matches people that are ancestors twice or more " "of a specified person"
     )
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
         self.map = set()
         self.map2 = set()
@@ -77,7 +77,7 @@ class IsDuplicatedAncestorOf(Rule):
     def apply(self, db, person):
         return person.handle in self.map2
 
-    def init_ancestor_list(self, db, person):
+    def init_ancestor_list(self, db: Database, person: Person):
         fam_id = person.get_main_parents_family_handle()
         if fam_id:
             fam = db.get_family_from_handle(fam_id)
@@ -89,7 +89,7 @@ class IsDuplicatedAncestorOf(Rule):
                 if f_id:
                     self.go_deeper(db, db.get_person_from_handle(f_id))
 
-    def go_deeper(self, db, person):
+    def go_deeper(self, db: Database, person: Person):
         if person and person.handle in self.map:
             self.map2.add((person.handle))
             # the following keeps from scanning same parts of tree multiple

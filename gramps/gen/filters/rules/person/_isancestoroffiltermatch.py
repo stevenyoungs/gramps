@@ -62,9 +62,9 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
         "Matches people that are ancestors " "of anybody matched by a filter"
     )
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.map = set()
+        self.map: Set[str] = set()
         try:
             if int(self.list[1]):
                 first = 0

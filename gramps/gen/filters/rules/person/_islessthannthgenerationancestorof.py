@@ -62,16 +62,16 @@ class IsLessThanNthGenerationAncestorOf(Rule):
         "of a specified person not more than N generations away"
     )
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.map = set()
+        self.map: Set[str] = set()
         person = db.get_person_from_gramps_id(self.list[0])
         if person:
             root_handle = person.get_handle()
             if root_handle:
                 self.init_ancestor_list(root_handle)
 
-    def init_ancestor_list(self, root_handle):
+    def init_ancestor_list(self, root_handle: str):
         queue = [(root_handle, 1)]  # generation 1 is root
         while queue:
             handle, gen = queue.pop(0)  # pop off front of queue

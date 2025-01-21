@@ -62,7 +62,7 @@ class HasType(Rule):
         super().__init__(arg, use_regex, use_case)
         self.note_type = None
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """
         Prepare the rule. Things we only want to do once.
         """

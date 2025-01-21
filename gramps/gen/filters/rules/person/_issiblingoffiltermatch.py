@@ -59,9 +59,9 @@ class IsSiblingOfFilterMatch(Rule):
     category = _("Family filters")
     description = _("Matches siblings of anybody matched by a filter")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.map = set()
+        self.map: Set[str] = set()
         self.matchfilt = MatchesFilter(self.list)
         self.matchfilt.requestprepare(db, user)
         if user:
@@ -85,7 +85,7 @@ class IsSiblingOfFilterMatch(Rule):
     def apply(self, db, person):
         return person.handle in self.map
 
-    def init_list(self, person):
+    def init_list(self, person: Person):
         if not person:
             return
         fam_id = person.get_main_parents_family_handle()

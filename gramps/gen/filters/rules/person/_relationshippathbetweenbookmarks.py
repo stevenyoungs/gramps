@@ -68,9 +68,9 @@ class RelationshipPathBetweenBookmarks(Rule):
         "path(s) between bookmarked persons."
     )
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.map = set()
+        self.map: Set[str] = set()
         bookmarks = db.get_bookmarks().get()
         if len(bookmarks) == 0:
             self.apply = lambda db, p: False
@@ -86,7 +86,7 @@ class RelationshipPathBetweenBookmarks(Rule):
 
     #
     # Returns a name, given a handle.
-    def hnm(self, handle):
+    def hnm(self, handle: str):
         try:
             person = self.db.get_person_from_handle(handle)
         except:
@@ -103,7 +103,7 @@ class RelationshipPathBetweenBookmarks(Rule):
     # Given a group of individuals, returns all of their parents.
     # The value keyed by the individual handles is the path from
     # the original person up, like generation[gfather]= [son,father,gfather]
-    def parents(self, generation):
+    def parents(self, generation: Dict[str, List[str]]):
         if len(generation) < 1:
             return None
         prev_generation = {}
@@ -129,7 +129,7 @@ class RelationshipPathBetweenBookmarks(Rule):
     #
     # Given two handles for individuals, a list of all individuals
     # in the relationship path between the two.
-    def rel_path_for_two(self, handle1, handle2):
+    def rel_path_for_two(self, handle1: str, handle2: str):
         # print "rel_path_for_two (", handle1, self.hnm(handle1), ",", handle2, self.hnm(handle2), ")"
         rel_path = {}  # Result map
         gmap1 = {handle1: [handle1]}  # Key is ancestor, value is the path

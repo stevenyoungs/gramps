@@ -102,7 +102,7 @@ class ChangedSinceBase(Rule):
             )
         return time_sec
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.since = None
         self.before = None
         if self.list[0]:

@@ -62,7 +62,7 @@ class HasTagBase(Rule):
     description = "Matches objects with the given tag"
     category = _("General filters")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """
         Prepare the rule. Things we want to do just once.
         """

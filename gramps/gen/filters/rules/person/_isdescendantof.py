@@ -59,9 +59,9 @@ class IsDescendantOf(Rule):
     category = _("Descendant filters")
     description = _("Matches all descendants for the specified person")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.map = set()
+        self.map: Set[str] = set()
         try:
             first = False if int(self.list[1]) else True
         except IndexError:
@@ -78,7 +78,7 @@ class IsDescendantOf(Rule):
     def apply(self, db, person):
         return person.handle in self.map
 
-    def init_list(self, person, first):
+    def init_list(self, person: Person, first: bool):
         if not person or person.handle in self.map:
             # if we have been here before, skip
             return

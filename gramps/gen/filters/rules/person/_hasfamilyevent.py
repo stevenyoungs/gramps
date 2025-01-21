@@ -66,7 +66,7 @@ class HasFamilyEvent(Rule):
         self.date = None
         self.event_type = None
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         if self.list[0]:
             self.event_type = EventType()
             self.event_type.set_from_xml_str(self.list[0])

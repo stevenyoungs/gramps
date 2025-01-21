@@ -72,11 +72,11 @@ class WithinArea(Rule):
     description = _("Matches places within a given distance of another place")
     category = _("Position filters")
     handle = None
-    radius = None
-    latitude = None
-    longitude = None
+    radius: float = 0.0
+    latitude: Union[float, None] = None
+    longitude: Union[float, None] = None
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         ref_place = db.get_place_from_gramps_id(self.list[0])
         self.handle = None
         self.radius = None

@@ -64,7 +64,7 @@ class HasAttributeBase(Rule):
         super().__init__(arg, use_regex, use_case)
         self.attribute_type = None
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """
         Prepare the rule. Things that should only be done once.
         """

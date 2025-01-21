@@ -58,7 +58,7 @@ class HasSourceOfBase(Rule):
     category = _("Citation/source filters")
     description = "Matches objects who have a particular source"
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         if self.list[0] == "":
             self.source_handle = None
             self.nosource = True

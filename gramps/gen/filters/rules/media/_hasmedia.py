@@ -64,7 +64,7 @@ class HasMedia(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.date = None
         try:
             if self.list[3]:

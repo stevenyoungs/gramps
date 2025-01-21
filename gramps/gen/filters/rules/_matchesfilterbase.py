@@ -69,7 +69,7 @@ class MatchesFilterBase(Rule):
     description = "Matches objects matched by the specified filter name"
     category = _("General filters")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         if gramps.gen.filters.CustomFilters:
             filters = gramps.gen.filters.CustomFilters.get_filters_dict(self.namespace)
             if self.list[0] in filters:

@@ -58,7 +58,7 @@ class IsRelatedWith(Rule):
     category = _("Relationship filters")
     description = _("Matches people related to a specified person")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """prepare so the rule can be executed efficiently
         we build the list of people related to <person> here,
         so that apply is only a check into this list
@@ -74,7 +74,7 @@ class IsRelatedWith(Rule):
     def apply(self, db, person):
         return person.handle in self.relatives
 
-    def add_relative(self, start):
+    def add_relative(self, start: Person):
         """Non-recursive function that scans relatives and add them to self.relatives"""
         if not (start):
             return

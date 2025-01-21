@@ -62,10 +62,10 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
         "Matches ancestors of the Home Person " "not more than N generations away"
     )
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.map = set()
-        p = db.get_default_person()
+        self.map: Set[str] = set()
+        p: Person = db.get_default_person()
         if p:
             self.def_handle = p.get_handle()
             self.apply = self.apply_real
@@ -73,7 +73,7 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
         else:
             self.apply = lambda db, p: False
 
-    def init_ancestor_list(self, handle, gen):
+    def init_ancestor_list(self, handle: str, gen: int):
         #        if p.get_handle() in self.map:
         #            loop_error(self.orig,p)
         if not handle or handle in self.map:

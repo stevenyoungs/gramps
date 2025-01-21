@@ -57,7 +57,7 @@ class IsDefaultPerson(Rule):
     category = _("General filters")
     description = _("Matches the Home Person")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         p = db.get_default_person()
         if p:
             self.def_handle = p.get_handle()

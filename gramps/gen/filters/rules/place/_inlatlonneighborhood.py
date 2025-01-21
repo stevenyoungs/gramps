@@ -71,7 +71,7 @@ class InLatLonNeighborhood(Rule):
     )
     category = _("Position filters")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         if self.list[0]:
             try:
                 self.halfheight = float(self.list[2]) / 2.0

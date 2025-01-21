@@ -59,7 +59,7 @@ class IsSpouseOfFilterMatch(Rule):
     description = _("Matches people married to anybody matching a filter")
     category = _("Family filters")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.filt = MatchesFilter(self.list)
         self.filt.requestprepare(db, user)
 

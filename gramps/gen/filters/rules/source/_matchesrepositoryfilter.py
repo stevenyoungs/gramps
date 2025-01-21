@@ -62,7 +62,7 @@ class MatchesRepositoryFilter(MatchesFilterBase):
     # we want to have this filter show repository filters
     namespace = "Repository"
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         MatchesFilterBase.prepare(self, db, user)
         self.MRF_filt = self.find_filter()
 

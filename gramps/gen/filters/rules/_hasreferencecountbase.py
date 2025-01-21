@@ -55,7 +55,7 @@ class HasReferenceCountBase(Rule):
     description = "Matches objects with a certain reference count"
     category = _("General filters")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         # things we want to do just once, not for every handle
         if self.list[0] == "less than":
             self.count_type = 0
