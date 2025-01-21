@@ -31,6 +31,16 @@ Rule that checks for a family that is a descendant of a specified family.
 from .. import Rule
 from ....const import GRAMPS_LOCALE as glocale
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Set
+from gramps.gen.lib import Family
+from gramps.gen.db import Database
+
+
 _ = glocale.translation.gettext
 
 

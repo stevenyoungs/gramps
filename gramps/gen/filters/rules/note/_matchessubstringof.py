@@ -37,6 +37,15 @@ from .. import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Note
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
 # "Events having notes that contain a substring"
 # -------------------------------------------------------------------------
 class MatchesSubstringOf(Rule):

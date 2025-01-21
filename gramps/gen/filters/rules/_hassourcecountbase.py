@@ -39,6 +39,15 @@ from . import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib.citationbase import CitationBase
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
 # "Objects having sources"
 # -------------------------------------------------------------------------
 class HasSourceCountBase(Rule):

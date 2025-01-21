@@ -31,6 +31,15 @@ _ = glocale.translation.gettext
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib.primaryobj import PrimaryObject
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
 # "People marked public"
 # -------------------------------------------------------------------------
 class IsPublic(Rule):

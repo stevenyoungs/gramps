@@ -38,6 +38,15 @@ from .. import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Note
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
 # Notes that contain a substring or match a regular expression
 # -------------------------------------------------------------------------
 class MatchesRegexpOf(Rule):

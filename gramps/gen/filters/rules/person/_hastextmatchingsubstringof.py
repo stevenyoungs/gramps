@@ -41,6 +41,16 @@ from .. import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Set
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
 # "HasTextMatchingSubstringOf"
 # -------------------------------------------------------------------------
 class HasTextMatchingSubstringOf(Rule):

@@ -33,6 +33,15 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .. import RegExpIdBase
+
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Family
+from gramps.gen.db import Database
 from ._memberbase import father_base
 
 

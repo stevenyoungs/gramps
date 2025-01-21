@@ -43,6 +43,17 @@ from ....const import GRAMPS_LOCALE as glocale
 from .. import Rule
 from ....utils.place import conv_lat_lon
 
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Union
+from gramps.gen.lib import Place
+from gramps.gen.db import Database
+
+
 _ = glocale.translation.sgettext
 
 

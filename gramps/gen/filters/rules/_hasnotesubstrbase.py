@@ -36,6 +36,15 @@ from . import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
 # "People having notes that contain a substring"
 # -------------------------------------------------------------------------
 class HasNoteSubstrBase(Rule):

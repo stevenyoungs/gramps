@@ -38,6 +38,16 @@ from ._matchesfilter import MatchesFilter
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Set
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # IsDescendantOfFilterMatch
 #
 # -------------------------------------------------------------------------

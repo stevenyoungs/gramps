@@ -31,6 +31,14 @@ from ...const import GRAMPS_LOCALE as glocale
 from ...lib.notetype import NoteType
 from . import Rule
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib.notebase import NoteBase
+from gramps.gen.db import Database
+
 _ = glocale.translation.gettext
 
 

@@ -36,6 +36,15 @@ from .. import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Citation
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
 # "Sources having a title that contain a substring"
 # -------------------------------------------------------------------------
 class MatchesPageSubstringOf(Rule):

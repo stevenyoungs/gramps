@@ -40,6 +40,15 @@ from . import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib.citationbase import CitationBase
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
 # "Confidence level"
 # Sources of an attribute of an event are ignored
 # -------------------------------------------------------------------------

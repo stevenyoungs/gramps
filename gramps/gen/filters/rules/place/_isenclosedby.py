@@ -36,6 +36,14 @@ _ = glocale.translation.sgettext
 from .. import Rule
 from ....utils.location import located_in
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Place
+from gramps.gen.db import Database
+
 
 # -------------------------------------------------------------------------
 #

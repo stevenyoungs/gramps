@@ -42,6 +42,16 @@ from .. import Rule
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import List, Set
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # IsLessThanNthGenerationAncestorOfBookmarked
 #
 # -------------------------------------------------------------------------

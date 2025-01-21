@@ -36,6 +36,15 @@ from . import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib.primaryobj import PrimaryObject
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
 # "Objects with a certain reference count"
 # -------------------------------------------------------------------------
 class HasReferenceCountBase(Rule):

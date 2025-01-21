@@ -39,7 +39,16 @@ from . import Rule
 
 
 # -------------------------------------------------------------------------
-# "People who have images"
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib.mediabase import MediaBase
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
+# "Objects that have images"
 # -------------------------------------------------------------------------
 class HasGalleryBase(Rule):
     """Objects who have Media Object"""

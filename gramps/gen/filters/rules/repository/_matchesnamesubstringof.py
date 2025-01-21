@@ -36,6 +36,15 @@ from .. import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Repository
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
 # "Repositories having a name that contain a substring"
 # -------------------------------------------------------------------------
 class MatchesNameSubstringOf(Rule):

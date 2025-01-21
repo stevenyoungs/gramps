@@ -32,6 +32,15 @@ from ....lib.eventroletype import EventRoleType
 from ....lib.eventtype import EventType
 from .. import Rule
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
 _ = glocale.translation.gettext
 
 

@@ -37,6 +37,15 @@ from ....lib.childreftype import ChildRefType
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
 # "People who were adopted"
 # -------------------------------------------------------------------------
 class HaveAltFamilies(Rule):

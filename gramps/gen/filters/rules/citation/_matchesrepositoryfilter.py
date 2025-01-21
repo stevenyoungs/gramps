@@ -40,6 +40,15 @@ from .. import MatchesFilterBase
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Citation
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
 # "Sources which reference a repository by selection"
 # -------------------------------------------------------------------------
 class MatchesRepositoryFilter(MatchesFilterBase):

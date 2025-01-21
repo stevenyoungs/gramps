@@ -37,6 +37,15 @@ from . import Rule
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib.notebase import NoteBase
+from gramps.gen.db import Database
+
+
+# -------------------------------------------------------------------------
 # Objects having notes that contain a substring or match a regular expression
 # -------------------------------------------------------------------------
 class HasNoteRegexBase(Rule):

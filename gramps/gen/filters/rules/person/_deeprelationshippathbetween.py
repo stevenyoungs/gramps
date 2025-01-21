@@ -36,6 +36,16 @@ from .. import Rule
 from . import MatchesFilter
 from ....const import GRAMPS_LOCALE as glocale
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Union, List, Set, Dict
+from gramps.gen.lib import Person
+from gramps.gen.db import Database
+
+
 _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 #

@@ -33,6 +33,17 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from ..person import RegExpName
+
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.lib import Family
+from gramps.gen.db import Database
+
+
 from ._memberbase import child_base
 
 
