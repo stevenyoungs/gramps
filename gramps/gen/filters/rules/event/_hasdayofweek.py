@@ -55,5 +55,7 @@ class HasDayOfWeek(Rule):
         if not self.list[0]:
             return False
         else:
-            dow = event.get_date_object().get_dow()
-            return dow == int(self.list[0])
+            if event.date:
+                dow = event.date.get_dow()
+                return dow == int(self.list[0])
+            return False

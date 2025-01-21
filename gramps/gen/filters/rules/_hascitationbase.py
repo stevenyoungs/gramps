@@ -73,22 +73,21 @@ class HasCitationBase(Rule):
             pass
 
     def apply(self, dbase, object):
-        for citation_handle in object.get_citation_list():
+        for citation_handle in object.citation_list:
             citation = dbase.get_citation_from_handle(citation_handle)
             if self._apply(dbase, citation):
                 return True
         return False
 
-    def _apply(self, db, citation):
-        if not self.match_substring(0, citation.get_page()):
+        if not self.match_substring(0, citation.page):
             return False
 
         if self.date:
-            if not citation.get_date_object().match(self.date):
+            if not citation.date.match(self.date):
                 return False
 
         if self.list[2]:
-            if citation.get_confidence_level() < int(self.list[2]):
+            if citation.confidence < int(self.list[2]):
                 return False
 
         return True

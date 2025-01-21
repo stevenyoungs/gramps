@@ -58,7 +58,4 @@ class HasAlternateName(Rule):
     category = _("General filters")
 
     def apply(self, db, person):
-        if person.get_alternate_names():
-            return True
-        else:
-            return False
+        return True if person.alternate_names else False

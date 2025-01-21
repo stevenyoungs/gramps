@@ -58,7 +58,7 @@ class HasAddressText(Rule):
     allow_regex = True
 
     def apply(self, db, person):
-        for address in person.get_address_list():
+        for address in person.address_list:
             for string in address.get_text_data_list():
                 if self.match_substring(0, string):
                     return True

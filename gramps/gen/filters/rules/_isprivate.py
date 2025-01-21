@@ -53,4 +53,4 @@ class IsPrivate(Rule):
     category = _("General filters")
 
     def apply(self, db, obj):
-        return obj.get_privacy()
+        return obj.private

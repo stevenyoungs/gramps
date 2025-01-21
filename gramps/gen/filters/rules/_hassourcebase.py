@@ -60,16 +60,16 @@ class HasSourceBase(Rule):
     allow_regex = True
 
     def apply(self, db, source):
-        if not self.match_substring(0, source.get_title()):
+        if not self.match_substring(0, source.title):
             return False
 
-        if not self.match_substring(1, source.get_author()):
+        if not self.match_substring(1, source.author):
             return False
 
-        if not self.match_substring(2, source.get_abbreviation()):
+        if not self.match_substring(2, source.abbrev):
             return False
 
-        if not self.match_substring(3, source.get_publication_info()):
+        if not self.match_substring(3, source.pubinfo):
             return False
 
         return True

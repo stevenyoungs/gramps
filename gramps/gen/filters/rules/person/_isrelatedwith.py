@@ -89,32 +89,32 @@ class IsRelatedWith(Rule):
                 continue
             relatives[person.handle] = True
 
-            for family_handle in person.get_parent_family_handle_list():
+            for family_handle in person.parent_family_list:
                 family = self.db.get_family_from_handle(family_handle)
                 if family:
                     # Check Parents
                     for parent_handle in (
-                        family.get_father_handle(),
-                        family.get_mother_handle(),
+                        family.father_handle,
+                        family.mother_handle,
                     ):
                         if parent_handle:
                             expand.append(self.db.get_person_from_handle(parent_handle))
                     # Check Sibilings
-                    for child_ref in family.get_child_ref_list():
+                    for child_ref in family.child_ref_list:
                         expand.append(self.db.get_person_from_handle(child_ref.ref))
 
-            for family_handle in person.get_family_handle_list():
+            for family_handle in person.family_list:
                 family = self.db.get_family_from_handle(family_handle)
                 if family:
                     # Check Spouse
                     for parent_handle in (
-                        family.get_father_handle(),
-                        family.get_mother_handle(),
+                        family.father_handle,
+                        family.mother_handle,
                     ):
                         if parent_handle:
                             expand.append(self.db.get_person_from_handle(parent_handle))
                     # Check Children
-                    for child_ref in family.get_child_ref_list():
+                    for child_ref in family.child_ref_list:
                         expand.append(self.db.get_person_from_handle(child_ref.ref))
 
         self.relatives = list(relatives.keys())

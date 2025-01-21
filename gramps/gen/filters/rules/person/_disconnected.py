@@ -60,6 +60,4 @@ class Disconnected(Rule):
     )
 
     def apply(self, db, person):
-        return not (
-            person.get_parent_family_handle_list() or person.get_family_handle_list()
-        )
+        return not (person.parent_family_list or person.family_list)

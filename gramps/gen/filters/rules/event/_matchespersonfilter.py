@@ -82,15 +82,13 @@ class MatchesPersonFilter(MatchesFilterBase):
     def apply(self, db, event):
         filt = self.find_filter()
         if filt:
-            for classname, handle in db.find_backlink_handles(
-                event.get_handle(), ["Person"]
-            ):
+            for classname, handle in db.find_backlink_handles(event.handle, ["Person"]):
                 if filt.check(db, handle):
                     return True
             if self.MPF_famevents:
                 # also include if family event of the person
                 for classname, handle in db.find_backlink_handles(
-                    event.get_handle(), ["Family"]
+                    event.handle, ["Family"]
                 ):
                     family = db.get_family_from_handle(handle)
                     if family.father_handle and filt.check(db, family.father_handle):

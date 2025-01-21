@@ -50,4 +50,4 @@ class IsPublic(Rule):
     category = _("General filters")
 
     def apply(self, db, obj):
-        return not obj.get_privacy()
+        return not obj.private

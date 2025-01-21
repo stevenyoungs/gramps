@@ -56,17 +56,13 @@ class HaveAltFamilies(Rule):
     category = _("Family filters")
 
     def apply(self, db, person):
-        for fhandle in person.get_parent_family_handle_list():
+        for fhandle in person.parent_family_list:
             family = db.get_family_from_handle(fhandle)
             if family:
-                ref = [
-                    ref
-                    for ref in family.get_child_ref_list()
-                    if ref.ref == person.handle
-                ]
+                ref = [ref for ref in family.child_ref_list if ref.ref == person.handle]
                 if (
-                    ref[0].get_father_relation() == ChildRefType.ADOPTED
-                    or ref[0].get_mother_relation() == ChildRefType.ADOPTED
+                    ref[0].frel == ChildRefType.ADOPTED
+                    or ref[0].mrel == ChildRefType.ADOPTED
                 ):
                     return True
         return False

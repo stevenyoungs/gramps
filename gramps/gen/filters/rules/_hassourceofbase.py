@@ -66,7 +66,7 @@ class HasSourceOfBase(Rule):
 
         self.nosource = False
         try:
-            self.source_handle = db.get_source_from_gramps_id(self.list[0]).get_handle()
+            self.source_handle = db.get_source_from_gramps_id(self.list[0]).handle
         except:
             self.source_handle = None
 
@@ -81,6 +81,6 @@ class HasSourceOfBase(Rule):
         else:
             for citation_handle in object.get_all_citation_lists():
                 citation = db.get_citation_from_handle(citation_handle)
-                if citation.get_reference_handle() == self.source_handle:
+                if citation.source_handle == self.source_handle:
                     return True
             return False

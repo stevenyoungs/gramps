@@ -80,7 +80,7 @@ class HasRepo(Rule):
         """
         Apply the rule. Return True on a match.
         """
-        if not self.match_substring(0, obj.get_name()):
+        if not self.match_substring(0, obj.name):
             return False
 
         if self.rtype:

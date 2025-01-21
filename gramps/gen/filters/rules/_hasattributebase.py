@@ -77,9 +77,9 @@ class HasAttributeBase(Rule):
         Apply the rule. Return True if a match.
         """
         if self.attribute_type:
-            for attribute in obj.get_attribute_list():
-                name_match = attribute.get_type() == self.attribute_type
+            for attribute in obj.attribute_list:
+                name_match = attribute.type == self.attribute_type
                 if name_match:
-                    if self.match_substring(1, attribute.get_value()):
+                    if self.match_substring(1, attribute.value):
                         return True
         return False

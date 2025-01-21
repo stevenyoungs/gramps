@@ -75,7 +75,7 @@ class HasNameType(Rule):
         Apply the rule. Return True on a match.
         """
         if self.name_type:
-            for name in [obj.get_primary_name()] + obj.get_alternate_names():
-                if name.get_type() == self.name_type:
+            for name in [obj.primary_name] + obj.alternate_names:
+                if name.type == self.name_type:
                     return True
         return False

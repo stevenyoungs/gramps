@@ -60,4 +60,4 @@ class MatchesPageSubstringOf(Rule):
 
     def apply(self, db, object):
         """Apply the filter"""
-        return self.match_substring(0, object.get_page())
+        return self.match_substring(0, object.page)

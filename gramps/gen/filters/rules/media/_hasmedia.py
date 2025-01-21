@@ -73,17 +73,17 @@ class HasMedia(Rule):
             pass
 
     def apply(self, db, obj):
-        if not self.match_substring(0, obj.get_description()):
+        if not self.match_substring(0, obj.desc):
             return False
 
-        if not self.match_substring(1, obj.get_mime_type()):
+        if not self.match_substring(1, obj.mime):
             return False
 
-        if not self.match_substring(2, obj.get_path()):
+        if not self.match_substring(2, obj.path):
             return False
 
         if self.date:
-            if not obj.get_date_object().match(self.date):
+            if not obj.date.match(self.date):
                 return False
 
         return True

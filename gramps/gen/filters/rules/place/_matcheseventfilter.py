@@ -70,9 +70,7 @@ class MatchesEventFilter(MatchesFilterBase):
     def apply(self, db, event):
         filt = self.find_filter()
         if filt:
-            for classname, handle in db.find_backlink_handles(
-                event.get_handle(), ["Event"]
-            ):
+            for classname, handle in db.find_backlink_handles(event.handle, ["Event"]):
                 if filt.check(db, handle):
                     return True
         return False

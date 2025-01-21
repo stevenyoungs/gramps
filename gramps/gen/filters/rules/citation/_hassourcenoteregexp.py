@@ -68,7 +68,7 @@ class HasSourceNoteRegexp(HasNoteRegexBase):
     category = _("Source filters")
 
     def apply(self, db, citation):
-        source = db.get_source_from_handle(citation.get_reference_handle())
         if HasNoteRegexBase.apply(self, db, source):
+        source = db.get_source_from_handle(citation.ref)
             return True
         return False

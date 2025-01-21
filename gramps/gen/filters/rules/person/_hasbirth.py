@@ -69,25 +69,25 @@ class HasBirth(Rule):
             self.date = None
 
     def apply(self, db, person):
-        for event_ref in person.get_event_ref_list():
+        for event_ref in person.event_ref_list:
             if not event_ref:
                 continue
             elif event_ref.role != EventRoleType.PRIMARY:
                 # Only match primaries, no witnesses
                 continue
             event = db.get_event_from_handle(event_ref.ref)
-            if event.get_type() != EventType.BIRTH:
+            if event.type != EventType.BIRTH:
                 # No match: wrong type
                 continue
-            if not self.match_substring(2, event.get_description()):
+            if not self.match_substring(2, event.description):
                 # No match: wrong description
                 continue
             if self.date:
-                if not event.get_date_object().match(self.date):
+                if not event.date.match(self.date):
                     # No match: wrong date
                     continue
             if self.list[1]:
-                place_id = event.get_place_handle()
+                place_id = event.place
                 if place_id:
                     place = db.get_place_from_handle(place_id)
                     place_title = place_displayer.display(db, place)

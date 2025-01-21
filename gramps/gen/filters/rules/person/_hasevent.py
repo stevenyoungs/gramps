@@ -68,7 +68,7 @@ class HasEvent(HasEventBase):
         """
         Apply the rule. Return True if a match.
         """
-        for event_ref in person.get_event_ref_list():
+        for event_ref in person.event_ref_list:
             if int(self.list[5]) and event_ref.role != EventRoleType.PRIMARY:
                 # Only match primaries, no witnesses
                 continue

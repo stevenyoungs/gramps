@@ -63,7 +63,7 @@ class RegExpName(Rule):
     allow_regex = True
 
     def apply(self, db, person):
-        for name in [person.get_primary_name()] + person.get_alternate_names():
+        for name in [person.primary_name] + person.alternate_names:
             for field in [
                 name.first_name,
                 name.get_surname(),

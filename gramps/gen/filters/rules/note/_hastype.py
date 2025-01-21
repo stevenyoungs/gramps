@@ -75,5 +75,5 @@ class HasType(Rule):
         Apply the rule. Return True on a match.
         """
         if self.note_type:
-            return obj.get_type() == self.note_type
+            return obj.type == self.note_type
         return False

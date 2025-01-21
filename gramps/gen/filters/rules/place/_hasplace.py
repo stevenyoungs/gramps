@@ -83,10 +83,10 @@ class HasPlace(Rule):
     }
 
     def apply(self, db, place):
-        if not self.match_substring(0, place.get_title()):
+        if not self.match_substring(0, place.title):
             return False
 
-        if not self.match_substring(7, place.get_code()):
+        if not self.match_substring(7, place.code):
             return False
 
         # If no location data was given then we're done: match

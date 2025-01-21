@@ -93,11 +93,11 @@ class RelationshipPathBetweenBookmarks(Rule):
             return None
         if person is None:
             return None
-        try:
-            name = person.get_primary_name().get_name()
-        except:
+
+        if person.primary_name:
+            return person.primary_name.name
+        else:
             return None
-        return name
 
     #
     # Given a group of individuals, returns all of their parents.
@@ -112,12 +112,16 @@ class RelationshipPathBetweenBookmarks(Rule):
                 person = self.db.get_person_from_handle(handle)
                 if person is None:
                     continue
-                fam_id = person.get_main_parents_family_handle()
+                fam_id = (
+                    person.parent_family_list[0]
+                    if len(person.parent_family_list) > 0
+                    else None
+                )
                 family = self.db.get_family_from_handle(fam_id)
                 if family is None:
                     continue
-                fhandle = family.get_father_handle()
-                mhandle = family.get_mother_handle()
+                fhandle = family.father_handle
+                mhandle = family.mother_handle
                 if fhandle:
                     prev_generation[fhandle] = generation[handle] + [fhandle]
                 if mhandle:

@@ -156,10 +156,10 @@ class InLatLonNeighborhood(Rule):
         # now we know at least one is given in the filter and is valid
 
         # the place we look at must have lat AND lon entered
-        if not (place.get_latitude().strip and place.get_longitude().strip()):
+        if not (place.lat.strip() and place.long.strip()):
             return False
 
-        latpl, lonpl = conv_lat_lon(place.get_latitude(), place.get_longitude(), "D.D8")
+        latpl, lonpl = conv_lat_lon(place.lat, place.long, "D.D8")
         if latpl and lonpl:
             latpl = float(latpl)
             lonpl = float(lonpl)

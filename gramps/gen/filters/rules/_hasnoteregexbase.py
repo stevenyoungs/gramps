@@ -61,8 +61,8 @@ class HasNoteRegexBase(Rule):
     allow_regex = True
 
     def apply(self, db, person):
-        for handle in person.get_note_list():
+        for handle in obj.note_list:
             note = db.get_note_from_handle(handle)
-            if self.match_substring(0, note.get()):
+            if self.match_substring(0, str(note.text)):
                 return True
         return False

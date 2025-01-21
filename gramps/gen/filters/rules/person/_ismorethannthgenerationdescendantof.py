@@ -83,10 +83,10 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
         if gen >= int(self.list[1]):
             self.map.add(person.handle)
 
-        for fam_id in person.get_family_handle_list():
+        for fam_id in person.family_list:
             fam = self.db.get_family_from_handle(fam_id)
             if fam:
-                for child_ref in fam.get_child_ref_list():
+                for child_ref in fam.child_ref_list:
                     self.init_list(
                         self.db.get_person_from_handle(child_ref.ref), gen + 1
                     )

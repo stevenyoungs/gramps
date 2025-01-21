@@ -78,7 +78,7 @@ class HasNote(Rule):
         """
         Apply the rule. Return True on a match.
         """
-        if not self.match_substring(0, obj.get()):
+        if not self.match_substring(0, str(obj.text)):
             return False
 
         if self.note_type:

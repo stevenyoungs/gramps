@@ -69,7 +69,7 @@ class HasTagBase(Rule):
         self.tag_handle = None
         tag = db.get_tag_from_name(self.list[0])
         if tag is not None:
-            self.tag_handle = tag.get_handle()
+            self.tag_handle = tag.handle
 
     def apply(self, db, obj):
         """
@@ -77,4 +77,4 @@ class HasTagBase(Rule):
         """
         if self.tag_handle is None:
             return False
-        return self.tag_handle in obj.get_tag_list()
+        return self.tag_handle in obj.tag_list

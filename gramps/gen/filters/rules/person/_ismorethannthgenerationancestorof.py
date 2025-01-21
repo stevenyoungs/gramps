@@ -67,7 +67,7 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
         self.map: Set[str] = set()
         person = db.get_person_from_gramps_id(self.list[0])
         if person:
-            root_handle = person.get_handle()
+            root_handle = person.handle
             if root_handle:
                 self.init_ancestor_list(root_handle)
 
@@ -79,12 +79,12 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
                 self.map.add(handle)
             gen += 1
             p = self.db.get_person_from_handle(handle)
-            fam_id = p.get_main_parents_family_handle()
+            fam_id = p.parent_family_list[0] if len(p.parent_family_list) > 0 else None
             if fam_id:
                 fam = self.db.get_family_from_handle(fam_id)
                 if fam:
-                    f_id = fam.get_father_handle()
-                    m_id = fam.get_mother_handle()
+                    f_id = fam.father_handle
+                    m_id = fam.mother_handle
                     # append to back of queue:
                     if f_id:
                         queue.append((f_id, gen))

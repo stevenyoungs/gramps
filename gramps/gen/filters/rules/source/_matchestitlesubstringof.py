@@ -58,4 +58,4 @@ class MatchesTitleSubstringOf(Rule):
 
     def apply(self, db, source):
         """Apply the filter"""
-        return self.match_substring(0, source.get_title())
+        return self.match_substring(0, source.title)

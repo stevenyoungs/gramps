@@ -75,8 +75,8 @@ class HasNameOriginType(Rule):
         Apply the rule. Return True on a match.
         """
         if self.name_origin_type:
-            for name in [obj.get_primary_name()] + obj.get_alternate_names():
-                for surname in name.get_surname_list():
-                    if surname.get_origintype() == self.name_origin_type:
+            for name in [obj.primary_name] + obj.alternate_names:
+                for surname in name.surname_list:
+                    if surname.origintype == self.name_origin_type:
                         return True
         return False

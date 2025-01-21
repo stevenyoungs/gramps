@@ -78,7 +78,7 @@ class MatchesRepositoryFilter(MatchesFilterBase):
 
         source_handle = object.source_handle
         source = db.get_source_from_handle(source_handle)
-        repolist = [x.ref for x in source.get_reporef_list()]
+        repolist = [x.ref for x in source.reporef_list]
         for repohandle in repolist:
             # check if repo in repository filter
             if self.MRF_filt.check(db, repohandle):

@@ -64,8 +64,8 @@ class MatchesSourceConfidenceBase(Rule):
 
     def apply(self, db, obj):
         required_conf = int(self.list[0])
-        for citation_handle in obj.get_citation_list():
+        for citation_handle in obj.citation_list:
             citation = db.get_citation_from_handle(citation_handle)
-            if required_conf <= citation.get_confidence_level():
+            if required_conf <= citation.confidence:
                 return True
         return False

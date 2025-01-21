@@ -64,12 +64,12 @@ class IsSpouseOfFilterMatch(Rule):
         self.filt.requestprepare(db, user)
 
     def apply(self, db, person):
-        for family_handle in person.get_family_handle_list():
+        for family_handle in person.family_list:
             family = db.get_family_from_handle(family_handle)
             if family:
                 for spouse_id in [
-                    family.get_father_handle(),
-                    family.get_mother_handle(),
+                    family.father_handle,
+                    family.mother_handle,
                 ]:
                     if not spouse_id:
                         continue

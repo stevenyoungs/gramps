@@ -66,7 +66,7 @@ class HasEvent(HasEventBase):
     description = _("Matches families with an event of a particular value")
 
     def apply(self, dbase, family):
-        for event_ref in family.get_event_ref_list():
+        for event_ref in family.event_ref_list:
             if not event_ref:
                 continue
             event = dbase.get_event_from_handle(event_ref.ref)

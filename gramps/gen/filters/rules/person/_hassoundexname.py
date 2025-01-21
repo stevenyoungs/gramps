@@ -78,7 +78,7 @@ class HasSoundexName(Rule):
         """
         Apply the rule. Return True on a match.
         """
-        for name in [obj.get_primary_name()] + obj.get_alternate_names():
+        for name in [obj.primary_name] + obj.alternate_names:
             if self._match_name(name):
                 return True
         return False
@@ -88,17 +88,17 @@ class HasSoundexName(Rule):
         Match a name against the soundex.
         """
         if self.soundex:
-            if soundex(str(name.get_first_name())) == self.soundex:
+            if soundex(str(name.first_name)) == self.soundex:
                 return True
             if soundex(str(name.get_surname())) == self.soundex:
                 return True
-            if soundex(str(name.get_call_name())) == self.soundex:
+            if soundex(str(name.call)) == self.soundex:
                 return True
-            if soundex(str(name.get_nick_name())) == self.soundex:
+            if soundex(str(name.nick)) == self.soundex:
                 return True
-            if soundex(str(name.get_family_nick_name())) == self.soundex:
+            if soundex(str(name.famnick)) == self.soundex:
                 return True
-            for surname in name.get_surname_list():
+            for surname in name.surname_list:
                 if self._match_surname(surname):
                     return True
         return False
@@ -109,7 +109,7 @@ class HasSoundexName(Rule):
         """
         if soundex(str(surname.get_surname())) == self.soundex:
             return True
-        if surname.get_origintype().value == NameOriginType.PATRONYMIC:
-            if soundex(str(surname.get_surname())) == self.soundex:
+        if int(surname.origintype) == NameOriginType.PATRONYMIC:
+            if soundex(str(surname.surname)) == self.soundex:
                 return True
         return False

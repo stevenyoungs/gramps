@@ -84,11 +84,11 @@ class WithinArea(Rule):
         self.longitude = None
         if ref_place:
             self.handle = ref_place.handle
-            latitude = ref_place.get_latitude()
+            latitude = ref_place.lat
             if latitude == "":
                 latitude = None
                 return
-            longitude = ref_place.get_longitude()
+            longitude = ref_place.long
             self.latitude, self.longitude = conv_lat_lon(latitude, longitude, "D.D8")
             if self.latitude is None or self.longitude is None:
                 raise FilterError(
@@ -125,8 +125,8 @@ class WithinArea(Rule):
         if self.longitude is None:
             return False
         if place:
-            lat = place.get_latitude()
-            lon = place.get_longitude()
+            lat = place.lat
+            lon = place.long
         if lat and lon:
             latit, longit = conv_lat_lon(lat, lon, "D.D8")
             if latit is None or longit is None:

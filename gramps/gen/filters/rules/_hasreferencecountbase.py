@@ -67,7 +67,7 @@ class HasReferenceCountBase(Rule):
         self.userSelectedCount = int(self.list[1])
 
     def apply(self, db, obj):
-        handle = obj.get_handle()
+        handle = obj.handle
         count = 0
         for item in db.find_backlink_handles(handle):
             count += 1

@@ -75,5 +75,5 @@ class HasType(Rule):
         Apply the rule. Return True if a match.
         """
         if self.event_type:
-            return obj.get_type() == self.event_type
+            return obj.type == self.event_type
         return False

@@ -58,7 +58,7 @@ class MatchesSubstringOf(Rule):
 
     def apply(self, db, note):
         """Apply the filter"""
-        text = note.get()
+        text = str(note.text)
         if text.upper().find(self.list[0].upper()) != -1:
             return True
         return False

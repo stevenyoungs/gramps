@@ -59,16 +59,17 @@ class HasTwins(Rule):
 
     def apply(self, db, family):
         date_list = []
-        for childref in family.get_child_ref_list():
-            if int(childref.get_mother_relation()) == ChildRefType.BIRTH:
+        for childref in family.child_ref_list:
+            if int(childref.mrel) == ChildRefType.BIRTH:
                 child = db.get_person_from_handle(childref.ref)
-                birthref = child.get_birth_ref()
-                if birthref:
-                    birth = db.get_event_from_handle(birthref.ref)
-                    sortval = birth.get_date_object().get_sort_value()
-                    if sortval != 0:
-                        if sortval in date_list:
-                            return True
-                        else:
-                            date_list.append(sortval)
+                if 0 <= child.birth_ref_index < len(child.event_ref_list):
+                    birthref = child.event_ref_list[child.birth_ref_index]
+                    if birthref:
+                        birth = db.get_event_from_handle(birthref.ref)
+                        sortval = birth.date.sortval
+                        if sortval != 0:
+                            if sortval in date_list:
+                                return True
+                            else:
+                                date_list.append(sortval)
         return False

@@ -88,12 +88,14 @@ class IsSiblingOfFilterMatch(Rule):
     def init_list(self, person: Person):
         if not person:
             return
-        fam_id = person.get_main_parents_family_handle()
+        fam_id = (
+            person.parent_family_list[0] if len(person.parent_family_list) > 0 else None
+        )
         if fam_id:
             fam = self.db.get_family_from_handle(fam_id)
             if fam:
                 self.map.update(
                     child_ref.ref
-                    for child_ref in fam.get_child_ref_list()
+                    for child_ref in fam.child_ref_list
                     if child_ref and child_ref.ref != person.handle
                 )

@@ -89,7 +89,7 @@ class IsChildOfFilterMatch(Rule):
     def init_list(self, person: Person):
         if not person:
             return
-        for fam_id in person.get_family_handle_list():
+        for fam_id in person.family_list:
             fam = self.db.get_family_from_handle(fam_id)
             if fam:
-                self.map.update(child_ref.ref for child_ref in fam.get_child_ref_list())
+                self.map.update(child_ref.ref for child_ref in fam.child_ref_list)

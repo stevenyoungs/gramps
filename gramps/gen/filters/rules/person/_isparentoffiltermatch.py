@@ -87,11 +87,11 @@ class IsParentOfFilterMatch(Rule):
         return person.handle in self.map
 
     def init_list(self, person: Person):
-        for fam_id in person.get_parent_family_handle_list():
+        for fam_id in person.parent_family_list:
             fam = self.db.get_family_from_handle(fam_id)
             if fam:
                 self.map.update(
                     parent_id
-                    for parent_id in [fam.get_father_handle(), fam.get_mother_handle()]
+                    for parent_id in [fam.father_handle, fam.mother_handle]
                     if parent_id
                 )

@@ -55,4 +55,4 @@ class MultipleMarriages(Rule):
     category = _("Family filters")
 
     def apply(self, db, person):
-        return len(person.get_family_handle_list()) > 1
+        return len(person.family_list) > 1

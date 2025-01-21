@@ -111,7 +111,7 @@ class ChangedSinceBase(Rule):
             self.before = self.time_str_to_sec(self.list[1])
 
     def apply(self, db, obj):
-        obj_time = obj.get_change_time()
+        obj_time = obj.change
         if self.since:
             if obj_time < self.since:
                 return False

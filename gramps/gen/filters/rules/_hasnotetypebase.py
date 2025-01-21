@@ -73,7 +73,7 @@ class HasNoteTypeBase(Rule):
         """
         Apply the rule. Return True on a match.
         """
-        notelist = obj.get_note_list()
+        notelist = obj.note_list
         for notehandle in notelist:
             note = db.get_note_from_handle(notehandle)
             if note.get_type() == self.note_type:

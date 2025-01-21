@@ -60,6 +60,6 @@ class MatchesRegexpOf(Rule):
 
     def apply(self, db, note):
         """Apply the filter"""
-        if self.match_substring(0, note.get()):
+        if self.match_substring(0, str(note.text)):
             return True
         return False

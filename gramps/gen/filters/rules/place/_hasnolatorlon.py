@@ -60,6 +60,6 @@ class HasNoLatOrLon(Rule):
     category = _("Position filters")
 
     def apply(self, db, place):
-        if place.get_latitude().strip and place.get_longitude().strip():
+        if place.lat.strip() and place.long.strip():
             return False
         return True

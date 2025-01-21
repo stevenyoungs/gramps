@@ -86,11 +86,11 @@ class HasCommonAncestorWith(Rule):
         else:
             return
 
-        for fam_handle in person.get_parent_family_handle_list():
+        for fam_handle in person.parent_family_list:
             parentless_fam = True
             fam = db.get_family_from_handle(fam_handle)
             if fam:
-                for par_handle in (fam.get_father_handle(), fam.get_mother_handle()):
+                for par_handle in (fam.father_handle, fam.mother_handle):
                     if par_handle:
                         parentless_fam = False
                         par = db.get_person_from_handle(par_handle)

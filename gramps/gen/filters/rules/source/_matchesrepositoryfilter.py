@@ -70,7 +70,7 @@ class MatchesRepositoryFilter(MatchesFilterBase):
         if self.MRF_filt is None:
             return False
 
-        repolist = [x.ref for x in object.get_reporef_list()]
+        repolist = [x.ref for x in object.reporef_list]
         for repohandle in repolist:
             # check if repo in repository filter
             if self.MRF_filt.check(db, repohandle):

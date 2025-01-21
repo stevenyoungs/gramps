@@ -63,12 +63,12 @@ def get_family_handle_people(db: Database, exclude_handle: str, family_handle: s
         if h is not None and h != exclude_handle:
             people.add(h)
 
-    possibly_add_handle(family.get_father_handle())
-    possibly_add_handle(family.get_mother_handle())
+    possibly_add_handle(family.father_handle)
+    possibly_add_handle(family.mother_handle)
 
-    for child_ref in family.get_child_ref_list():
+    for child_ref in family.child_ref_list:
         if child_ref:
-            possibly_add_handle(child_ref.get_reference_handle())
+            possibly_add_handle(child_ref.ref)
 
     return people
 
@@ -82,8 +82,8 @@ def get_person_family_people(
         for family_handle in fam_list:
             people.update(get_family_handle_people(db, person_handle, family_handle))
 
-    add_family_handle_list(person.get_family_handle_list())
-    add_family_handle_list(person.get_parent_family_handle_list())
+    add_family_handle_list(person.family_list)
+    add_family_handle_list(person.parent_family_list)
 
     return people
 
