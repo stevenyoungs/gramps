@@ -171,10 +171,9 @@ class DeepRelationshipPathBetween(Rule):
                 db.get_number_of_people(),
             )
         target_people = []
-        for handle in db.iter_person_handles():
-            person = db.get_person_from_handle(handle)
-            if self.filt.apply(db, person):
-                target_people.append(handle)
+        for person in db.iter_people():
+            if self.filt.apply_to_one(db, person):
+                target_people.append(person.handle)
             if user:
                 user.step_progress()
         if user:
