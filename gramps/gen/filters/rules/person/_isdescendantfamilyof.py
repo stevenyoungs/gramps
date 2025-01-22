@@ -92,9 +92,9 @@ class IsDescendantFamilyOf(Rule):
             return
 
         # Add self
-        expand = [person]
+        queue: List[Person] = [person]
 
-        while expand:
+        while queue:
             person = queue.pop(0)
             if person is None or person.handle in self.map:
                 # if we have been here before, skip
@@ -106,7 +106,7 @@ class IsDescendantFamilyOf(Rule):
                     # Add every child recursively
                     for child_ref in family.child_ref_list:
                         if child_ref:
-                            expand.append(self.db.get_person_from_handle(child_ref.ref))
+                            queue.append(self.db.get_person_from_handle(child_ref.ref))
                     # Add spouse
                     if person.handle == family.father_handle:
                         spouse_handle = family.mother_handle
