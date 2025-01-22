@@ -84,7 +84,7 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
         for person in db.iter_people():
             if user:
                 user.step_progress()
-            if self.filt.apply(db, person):
+            if self.filt.apply_to_one(db, person):
                 self.init_list(person, first)
         if user:
             user.end_progress()

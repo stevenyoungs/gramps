@@ -74,7 +74,7 @@ class HasNote(Rule):
             self.note_type = NoteType()
             self.note_type.set_from_xml_str(self.list[1])
 
-    def apply(self, _db, obj):
+    def apply_to_one(self, _db: Database, obj: Note) -> bool:
         """
         Apply the rule. Return True on a match.
         """

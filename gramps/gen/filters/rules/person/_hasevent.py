@@ -73,6 +73,6 @@ class HasEvent(HasEventBase):
                 # Only match primaries, no witnesses
                 continue
             event = db.get_event_from_handle(event_ref.ref)
-            if HasEventBase.apply(self, db, event):
+            if HasEventBase.apply_to_one(self, db, event):
                 return True
         return False

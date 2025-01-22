@@ -62,7 +62,7 @@ class HasSource(HasSourceBase):
     category = _("Source filters")
 
     def apply_to_one(self, dbase: Database, citation: Any) -> bool:
-        if HasSourceBase.apply(self, dbase, source):
         source = dbase.get_source_from_handle(citation.ref)
+        if HasSourceBase.apply_to_one(self, dbase, source):
             return True
         return False

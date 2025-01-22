@@ -73,7 +73,7 @@ class IsSiblingOfFilterMatch(Rule):
         for person in db.iter_people():
             if user:
                 user.step_progress()
-            if self.matchfilt.apply(db, person):
+            if self.matchfilt.apply_to_one(db, person):
                 self.init_list(person)
         if user:
             user.end_progress()

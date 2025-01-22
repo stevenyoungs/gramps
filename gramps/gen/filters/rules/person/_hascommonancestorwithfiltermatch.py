@@ -77,7 +77,7 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
             person = db.get_person_from_handle(handle)
             if user:
                 user.step_progress()
-            if person and self.filt.apply(db, person):
+            if person and self.filt.apply_to_one(db, person):
                 # store all people in the filter so as to compare later
                 self.with_people.append(person.handle)
                 # fill list of ancestor of person if not present yet

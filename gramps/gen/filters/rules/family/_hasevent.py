@@ -70,6 +70,6 @@ class HasEvent(HasEventBase):
             if not event_ref:
                 continue
             event = dbase.get_event_from_handle(event_ref.ref)
-            if HasEventBase.apply(self, dbase, event):
+            if HasEventBase.apply_to_one(self, dbase, event):
                 return True
         return False
