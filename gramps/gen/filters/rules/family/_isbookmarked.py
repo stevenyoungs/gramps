@@ -58,7 +58,7 @@ class IsBookmarked(Rule):
     description = _("Matches the families on the bookmark list")
 
     def prepare(self, db: Database, user):
-        self.bookmarks = db.get_family_bookmarks().get()
+        self.map: Set[str] = set(list(db.get_family_bookmarks().get()))
 
     def apply(self, db, family):
-        return family.get_handle() in self.bookmarks
+        return family.handle in self.map
