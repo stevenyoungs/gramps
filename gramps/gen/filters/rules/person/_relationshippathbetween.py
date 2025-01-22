@@ -74,7 +74,7 @@ class RelationshipPathBetween(Rule):
             pass
 
     def reset(self):
-        self.map = ()
+        self.map.clear()
 
     def desc_list(self, handle: str, map, first: bool):
         if not first:
