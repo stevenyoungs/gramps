@@ -29,8 +29,6 @@
 # -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
 
-_ = glocale.translation.gettext
-
 # -------------------------------------------------------------------------
 #
 # Gramps modules
@@ -46,6 +44,9 @@ from .. import Rule
 # -------------------------------------------------------------------------
 from gramps.gen.lib import Source
 from gramps.gen.db import Database
+
+
+_ = glocale.translation.gettext
 
 
 # -------------------------------------------------------------------------
