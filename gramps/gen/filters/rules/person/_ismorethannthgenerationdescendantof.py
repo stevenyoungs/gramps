@@ -66,7 +66,7 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
         self.db = db
         self.map: Set[str] = set()
         try:
-            root_person = db.get_person_from_gramps_id(self.list[0])
+            root_person = db._get_raw_person_from_id_data(self.list[0])
             self.init_list(root_person, 0)
         except:
             pass
