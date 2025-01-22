@@ -55,7 +55,7 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
 
     def prepare(self, db, user):
         self.db = db
-        self.matches = set()
+        self.map = set()
 
         self.matchfilt = MatchesFilter(self.list[0:1])
         self.matchfilt.requestprepare(db, user)
@@ -75,4 +75,4 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
 
     def reset(self):
         self.matchfilt.requestreset()
-        self.matches = set()
+        self.map = set()
