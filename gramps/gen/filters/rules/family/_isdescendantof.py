@@ -85,4 +85,4 @@ class IsDescendantOf(Rule):
             if child:
                 for family_handle in child.family_list:
                     child_family = db.get_family_from_handle(family_handle)
-                    self.init_list(db, child_family, 0)
+                    self.init_list(db, child_family, False)

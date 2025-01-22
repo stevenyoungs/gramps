@@ -92,4 +92,4 @@ class IsAncestorOf(Rule):
                 )
                 if family_handle:
                     parent_family = db.get_family_from_handle(family_handle)
-                    self.init_list(db, parent_family, 0)
+                    self.init_list(db, parent_family, False)

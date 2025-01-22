@@ -63,9 +63,9 @@ class IsAncestorOf(Rule):
         self.db = db
         self.map: Set[str] = set()
         try:
-            first = 0 if int(self.list[1]) else 1
+            first = False if int(self.list[1]) else True
         except IndexError:
-            first = 1
+            first = True
         try:
             root_person = db.get_person_from_gramps_id(self.list[0])
             self.init_ancestor_list(db, root_person, first)
@@ -95,6 +95,6 @@ class IsAncestorOf(Rule):
                 m_id = fam.mother_handle
 
                 if f_id:
-                    self.init_ancestor_list(db, db.get_person_from_handle(f_id), 0)
+                    self.init_ancestor_list(db, db.get_person_from_handle(f_id), False)
                 if m_id:
-                    self.init_ancestor_list(db, db.get_person_from_handle(m_id), 0)
+                    self.init_ancestor_list(db, db.get_person_from_handle(m_id), False)

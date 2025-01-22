@@ -86,7 +86,7 @@ class RelationshipPathBetween(Rule):
             if fam:
                 for child_ref in fam.child_ref_list:
                     if child_ref.ref:
-                        self.desc_list(child_ref.ref, map, 0)
+                        self.desc_list(child_ref.ref, map, False)
 
     def apply_filter(
         self, rank: int, handle: str, plist: Set[str], pmap: Dict[str, int]

@@ -67,11 +67,11 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
         self.map: Set[str] = set()
         try:
             if int(self.list[1]):
-                first = 0
+                first = False
             else:
-                first = 1
+                first = True
         except IndexError:
-            first = 1
+            first = True
 
         self.filt = MatchesFilter(self.list[0:1])
         self.filt.requestprepare(db, user)
