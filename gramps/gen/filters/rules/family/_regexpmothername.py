@@ -42,7 +42,6 @@ from ..person import RegExpName
 # -------------------------------------------------------------------------
 from gramps.gen.lib import Family
 from gramps.gen.db import Database
-from ._memberbase import mother_base
 
 
 # -------------------------------------------------------------------------
@@ -59,5 +58,13 @@ class RegExpMotherName(RegExpName):
         "matching a specified regular expression"
     )
     category = _("Mother filters")
-    base_class = RegExpName
-    apply = mother_base
+
+    def apply_to_one(self, db: Database, family: Family) -> bool:  # type: ignore[override]
+        mother_handle = family.mother_handle
+        if mother_handle:
+            mother = db.get_person_from_handle(mother_handle)
+            if mother:
+                return super().apply_to_one(db, mother)
+            else:
+                return False
+        return False

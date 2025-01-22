@@ -42,7 +42,6 @@ from ..person import SearchName
 # -------------------------------------------------------------------------
 from gramps.gen.lib import Family
 from gramps.gen.db import Database
-from ._memberbase import father_base
 
 
 # -------------------------------------------------------------------------
@@ -56,5 +55,13 @@ class SearchFatherName(SearchName):
     name = _("Families with father matching the <name>")
     description = _("Matches families whose father has a specified " "(partial) name")
     category = _("Father filters")
-    base_class = SearchName
-    apply = father_base
+
+    def apply_to_one(self, db: Database, family: Family) -> bool:  # type: ignore[override]
+        father_handle = family.father_handle
+        if father_handle:
+            father = db.get_person_from_handle(father_handle)
+            if father:
+                return super().apply_to_one(db, father)
+            else:
+                return False
+        return False
