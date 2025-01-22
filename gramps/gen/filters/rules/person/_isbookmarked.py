@@ -59,7 +59,7 @@ class IsBookmarked(Rule):
     description = _("Matches the people on the bookmark list")
 
     def prepare(self, db: Database, user):
-        self.bookmarks = db.get_bookmarks().get()
+        self.map: Set[str] = set(list(db.get_bookmarks().get()))
 
     def apply(self, db, person):
-        return person.handle in self.bookmarks
+        return person.handle in self.map
