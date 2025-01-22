@@ -105,7 +105,7 @@ class IsLessThanNthGenerationAncestorOfBookmarked(Rule):
             if m_id:
                 self.init_ancestor_list(m_id, gen + 1)
 
-    def apply_real(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.map
 
     def reset(self):

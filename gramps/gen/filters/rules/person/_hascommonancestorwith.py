@@ -116,7 +116,7 @@ class HasCommonAncestorWith(Rule):
                 return True
         return False
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         if person and person.handle not in self.ancestor_cache:
             self.add_ancs(db, person)
 

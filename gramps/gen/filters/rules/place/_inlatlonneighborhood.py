@@ -143,7 +143,7 @@ class InLatLonNeighborhood(Rule):
                     self.E2 = 180.0
                     self.W = -180
 
-    def apply(self, db, place):
+    def apply_to_one(self, db: Database, place: Place) -> bool:
         if self.halfheight == -1 and self.halfwidth == -1:
             return False
 

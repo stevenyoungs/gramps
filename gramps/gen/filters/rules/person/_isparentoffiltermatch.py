@@ -83,7 +83,7 @@ class IsParentOfFilterMatch(Rule):
         self.filt.requestreset()
         self.map.clear()
 
-    def apply(self, db, person):
+    def apply_to_one(self, db, person: Person) -> bool:
         return person.handle in self.map
 
     def init_list(self, person: Person):

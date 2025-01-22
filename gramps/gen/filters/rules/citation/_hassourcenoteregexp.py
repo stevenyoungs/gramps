@@ -67,7 +67,7 @@ class HasSourceNoteRegexp(HasNoteRegexBase):
     )
     category = _("Source filters")
 
-    def apply(self, db, citation):
+    def apply_to_one(self, db: Database, citation: RefBase) -> bool:  # type: ignore[override]
         if HasNoteRegexBase.apply(self, db, source):
         source = db.get_source_from_handle(citation.ref)
             return True

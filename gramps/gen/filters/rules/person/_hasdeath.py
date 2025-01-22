@@ -68,7 +68,7 @@ class HasDeath(Rule):
         else:
             self.date = None
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         for event_ref in person.event_ref_list:
             if not event_ref:
                 continue

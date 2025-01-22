@@ -62,7 +62,7 @@ class RegExpName(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         for name in [person.primary_name] + person.alternate_names:
             for field in [
                 name.first_name,

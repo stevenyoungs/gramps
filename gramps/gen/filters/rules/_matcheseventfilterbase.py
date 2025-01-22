@@ -70,7 +70,7 @@ class MatchesEventFilterBase(MatchesFilterBase):
         MatchesFilterBase.prepare(self, db, user)
         self.MEF_filt = self.find_filter()
 
-    def apply(self, db, object):
+    def apply_to_one(self, db: Database, object: EventBase) -> bool:
         if self.MEF_filt is None:
             return False
 

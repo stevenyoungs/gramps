@@ -90,7 +90,7 @@ class HasTextMatchingSubstringOf(Rule):
         self.place_map.clear()
         self.media_map.clear()
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         if person.handle in self.person_map:  # Cached by matching Source?
             return True
         if self.match_object(person):  # first match the person itself

@@ -57,5 +57,5 @@ class HasAlternateName(Rule):
     description = _("Matches people with an alternate name")
     category = _("General filters")
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         return True if person.alternate_names else False

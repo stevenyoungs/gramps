@@ -72,7 +72,7 @@ class HasAddress(Rule):
 
         self.userSelectedCount = int(self.list[0])
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         count = len(person.address_list)
         if self.count_type == 0:  # "less than"
             return count < self.userSelectedCount

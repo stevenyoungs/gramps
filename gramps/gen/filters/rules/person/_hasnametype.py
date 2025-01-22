@@ -70,7 +70,7 @@ class HasNameType(Rule):
             self.name_type = NameType()
             self.name_type.set_from_xml_str(self.list[0])
 
-    def apply(self, _db, obj):
+    def apply_to_one(self, _db: Database, obj: Person) -> bool:
         """
         Apply the rule. Return True on a match.
         """

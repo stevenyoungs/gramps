@@ -68,7 +68,7 @@ class IsDescendantOf(Rule):
     def reset(self):
         self.map.clear()
 
-    def apply(self, db, family):
+    def apply_to_one(self, db: Database, family: Family) -> bool:
         return family.handle in self.map
 
     def init_list(self, db: Database, family: Family, first: bool) -> None:

@@ -70,7 +70,7 @@ class HasNameOriginType(Rule):
             self.name_origin_type = NameOriginType()
             self.name_origin_type.set_from_xml_str(self.list[0])
 
-    def apply(self, _db, obj):
+    def apply_to_one(self, _db: Database, obj: Person) -> bool:
         """
         Apply the rule. Return True on a match.
         """

@@ -74,7 +74,7 @@ class HasSoundexName(Rule):
         if self.list[0]:
             self.soundex = soundex(self.list[0])
 
-    def apply(self, _db, obj):
+    def apply_to_one(self, _db: Database, obj: Person) -> bool:
         """
         Apply the rule. Return True on a match.
         """

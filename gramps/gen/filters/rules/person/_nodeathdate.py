@@ -54,7 +54,7 @@ class NoDeathdate(Rule):
     description = _("Matches people without a known deathdate")
     category = _("General filters")
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         if 0 <= person.death_ref_index < len(person.event_ref_list):
             death_ref = person.event_ref_list[person.death_ref_index]
             if not death_ref:

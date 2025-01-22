@@ -58,7 +58,7 @@ class SearchName(Rule):
     description = _("Matches people with a specified (partial) name")
     category = _("General filters")
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Any) -> bool:
         src = self.list[0].upper()
         if not src:
             return False

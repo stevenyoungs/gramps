@@ -66,5 +66,5 @@ class IsDefaultPerson(Rule):
         else:
             self.apply = lambda db, p: False
 
-    def apply_real(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.map

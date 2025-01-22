@@ -80,7 +80,7 @@ class HasEventBase(Rule):
         except:
             pass
 
-    def apply(self, db, event):
+    def apply_to_one(self, db: Database, event: Event) -> bool:
         """
         Apply the rule. Return True if a match.
         """

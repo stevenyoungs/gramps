@@ -67,7 +67,7 @@ class MatchesPlaceFilter(MatchesFilterBase):
     # we want to have this filter show place filters
     namespace = "Place"
 
-    def apply(self, db, event):
+    def apply_to_one(self, db: Database, event: Event) -> bool:
         filt = self.find_filter()
         if filt:
             handle = event.get_place_handle()

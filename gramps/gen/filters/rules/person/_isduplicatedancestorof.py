@@ -74,7 +74,7 @@ class IsDuplicatedAncestorOf(Rule):
         self.cache.clear()
         self.map.clear()
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.map
 
     def init_ancestor_list(self, db: Database, person: Person):

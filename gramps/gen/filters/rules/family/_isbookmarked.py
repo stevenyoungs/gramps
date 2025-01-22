@@ -60,5 +60,5 @@ class IsBookmarked(Rule):
     def prepare(self, db: Database, user):
         self.map: Set[str] = set(list(db.get_family_bookmarks().get()))
 
-    def apply(self, db, family):
+    def apply_to_one(self, db: Database, family: Family) -> bool:
         return family.handle in self.map

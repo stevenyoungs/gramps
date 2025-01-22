@@ -76,7 +76,7 @@ class HasFamilyEvent(Rule):
         except:
             pass
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         for handle in person.family_list:
             family = db.get_family_from_handle(handle)
             for event_ref in family.event_ref_list:

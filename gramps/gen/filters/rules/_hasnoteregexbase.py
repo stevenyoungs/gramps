@@ -60,7 +60,7 @@ class HasNoteRegexBase(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, obj: NoteBase) -> bool:
         for handle in obj.note_list:
             note = db.get_note_from_handle(handle)
             if self.match_substring(0, str(note.text)):

@@ -63,7 +63,7 @@ class IsSpouseOfFilterMatch(Rule):
         self.filt = MatchesFilter(self.list)
         self.filt.requestprepare(db, user)
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         for family_handle in person.family_list:
             family = db.get_family_from_handle(family_handle)
             if family:

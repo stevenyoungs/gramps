@@ -71,7 +71,7 @@ class IsWitness(Rule):
             self.event_type = EventType()
             self.event_type.set_from_xml_str(self.list[0])
 
-    def apply(self, db, obj):
+    def apply_to_one(self, db: Database, obj: Person) -> bool:
         """
         Apply the rule. Return True on a match.
         """

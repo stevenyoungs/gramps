@@ -69,7 +69,7 @@ class MatchesSourceFilterBase(MatchesFilterBase):
         MatchesFilterBase.prepare(self, db, user)
         self.MSF_filt = self.find_filter()
 
-    def apply(self, db, object):
+    def apply_to_one(self, db, object: CitationBase) -> bool:
         if self.MSF_filt is None:
             return False
 

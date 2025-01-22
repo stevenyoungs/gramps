@@ -70,7 +70,7 @@ class HasCitation(Rule):
         except:
             pass
 
-    def apply(self, dbase, citation):
+    def apply_to_one(self, dbase: Database, citation: Citation) -> bool:
         if not self.match_substring(0, citation.page):
             return False
 

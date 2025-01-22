@@ -59,5 +59,5 @@ class Everyone(Rule):
     def is_empty(self):
         return True
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         return True

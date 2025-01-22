@@ -82,7 +82,7 @@ class HasPlace(Rule):
         PlaceType.PARISH: 8,
     }
 
-    def apply(self, db, place):
+    def apply_to_one(self, db: Database, place: Place) -> bool:
         if not self.match_substring(0, place.title):
             return False
 

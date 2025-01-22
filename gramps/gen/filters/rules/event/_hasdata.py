@@ -80,7 +80,7 @@ class HasData(Rule):
         if self.date:
             self.date = parser.parse(self.date)
 
-    def apply(self, db, obj):
+    def apply_to_one(self, db: Database, obj: Event) -> bool:
         """
         Apply the rule. Return True on a match.
         """

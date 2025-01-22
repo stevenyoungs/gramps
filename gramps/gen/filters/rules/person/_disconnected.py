@@ -59,5 +59,5 @@ class Disconnected(Rule):
         "to any other person in the database"
     )
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         return not (person.parent_family_list or person.family_list)

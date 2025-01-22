@@ -72,7 +72,7 @@ class HasAttributeBase(Rule):
             self.attribute_type = AttributeType()
             self.attribute_type.set_from_xml_str(self.list[0])
 
-    def apply(self, db, obj):
+    def apply_to_one(self, db: Database, obj: AttributeBase) -> bool:
         """
         Apply the rule. Return True if a match.
         """

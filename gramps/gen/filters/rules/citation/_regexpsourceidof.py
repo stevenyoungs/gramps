@@ -63,7 +63,7 @@ class RegExpSourceIdOf(RegExpIdBase):
     )
     category = _("Source filters")
 
-    def apply(self, dbase, citation):
+    def apply_to_one(self, dbase: Database, citation: RefBase) -> bool:  # type: ignore[override]
         if RegExpIdBase.apply(self, dbase, source):
         source = dbase.get_source_from_handle(citation.ref)
             return True

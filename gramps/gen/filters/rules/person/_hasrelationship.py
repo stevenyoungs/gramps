@@ -74,7 +74,7 @@ class HasRelationship(Rule):
             self.relationship_type = FamilyRelType()
             self.relationship_type.set_from_xml_str(self.list[1])
 
-    def apply(self, db, obj):
+    def apply_to_one(self, db: Database, obj: Person) -> bool:
         """
         Apply the rule. Return True on a match.
         """

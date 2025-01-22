@@ -71,7 +71,7 @@ class IsRelatedWith(Rule):
     def reset(self):
         self.map.clear()
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.map
 
     def add_relative(self, start: Person):

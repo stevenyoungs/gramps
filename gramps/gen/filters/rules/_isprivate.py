@@ -52,5 +52,5 @@ class IsPrivate(Rule):
     description = "Matches objects that are indicated as private"
     category = _("General filters")
 
-    def apply(self, db, obj):
+    def apply_to_one(self, db: Database, obj: PrimaryObject) -> bool:
         return obj.private

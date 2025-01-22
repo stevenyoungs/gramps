@@ -58,7 +58,7 @@ class HasFamilyAttribute(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         if not self.list[0]:
             return False
         for f_id in person.family_list:

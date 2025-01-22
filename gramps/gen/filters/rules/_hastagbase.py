@@ -71,7 +71,7 @@ class HasTagBase(Rule):
         if tag is not None:
             self.tag_handle = tag.handle
 
-    def apply(self, db, obj):
+    def apply_to_one(self, db: Database, obj: PrimaryObject) -> bool:
         """
         Apply the rule.  Return True for a match.
         """

@@ -56,7 +56,7 @@ class IncompleteNames(Rule):
     description = _("Matches people with firstname or lastname missing")
     category = _("General filters")
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         for name in [person.primary_name] + person.alternate_names:
             if name.first_name.strip() == "":
                 return True

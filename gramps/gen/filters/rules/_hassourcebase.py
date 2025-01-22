@@ -59,7 +59,7 @@ class HasSourceBase(Rule):
     category = _("Citation/source filters")
     allow_regex = True
 
-    def apply(self, db, source):
+    def apply_to_one(self, db: Database, source: Any) -> bool:
         if not self.match_substring(0, source.title):
             return False
 

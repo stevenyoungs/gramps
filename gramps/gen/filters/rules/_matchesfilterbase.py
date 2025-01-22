@@ -95,7 +95,7 @@ class MatchesFilterBase(Rule):
                 for rule in filt.flist:
                     rule.requestreset()
 
-    def apply(self, db, obj):
+    def apply_to_one(self, db: Database, obj: Any) -> bool:
         if gramps.gen.filters.CustomFilters:
             filters = gramps.gen.filters.CustomFilters.get_filters_dict(self.namespace)
             if self.list[0] in filters:

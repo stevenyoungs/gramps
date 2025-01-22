@@ -79,7 +79,7 @@ class MatchesPersonFilter(MatchesFilterBase):
         except IndexError:
             self.MPF_famevents = False
 
-    def apply(self, db, event):
+    def apply_to_one(self, db: Database, event: Event) -> bool:
         filt = self.find_filter()
         if filt:
             for classname, handle in db.find_backlink_handles(event.handle, ["Person"]):

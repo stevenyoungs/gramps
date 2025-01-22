@@ -54,7 +54,7 @@ class NoBirthdate(Rule):
     description = _("Matches people without a known birthdate")
     category = _("General filters")
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         if 0 <= person.birth_ref_index < len(person.event_ref_list):
             birth_ref = person.event_ref_list[person.birth_ref_index]
             if not birth_ref:

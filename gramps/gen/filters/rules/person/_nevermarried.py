@@ -54,5 +54,5 @@ class NeverMarried(Rule):
     description = _("Matches people who have no spouse")
     category = _("Family filters")
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         return len(person.family_list) == 0

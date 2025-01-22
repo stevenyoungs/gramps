@@ -72,7 +72,7 @@ class HasLDSBase(Rule):
 
         self.userSelectedCount = int(self.list[0])
 
-    def apply(self, db, obj):
+    def apply_to_one(self, db: Database, obj: LdsOrdBase) -> bool:
         count = len(obj.lds_ord_list)
         if self.count_type == 0:  # "less than"
             return count < self.userSelectedCount

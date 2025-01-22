@@ -76,7 +76,7 @@ class HasRepo(Rule):
             self.rtype = RepositoryType()
             self.rtype.set_from_xml_str(self.list[1])
 
-    def apply(self, _db, obj):
+    def apply_to_one(self, _db: Database, obj: Repository) -> bool:
         """
         Apply the rule. Return True on a match.
         """

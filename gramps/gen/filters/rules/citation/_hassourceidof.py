@@ -58,7 +58,7 @@ class HasSourceIdOf(HasGrampsId):
     description = _("Matches a citation with a source with a specified Gramps " "ID")
     category = _("Source filters")
 
-    def apply(self, dbase, citation):
+    def apply_to_one(self, dbase: Database, citation: RefBase) -> bool:  # type: ignore[override]
         if HasGrampsId.apply(self, dbase, source):
         source = dbase.get_source_from_handle(citation.ref)
             return True

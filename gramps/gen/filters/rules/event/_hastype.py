@@ -70,7 +70,7 @@ class HasType(Rule):
             self.event_type = EventType()
             self.event_type.set_from_xml_str(self.list[0])
 
-    def apply(self, _db, obj):
+    def apply_to_one(self, _db: Database, obj: Event) -> bool:
         """
         Apply the rule. Return True if a match.
         """
