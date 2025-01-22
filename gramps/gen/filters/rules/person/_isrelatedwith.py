@@ -79,10 +79,10 @@ class IsRelatedWith(Rule):
         if not (start):
             return
 
-        expand = [start]
+        queue: List[Person] = [start]
 
-        while expand:
-            person = expand.pop()
+        while queue:
+            person = queue.pop()
             # Add the relative to the list
             if person is None or (person.handle in self.map):
                 continue
@@ -97,10 +97,10 @@ class IsRelatedWith(Rule):
                         family.mother_handle,
                     ):
                         if parent_handle:
-                            expand.append(self.db.get_person_from_handle(parent_handle))
+                            queue.append(self.db.get_person_from_handle(parent_handle))
                     # Check Sibilings
                     for child_ref in family.child_ref_list:
-                        expand.append(self.db.get_person_from_handle(child_ref.ref))
+                        queue.append(self.db.get_person_from_handle(child_ref.ref))
 
             for family_handle in person.family_list:
                 family = self.db.get_family_from_handle(family_handle)
@@ -111,9 +111,9 @@ class IsRelatedWith(Rule):
                         family.mother_handle,
                     ):
                         if parent_handle:
-                            expand.append(self.db.get_person_from_handle(parent_handle))
+                            queue.append(self.db.get_person_from_handle(parent_handle))
                     # Check Children
                     for child_ref in family.child_ref_list:
-                        expand.append(self.db.get_person_from_handle(child_ref.ref))
+                        queue.append(self.db.get_person_from_handle(child_ref.ref))
 
         return
