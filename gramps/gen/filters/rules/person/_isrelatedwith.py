@@ -65,29 +65,28 @@ class IsRelatedWith(Rule):
         """
         self.db = db
 
-        self.relatives = []
+        self.map: Set[str] = set()
         self.add_relative(db.get_person_from_gramps_id(self.list[0]))
 
     def reset(self):
-        self.relatives = []
+        self.map.clear()
 
     def apply(self, db, person):
-        return person.handle in self.relatives
+        return person.handle in self.map
 
     def add_relative(self, start: Person):
-        """Non-recursive function that scans relatives and add them to self.relatives"""
+        """Non-recursive function that scans relatives and add them to self.map"""
         if not (start):
             return
 
         expand = [start]
-        relatives = {}
 
         while expand:
             person = expand.pop()
             # Add the relative to the list
-            if person is None or (person.handle in relatives):
+            if person is None or (person.handle in self.map):
                 continue
-            relatives[person.handle] = True
+            self.map.add(person.handle)
 
             for family_handle in person.parent_family_list:
                 family = self.db.get_family_from_handle(family_handle)
@@ -117,5 +116,4 @@ class IsRelatedWith(Rule):
                     for child_ref in family.child_ref_list:
                         expand.append(self.db.get_person_from_handle(child_ref.ref))
 
-        self.relatives = list(relatives.keys())
         return
