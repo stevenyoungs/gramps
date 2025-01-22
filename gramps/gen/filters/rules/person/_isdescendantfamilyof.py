@@ -87,7 +87,7 @@ class IsDescendantFamilyOf(Rule):
     def apply(self, db, person):
         return person.handle in self.matches
 
-    def add_matches(self, person):
+    def add_matches(self, person: Person):
         if not person:
             return
 

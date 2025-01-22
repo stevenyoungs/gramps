@@ -58,7 +58,7 @@ class IsDefaultPerson(Rule):
     description = _("Matches the Home Person")
 
     def prepare(self, db: Database, user):
-        p = db.get_default_person()
+        p: Person = db.get_default_person()
         if p:
             self.def_handle = p.get_handle()
             self.apply = self.apply_real
