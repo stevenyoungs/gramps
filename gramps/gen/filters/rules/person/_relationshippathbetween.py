@@ -138,7 +138,7 @@ class RelationshipPathBetween(Rule):
 
         for person_handle in common:
             new_map: Set[str] = set()
-            self.desc_list(person_handle, new_map, 1)
+            self.desc_list(person_handle, new_map, True)
             path1.update(new_map.intersection(firstMap))
             path2.update(new_map.intersection(secondMap))
         self.map.update(path1, path2, common)
