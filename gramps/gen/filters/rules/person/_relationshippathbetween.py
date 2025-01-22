@@ -125,7 +125,7 @@ class RelationshipPathBetween(Rule):
         self.apply_filter(0, p1_handle, firstList, firstMap)
         self.apply_filter(0, p2_handle, secondList, secondMap)
 
-        for person_handle in firstList & secondList:
+        for person_handle in firstList and secondList:
             new_rank = firstMap[person_handle]
             if new_rank < rank:
                 rank = new_rank
