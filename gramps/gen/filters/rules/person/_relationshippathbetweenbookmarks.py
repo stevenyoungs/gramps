@@ -106,7 +106,7 @@ class RelationshipPathBetweenBookmarks(Rule):
     def parents(self, generation: Dict[str, List[str]]):
         if len(generation) < 1:
             return None
-        prev_generation = {}
+        prev_generation: Dict[str, List[str]] = {}
         for handle in generation:
             try:
                 person = self.db.get_person_from_handle(handle)
@@ -163,11 +163,11 @@ class RelationshipPathBetweenBookmarks(Rule):
         # print "  In rel_path_for_two, returning rel_path = ", rel_path
         return rel_path
 
-    def init_list(self):
+    def init_list(self) -> None:
         self.map.update(self.bookmarks)
         if len(self.bookmarks) < 2:
             return
-        bmarks = list(self.bookmarks)
+        bmarks: List[str] = list(self.bookmarks)
 
         # Go through all bookmarked individuals, and mark all
         # of the people in each of the paths betweent them.

@@ -72,7 +72,7 @@ class IsLessThanNthGenerationAncestorOf(Rule):
                 self.init_ancestor_list(root_handle)
 
     def init_ancestor_list(self, root_handle: str):
-        queue = [(root_handle, 1)]  # generation 1 is root
+        queue: List[Tuple[str, int]] = [(root_handle, 1)]  # generation 1 is root
         while queue:
             handle, gen = queue.pop(0)  # pop off front of queue
             if handle in self.map:

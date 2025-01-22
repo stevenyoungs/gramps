@@ -70,13 +70,13 @@ class IsLessThanNthGenerationAncestorOfBookmarked(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        bookmarks = db.get_bookmarks().get()
-        self.map = set()
+        bookmarks: List[str] = db.get_bookmarks().get()
+        self.map: Set[str] = set()
         if len(bookmarks) == 0:
             self.apply = lambda db, p: False
         else:
-            self.bookmarks = set(bookmarks)
             self.apply = self.apply_real
+            self.bookmarks: Set[str] = set(bookmarks)
             for self.bookmarkhandle in self.bookmarks:
                 self.init_ancestor_list(self.bookmarkhandle, 1)
 

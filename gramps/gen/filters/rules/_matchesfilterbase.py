@@ -68,6 +68,7 @@ class MatchesFilterBase(Rule):
     name = "Objects matching the <filter>"
     description = "Matches objects matched by the specified filter name"
     category = _("General filters")
+    namespace: Union[str, None] = None
 
     def prepare(self, db: Database, user):
         if gramps.gen.filters.CustomFilters:
