@@ -73,6 +73,7 @@ class MatchesRepositoryFilter(MatchesFilterBase):
         repolist = [x.ref for x in object.reporef_list]
         for repohandle in repolist:
             # check if repo in repository filter
-            if self.MRF_filt.check(db, repohandle):
+            repo = db.get_repository_from_handle(repohandle)
+            if self.MRF_filt.apply_to_one(db, repo):
                 return True
         return False

@@ -77,6 +77,7 @@ class MatchesEventFilterBase(MatchesFilterBase):
         eventlist = [x.ref for x in object.event_ref_list]
         for eventhandle in eventlist:
             # check if event in event filter
-            if self.MEF_filt.check(db, eventhandle):
+            event = db.get_event_from_handle(eventhandle)
+            if self.MEF_filt.apply_to_one(db, event):
                 return True
         return False

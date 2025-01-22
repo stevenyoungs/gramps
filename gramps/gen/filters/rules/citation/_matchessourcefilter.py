@@ -75,6 +75,7 @@ class MatchesSourceFilter(MatchesFilterBase):
             return False
 
         source_handle = object.source_handle
-        if self.MRF_filt.check(db, source_handle):
+        source = db.get_source_from_handle(source_handle)
+        if self.MRF_filt.apply_to_one(db, source):
             return True
         return False
