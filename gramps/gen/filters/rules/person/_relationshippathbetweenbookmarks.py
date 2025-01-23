@@ -72,10 +72,7 @@ class RelationshipPathBetweenBookmarks(Rule):
         self.db = db
         self.map: Set[str] = set()
         bookmarks = db.get_bookmarks().get()
-        if len(bookmarks) == 0:
-            self.apply = lambda db, p: False
-        else:
-            self.bookmarks = set(bookmarks)
+        self.bookmarks: Set[str] = set(bookmarks)
         try:
             self.init_list()
         except:
