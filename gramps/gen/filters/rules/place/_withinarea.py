@@ -118,6 +118,8 @@ class WithinArea(Rule):
             self.radius = self.radius / 2
 
     def apply_to_one(self, db: Database, place: Place) -> bool:
+        latit: Union[float, None] = None
+        longit: Union[float, None] = None
         if self.handle is None:
             return False
         if self.latitude is None:
