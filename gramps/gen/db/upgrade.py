@@ -89,6 +89,16 @@ def gramps_upgrade_21(self):
             self.set_serializer("json")
             self._set_metadata(key, value, use_txn=False)
 
+    # First, do metadata:
+    self.upgrade_table_for_json_access("metadata")
+    keys = self._get_metadata_keys()
+    for key in keys:
+        self.set_serializer("blob")
+        value = self._get_metadata(key, "not-found")
+        if value != "not-found":
+            self.set_serializer("json")
+            self._set_metadata(key, convert_21("metadata", value))
+
     for table_name in self._get_table_func():
         # For each table, alter the database in an appropriate way:
         self.upgrade_table_for_json_data(table_name.lower())
@@ -114,6 +124,7 @@ def gramps_upgrade_21(self):
     self._set_metadata("version", 21, use_txn=False)
     self._txn_commit()
     # Bump up database version. Separate transaction to save metadata.
+
 
 
 def gramps_upgrade_20(self):
