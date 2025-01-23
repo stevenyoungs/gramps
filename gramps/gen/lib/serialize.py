@@ -66,7 +66,62 @@ class DataDict(dict):
             self["_object"] = from_dict(self)
         return str(self["_object"])
 
+    def __int__(self):
+        if "_object" not in self:
+            self["_object"] = from_dict(self)
+        return int(self["_object"])
+
+    def __eq__(self, value):
+        if "_object" not in self:
+            self["_object"] = from_dict(self)
+
+        if isinstance(value, DataDict):
+            value = value._object
+
+        return self["_object"].__eq__(value)
+
+    def __ne__(self, value):
+        if "_object" not in self:
+            self["_object"] = from_dict(self)
+
+        if isinstance(value, DataDict):
+            value = value._object
+
+        return self["_object"].__ne__(value)
+
+    def __lt__(self, value):
+        if "_object" not in self:
+            self["_object"] = from_dict(self)
+
+        if isinstance(value, DataDict):
+            value = value._object
+
+        return self["_object"].__lt__(value)
+
+    def __gt__(self, value):
+        if "_object" not in self:
+            self["_object"] = from_dict(self)
+
+        if isinstance(value, DataDict):
+            value = value._object
+
+        return self["_object"].__gt__(value)
+
+    def __le__(self, value):
+        if "_object" not in self:
+            self["_object"] = from_dict(self)
+
+        if isinstance(value, DataDict):
+            value = value._object
+
+        return self["_object"].__le__(value)
+
     def __getattr__(self, key):
+        if key == "_object":
+            if "_object" not in self:
+                self["_object"] = from_dict(self)
+            return self["_object"]
+
         if key.startswith("_"):
             raise AttributeError(
                 "this method cannot be used to access hidden attributes"
@@ -91,6 +146,27 @@ class DataList(list):
     """
     A wrapper around a data list.
     """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.index = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.index >= len(self):
+            raise StopIteration
+
+        result = self[self.index]
+        self.index += 1
+        return result
+
+    def __add__(self, value):
+        return DataList([x for x in self] + [x for x in value])
+
+    def __radd__(self, value):
+        return DataList([x for x in self] + [x for x in value])
 
     def __getitem__(self, position):
         value = super().__getitem__(position)
@@ -165,6 +241,7 @@ def from_dict(dict):
         return from_json(json.dumps(dict))
 
 
+
 class BlobSerializer:
     """
     Serializer for blob data
@@ -208,6 +285,7 @@ class BlobSerializer:
     @staticmethod
     def object_to_metadata(value):
         return pickle.dumps(value)
+
 
 
 class JSONSerializer:
