@@ -68,10 +68,7 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
         p: Person = db.get_default_person()
         if p:
             self.def_handle = p.get_handle()
-            self.apply = self.apply_real
             self.init_ancestor_list(self.def_handle, 1)
-        else:
-            self.apply = lambda db, p: False
 
     def init_ancestor_list(self, handle: str, gen: int):
         #        if p.get_handle() in self.map:
