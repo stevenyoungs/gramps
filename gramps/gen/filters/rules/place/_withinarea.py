@@ -129,7 +129,7 @@ class WithinArea(Rule):
         if place:
             lat = place.lat
             lon = place.long
-        if lat and lon:
+        if lat is not None and lon is not None:
             latit, longit = conv_lat_lon(lat, lon, "D.D8")
             if latit is None or longit is None:
                 return False
