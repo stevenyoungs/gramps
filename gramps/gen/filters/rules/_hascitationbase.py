@@ -79,6 +79,7 @@ class HasCitationBase(Rule):
                 return True
         return False
 
+    def _apply(self, db: Database, citation: Citation):
         if not self.match_substring(0, citation.page):
             return False
 
