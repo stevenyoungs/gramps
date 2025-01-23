@@ -79,7 +79,6 @@ class WithinArea(Rule):
     def prepare(self, db: Database, user):
         ref_place = db.get_place_from_gramps_id(self.list[0])
         self.handle = None
-        self.radius = None
         self.latitude = None
         self.longitude = None
         if ref_place:
