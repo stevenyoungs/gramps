@@ -108,11 +108,16 @@ class HasCommonAncestorWith(Rule):
 
     def has_common_ancestor(self, other: Person):
         for handle in self.with_people:
-            if (handle in self.ancestor_cache and self.ancestor_cache[handle]) & (
+            # Requires bitwise and for some reason:
+            left_and = (
+                handle in self.ancestor_cache and self.ancestor_cache[handle]
+            )  # type: ignore
+            right_and = (
                 other
                 and other.handle in self.ancestor_cache
                 and self.ancestor_cache[other.handle]
-            ):
+            )  # type: ignore
+            if left_and & right_and:  # type: ignore
                 return True
         return False
 
