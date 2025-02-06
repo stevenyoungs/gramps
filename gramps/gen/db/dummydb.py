@@ -251,7 +251,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return ""
+        return EventGrampsID("")
 
     def find_next_family_gramps_id(self):
         """
@@ -260,7 +260,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return ""
+        return FamilyGrampsID("")
 
     def find_next_note_gramps_id(self):
         """
@@ -269,7 +269,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return ""
+        return NoteGrampsID("")
 
     def find_next_media_gramps_id(self):
         """
@@ -278,7 +278,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return ""
+        return MediaGrampsID("")
 
     def find_next_person_gramps_id(self):
         """
@@ -287,7 +287,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return ""
+        return PersonGrampsID("")
 
     def find_next_place_gramps_id(self):
         """
@@ -296,7 +296,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return ""
+        return PlaceGrampsID("")
 
     def find_next_repository_gramps_id(self):
         """
@@ -305,7 +305,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return ""
+        return RepositoryGrampsID("")
 
     def find_next_source_gramps_id(self):
         """
@@ -314,7 +314,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return ""
+        return SourceGrampsID("")
 
     def get_bookmarks(self):
         """
