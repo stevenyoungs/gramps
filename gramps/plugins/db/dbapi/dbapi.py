@@ -49,6 +49,7 @@ from gramps.gen.db.dbconst import (
     TXNUPD,
 )
 from gramps.gen.db.generic import DbGeneric
+from gramps.gen.errors import HandleError
 from gramps.gen.lib import (
     Citation,
     Event,
@@ -1117,7 +1118,7 @@ class DBAPI(DbGeneric):
         row = self.dbapi.fetchone()
         if row:
             return self.serializer.string_to_data(row[0])
-        return None
+        raise HandleError(f"Handle {handle} not found")
 
     def _get_raw_from_id_data(self, obj_key, gramps_id):
         table = KEY_TO_NAME_MAP[obj_key]
