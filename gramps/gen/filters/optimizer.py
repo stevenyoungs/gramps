@@ -75,6 +75,18 @@ class Optimizer:
                         handles_out = rule_out
                     else:
                         handles_out = handles_out.union(rule_out)
+            elif filter.logical_op in ("or"):
+                rule_in, rule_out = self.compute_potential_handles_for_rule(rule)
+                if rule_in is not None:
+                    if handles_in is None:
+                        handles_in = rule_in
+                    else:
+                        handles_in = handles_in.union(rule_in)
+                if rule_out is not None:
+                    if handles_out is None:
+                        handles_out = rule_out
+                    else:
+                        handles_out = handles_out.intersection(rule_out)
 
         if filter.invert:
             handles_in, handles_out = handles_out, handles_in
