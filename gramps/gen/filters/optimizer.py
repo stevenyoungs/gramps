@@ -55,7 +55,7 @@ def union(sets: List[Set[PrimaryObjectHandle]]) -> Set[PrimaryObjectHandle]:
 
 class Optimizer:
     def compute_potential_handles_for_filter(
-        self, filter: GenericFilter
+        self, filter: GenericFilter, possible_handles
     ) -> Tuple[Set[PrimaryObjectHandle] | None, Set[PrimaryObjectHandle] | None]:
         if len(filter.flist) == 0:
             return (None, None)
@@ -64,7 +64,9 @@ class Optimizer:
         handles_out = None
         for rule in filter.flist:
             if filter.logical_op == "and" or len(filter.flist) == 1:
-                rule_in, rule_out = self.compute_potential_handles_for_rule(rule)
+                rule_in, rule_out = self.compute_potential_handles_for_rule(
+                    rule, possible_handles
+                )
                 if rule_in is not None:
                     if handles_in is None:
                         handles_in = rule_in
@@ -76,17 +78,17 @@ class Optimizer:
                     else:
                         handles_out = handles_out.union(rule_out)
             elif filter.logical_op in ("or"):
-                rule_in, rule_out = self.compute_potential_handles_for_rule(rule)
-                if rule_in is not None:
-                    if handles_in is None:
-                        handles_in = rule_in
-                    else:
-                        handles_in = handles_in.union(rule_in)
-                if rule_out is not None:
-                    if handles_out is None:
-                        handles_out = rule_out
-                    else:
-                        handles_out = handles_out.intersection(rule_out)
+                rule_in, rule_out = self.compute_potential_handles_for_rule(
+                    rule, possible_handles
+                )
+                if handles_in is None:
+                    handles_in = rule_in
+                else:
+                    handles_in = handles_in.union(rule_in)
+                if handles_out is None:
+                    handles_out = rule_out
+                else:
+                    handles_out = handles_out.intersection(rule_out)
 
         if filter.invert:
             handles_in, handles_out = handles_out, handles_in
@@ -94,14 +96,17 @@ class Optimizer:
         return handles_in, handles_out
 
     def compute_potential_handles_for_rule(
-        self,
-        rule: Rule,
+        self, rule: Rule, possible_handles
     ) -> Tuple[Set[PrimaryObjectHandle] | None, Set[PrimaryObjectHandle] | None]:
         """ """
         if hasattr(rule, "selected_handles"):
-            return (rule.selected_handles, None)
+            return (rule.selected_handles, set())
         if hasattr(rule, "find_filter"):
             filter = rule.find_filter()
             if filter:
-                return self.compute_potential_handles_for_filter(filter)
-        return (None, None)
+                return self.compute_potential_handles_for_filter(
+                    filter, possible_handles
+                )
+        # rule is not optimized and so must assume that all possible_handles
+        # could match the rule and we cannot rule anything out
+        return (possible_handles, set())
