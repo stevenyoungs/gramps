@@ -55,7 +55,7 @@ def union(sets: List[Set[PrimaryObjectHandle]]) -> Set[PrimaryObjectHandle]:
 
 class Optimizer:
     def compute_potential_handles_for_filter(
-        self, filter: GenericFilter, possible_handles
+        self, filter: GenericFilter, possible_handles: Set[PrimaryObjectHandle]
     ) -> Tuple[Set[PrimaryObjectHandle] | None, Set[PrimaryObjectHandle] | None]:
         if len(filter.flist) == 0:
             return (None, None)
@@ -96,11 +96,11 @@ class Optimizer:
         return handles_in, handles_out
 
     def compute_potential_handles_for_rule(
-        self, rule: Rule, possible_handles
+        self, rule: Rule, possible_handles: Set[PrimaryObjectHandle]
     ) -> Tuple[Set[PrimaryObjectHandle] | None, Set[PrimaryObjectHandle] | None]:
         """ """
         if hasattr(rule, "selected_handles"):
-            return (rule.selected_handles, set())
+            return (rule.selected_handles, set[PrimaryObjectHandle]())
         if hasattr(rule, "find_filter"):
             filter = rule.find_filter()
             if filter:
@@ -109,4 +109,4 @@ class Optimizer:
                 )
         # rule is not optimized and so must assume that all possible_handles
         # could match the rule and we cannot rule anything out
-        return (possible_handles, set())
+        return (possible_handles, set[PrimaryObjectHandle]())
