@@ -84,8 +84,11 @@ def gramps_upgrade_23(self):
     for person_handle in self.get_person_handles():
         person = self.get_raw_person_data(person_handle)
         if person.event_ref_list:
-            person["event_ref_list"] = upgrade_event_ref_role_23(person.event_ref_list)
-            self._commit_raw(person, PERSON_KEY)
+            (upgraded, person["event_ref_list"]) = upgrade_event_ref_role_23(
+                person.event_ref_list
+            )
+            if upgraded:
+                self._commit_raw(person, PERSON_KEY)
         self.update()
 
     # ----------------------------------------
@@ -95,8 +98,11 @@ def gramps_upgrade_23(self):
     for family_handle in self.get_family_handles():
         family = self.get_raw_family_data(family_handle)
         if family.event_ref_list:
-            family["event_ref_list"] = upgrade_event_ref_role_23(family.event_ref_list)
-            self._commit_raw(family, FAMILY_KEY)
+            (upgraded, family["event_ref_list"]) = upgrade_event_ref_role_23(
+                family.event_ref_list
+            )
+            if upgraded:
+                self._commit_raw(family, FAMILY_KEY)
         self.update()
 
     self._set_metadata("version", 23, use_txn=False)
@@ -107,14 +113,18 @@ def upgrade_event_ref_role_23(event_ref_list):
     """
     Coalesce custom event role types in to built-in role types
     """
+    upgraded = False
     new_event_ref_list = []
     for event_ref in event_ref_list:
         if event_ref.role.value == EventRoleType.CUSTOM:
             event_role_type = data_to_object(event_ref.role)
             event_role_type.string = event_role_type.string
-            event_ref["role"] = object_to_data(event_role_type)
+            if event_role_type.value != EventRoleType.CUSTOM:
+                upgraded = True
+                event_ref["role"] = object_to_data(event_role_type)
         new_event_ref_list.append((event_ref))
-    return new_event_ref_list
+
+    return (upgraded, new_event_ref_list)
 
 
 def _default_familysearch_sync_json_22():
