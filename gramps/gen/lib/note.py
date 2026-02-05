@@ -64,7 +64,7 @@ class Note(BasicPrimaryObject):
     :cvar FORMATTED: indicates formatted format (respecting whitespace needed)
     """
 
-    (FLOWED, FORMATTED) = list(range(2))
+    FLOWED, FORMATTED = list(range(2))
 
     def __init__(self, text=""):
         """Create a new Note object, initializing from the passed string."""
