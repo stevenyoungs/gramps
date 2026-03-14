@@ -16,9 +16,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -813,9 +812,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.set_serializer("blob")
             self.has_changed = 1  # to make sure genderstats gets saved
             self._set_all_metadata()
-            self.has_changed = 0  # number of commits
             if self.use_json_data():
                 self.set_serializer("json")
+                self._set_all_metadata()
+            self.has_changed = 0  # number of commits
 
         self.db_is_open = True
 
@@ -832,7 +832,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             if force_schema_upgrade:
                 self._gramps_upgrade(dbversion, directory, callback)
             else:
-                self.close()
+                self.close(update=False)
                 raise DbUpgradeRequiredError(dbversion, self.VERSION[0])
 
     def _create_undo_manager(self):
@@ -2810,6 +2810,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         self.rebuild_secondary(callback)
         self.reindex_reference_map(callback)
+        self.surname_list = self.get_surname_list()
         self.reset()
 
         self.set_schema_version(self.VERSION[0])

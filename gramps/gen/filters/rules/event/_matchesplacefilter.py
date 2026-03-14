@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -70,6 +69,8 @@ class MatchesPlaceFilter(MatchesFilterBase):
     def apply_to_one(self, db: Database, event: Event) -> bool:
         filt = self.find_filter()
         if filt:
-            if event and filt.apply_to_one(db, event):
-                return True
+            if event and event.place:
+                place = db.get_place_from_handle(event.place)
+                if filt.apply_to_one(db, place):
+                    return True
         return False

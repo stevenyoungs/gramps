@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 import unittest
@@ -25,14 +24,14 @@ import shutil
 
 from gramps.test.test_util import Gramps
 from gramps.gen.user import User
-from gramps.gen.const import DATA_DIR
+from gramps.gen.const import TEST_DIR
 
 # ddir = os.path.dirname(__file__)
 # example = os.path.join(ddir, "..", "..", "..",
 #                        "example", "gramps", "data.gramps")
 # sample = os.path.join(ddir, "..", "..", "..",
 #                       "example", "gedcom", "sample.ged")
-example = os.path.join(DATA_DIR, "tests", "data.gramps")
+example = os.path.join(TEST_DIR, "data.gramps")
 
 TREE_NAME = "Test_reporttest"
 
@@ -90,7 +89,7 @@ def dynamic_report_method(report_name, test_function, files, *args, **options):
 
     def test_method(self):  # This needs to have "test" in name
         out, err = self.call(*args)
-        self.assertTrue(test_function(out, err, report_name, **options))
+        self.assertTrue(test_function(out, err, report_name, **options), out + err)
 
     return test_method
 
@@ -100,7 +99,7 @@ def dynamic_cli_method(report_name, test_function, files, *args, **options):
 
     def test_method(self):  # This needs to have "test" in name
         out, err = self.call(*args)
-        self.assertTrue(test_function(out, err, report_name, **options))
+        self.assertTrue(test_function(out, err, report_name, **options), out + err)
 
     return test_method
 

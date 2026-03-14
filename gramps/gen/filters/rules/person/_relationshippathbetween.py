@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -117,16 +116,16 @@ class RelationshipPathBetween(Rule):
 
     def init_list(self, p1_handle: PersonHandle, p2_handle: PersonHandle):
         firstMap: Dict[PersonHandle, int] = {}
-        firstList: Set[PersonHandle] = set()
+        firstSet: Set[PersonHandle] = set()
         secondMap: Dict[PersonHandle, int] = {}
-        secondList: Set[PersonHandle] = set()
+        secondSet: Set[PersonHandle] = set()
         common: List[PersonHandle] = []
         rank = 9999999
 
-        self.apply_filter(0, p1_handle, firstList, firstMap)
-        self.apply_filter(0, p2_handle, secondList, secondMap)
+        self.apply_filter(0, p1_handle, firstSet, firstMap)
+        self.apply_filter(0, p2_handle, secondSet, secondMap)
 
-        for person_handle in firstList and secondList:
+        for person_handle in firstSet & secondSet:
             new_rank = firstMap[person_handle]
             if new_rank < rank:
                 rank = new_rank

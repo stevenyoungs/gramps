@@ -18,9 +18,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -2547,11 +2546,16 @@ class GrampsParser(UpdateCallback):
         elif self.place_name:
             date_value = self.place_name.get_date_object()
 
-        start = attrs["start"].split("-")
-        stop = attrs["stop"].split("-")
+        start = attrs["start"]
+        stop = attrs["stop"]
 
+        bce = 1
+        if start[0] == "-":
+            bce = -1
+            start = start[1:]
+        start = start.split("-")
         try:
-            year = int(start[0])
+            year = int(start[0]) * bce
         except ValueError:
             year = 0
 
@@ -2565,8 +2569,13 @@ class GrampsParser(UpdateCallback):
         except:
             day = 0
 
+        bce = 1
+        if stop[0] == "-":
+            bce = -1
+            stop = stop[1:]
+        stop = stop.split("-")
         try:
-            rng_year = int(stop[0])
+            rng_year = int(stop[0]) * bce
         except:
             rng_year = 0
 

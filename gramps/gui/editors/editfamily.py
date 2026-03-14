@@ -16,9 +16,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -984,7 +983,7 @@ class EditFamily(EditPrimary):
             self.uistate,
             self.track,
             _("Select Mother"),
-            filter=(4, _("Female")),
+            search_or_filter=(4, _("Female")),
             skip=[x.ref for x in self.obj.get_child_ref_list()],
         )
         person = sel.run()
@@ -1033,7 +1032,7 @@ class EditFamily(EditPrimary):
             self.uistate,
             self.track,
             _("Select Father"),
-            filter=(4, _("Male")),
+            search_or_filter=(4, _("Male")),
             skip=[x.ref for x in self.obj.get_child_ref_list()],
         )
         person = sel.run()

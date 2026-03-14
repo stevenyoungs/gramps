@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -160,7 +159,7 @@ class Rule:
         """Verify the number of rule values versus the number of rule labels."""
         return len(self.list) == len(self.labels)
 
-    def apply(self, dummy_db: Database, dummy_person: Any) -> bool:
+    def apply_to_one(self, dummy_db: Database, dummy_object: Any) -> bool:
         """Apply the rule to some database entry; must be overwritten."""
         return True
 

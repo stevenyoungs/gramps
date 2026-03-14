@@ -1,3 +1,139 @@
+2025-11-08
+Version 6.0.6
+* Update translations: ba, cs, da, de, de_AT, en_GB, es, fi, fr, ga, he, hr, id,
+  it, ka, lt, nl, pl, pt_PT, ro, ru, sk, sv, ta, tr, uk.
+* Added Weblate translation for Nepali.
+* Relationship Calculator:
+  * Re-written for Russian language. Fixes #12743, #14019.
+  * Fixed incorrect handling of return value of `get_birth_parents()` method.
+  * Add tests to improve coverage of step, in-law and plural cases.
+  * Fix error. Fixes #13996.
+* Fix order of LDS ordinances. Fixes #11651.
+* Fix "Latter-day Saints" name. Issue #11651.
+* Add missing "Initiatory" LDS ordinance. Fixes #4949.
+* Preserve order in `find_children`.
+* Update geocode-glib DLL reference in `setup.py` script. MSYS2 now provides a
+  libsoup3-based geocode-glib binary. Fixes #14018.
+* Update GPL2+ license text.
+* Update COPYING to the latest text.
+* Ignore mypy error when setting `sqlite3.paramstyle`.
+
+2025-09-06
+Version 6.0.5
+* Update translations: bg, ca, cs, da, de, es, fi, fr, ga, he, hr, hu, it, lt,
+  pl, pt_PT, ru, sk, sv, uk.
+* Added Weblate translations for Georgian and Latvian.
+* Add Irish (ga) to the list of supported languages.
+* Update Catalan relationship calculator.
+* Fix MatchesPersonFilter. Fixes #13947.
+* Suppress file not found error if not available at end of gpkg import.
+  Fixes #12311.
+* Fix typos in the Welcome gramplet.
+* Bump version for macOS.
+
+2025-08-10
+Version 6.0.4
+* Update translations: ca, cs, da, de, de_AT, es, fa, fi, fr, he, hr, hu, id,
+  it, nl, pl, pt_PT, sk, ta, uk.
+* Added Weblate translation for Bashkir.
+* Fix regex matches in filter match method.
+* Fix the problem of mixed filter types.
+* Add context to translatable "Name:" labels in Glade files. Fixes #12527.
+* Fix format character in the `MatchesPersonFilter` event rule.
+  Fixes #13909, #13923.
+* Fix file not found when we don't want sources in narrated web report.
+  Fixes #13875.
+* Fix note attached to citation in narrated web report. Fixes #13852.
+* Apply event place filters to the place not the event. Fixes #13797.
+* Added new fieldtype 48 to support Pro-Gen version 3.5.
+* Normalize gzip mtime for reproducible builds.
+* Fix regression in relationship path between people filter.
+
+2025-06-18
+Version 6.0.3
+* Update translations: de_AT, en_GB, es, uk.
+* Revert "Pass an object rather than a handle to the note editor callback"
+  Fixes #13884.
+* Package Gramps 6.0.2 on macOS.
+
+2025-06-15
+Version 6.0.2
+* Update translations: bg, ca, cs, da, de, de_AT, eo, es, fi, fr, ga, he, id,
+  ko, lt, nb, nl, pl, pt_PT, ru, sk, sv, tr, zh_CN.
+* Fix date modifiers for lt.
+* Update translation template for new release.
+* Add optimization to HasIdOf rules.
+* Connect the Help button in the repository reference editor. Fixes #13352.
+* Pass an object rather than a handle to the note editor callback. Fixes #13702.
+* Fix broken compound dates with bce year in XML import. Fixes #13631.
+* Avoid multiple copies of Rules after Plugin manager reload. Fixes #13844.
+* Fix bad surname list after upgrade from bsddb. Fixes #13807.
+* Fix narrated web when two places have same name but a different type.
+  Fixes #13841.
+* Fix crash in citation view due to wrong `filter_info`. Fixes #13796.
+* Don't attempt to call `set_orientation` if `self.pui` is `None`. Fixes #13820.
+* Don't crash in `search_changed` if `self.search_list` has no active item.
+  Fixes #13793.
+* Fix incorrect addons project after upgrade from Gramps 5.2. Fixes #13789.
+* Respect user choice of CSS files for existing narrated web site. Fixes #13792.
+* Ensure that the spell checker gets removed with the editor. Fixes #13795.
+* Fix `Optimizer` class when combining sub-filters. Fixes #13799.
+* Remove check for Gtk translations in Snap packages.
+* Mac:
+  * Add lxml to python modules included in Gramps.app.
+  * Fix macos build version error: Wrong tarball for 6.0.1.
+  * Package Gramps-6.0.1 for macOS
+
+2025-04-18
+Version 6.0.1
+* Update translations: ar, br, ca, cs, de, de_AT, el, en_GB, es, fi, fr, ga, he,
+  it, ja, ko, nb, nl, pl, pt_PT, ro, sk, sv, tr, uk, zh_CN.
+* Update translation template for new release.
+* Extend SearchBar so that it supports text search and filters. Fixes #13720.
+* Fix patronymic in name display. Fixes #13764.
+* Update links in the README to v6.0.
+* Update the INSTALL file. Issue #13717.
+  * Change install from `setup.py` to `pip`.
+  * Update typical installation locations.
+  * Remove the `--resourcepath` option which no longer exists.
+* Fix wiki help link in the Addon Manager. Fixes #13735.
+* Remove the outer progress meter from the filter prepare phase. Fixes #13725.
+* Fix error when importing a GEDCOM file into an existing tree. Fixes #13726.
+* Avoid empty metadata fields. Fixes #13721.
+* Update Italian date modifiers.
+* Mac:
+  * Fix return value list for no locale.  Fixes #13727.
+  * Change gramps-git and gramps-addons-git modules to pip module type.
+  * [mac gramps_launcher] Fix bad comment formatting.
+  * Fix GRAMPSDIR for Python versions > 9.
+  * Package Gramps-6.0.0 on macOS.
+
+2025-03-19
+Version 6.0.0
+* Update translations: he, id, ko, sk.
+* Update development status classifier.
+* Update version in Sphinx API documentation.
+* Update translation template for new release.
+* Update `example.gramps`.
+* Bump XML version to 1.7.2.
+* Allow Gramps to continue if an addon rule fails to load. Fixes #13676.
+* Add unit tests for the addon translator.
+* Package Gramps-6.0.0-rc2 for macOS.
+
+2025-03-15
+Version 6.0.0-rc2
+* Update translations: ca, de_AT, en_GB, eo, id, ko, pt_PT, sk, sq.
+* Add python-cffi to the Windows AIO build script.
+* Remove check that path exists in the media path unit test. Fixes #13305.
+* Simplify logic for setting data, config and cache directories.
+  Fixes #13261, #13686.
+* Migrate data from old the directory structure. Fixes #13300.
+* Fix nested transaction error in the Test Case Generator tool. Fixes #13680.
+* Enable Web Connection menu in all list views.
+* Fix schema upgrade errors. Fixes #13674.
+* Add database upgrade unit tests.
+* Package Gramps-6.0.0-rc1 for macOS.
+
 2025-03-02
 Version 6.0.0-rc1
 * Update translations: ca, cs, da, de, de_AT, en_GB, eo, fi, fr, he, hr, hu, id,

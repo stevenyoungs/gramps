@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # ------------------------------------------------------------------------
@@ -28,6 +27,7 @@ import pickle
 import os
 from xml.sax.saxutils import escape
 from time import strftime as strftime
+from gramps.gen.config import config
 
 # -------------------------------------------------------------------------
 #
@@ -59,7 +59,6 @@ from .ddtargets import DdTargets
 from .makefilter import make_filter
 from .utils import is_right_click, no_match_primary_mask
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gen.config import config
 from gramps.gui.widgets.multitreeview import MultiTreeView
 
 _ = glocale.translation.sgettext
@@ -399,14 +398,7 @@ class ClipNote(ClipHandleWrapper):
         value = clipdb.get_note_from_handle(self._handle)
         if value:
             self._title = value.get_gramps_id()
-            note = value.get().replace("\n", " ")
-            # String must be unicode for truncation to work for non
-            # ascii characters
-            note = str(note)
-            if len(note) > 80:
-                self._value = note[:80] + "..."
-            else:
-                self._value = note
+            self._value = value.get_preview()
 
 
 class ClipFamilyEvent(ClipObjWrapper):

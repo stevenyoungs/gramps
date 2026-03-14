@@ -17,9 +17,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -51,7 +50,7 @@ if "-S" in sys.argv or "--safe" in sys.argv:
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .gen.const import APP_GRAMPS, USER_DIRLIST, USER_DATA, ORIG_HOME_DIR
+from .gen.const import APP_GRAMPS, USER_DIRLIST, USER_DATA
 from .gen.constfunc import mac
 from .version import VERSION_TUPLE
 from .gen.constfunc import win, get_env_var
@@ -76,6 +75,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 
+_encoding: str
 try:
     # On Darwin sys.getdefaultencoding() is correct, on Win32 it's
     # sys.stdout.encoding, and on Linux they're both right.
@@ -654,11 +654,6 @@ def run():
     argv_copy = sys.argv[:]
     argpars = ArgParser(argv_copy)
 
-    # if in safe mode we should point the db dir back to the original dir.
-    # It is ok to import config here, 'Defaults' command had its chance...
-    if "SAFEMODE" in os.environ:
-        config.set("database.path", os.path.join(ORIG_HOME_DIR, "grampsdb"))
-
     # On windows the fontconfig handler is a better choice
     if win() and ("PANGOCAIRO_BACKEND" not in os.environ):
         os.environ["PANGOCAIRO_BACKEND"] = "fontconfig"
@@ -702,7 +697,7 @@ def main():
     if "GRAMPS_RESOURCES" not in os.environ:
         resource_path, filename = os.path.split(os.path.abspath(__file__))
         resource_path, dirname = os.path.split(resource_path)
-        os.environ["GRAMPS_RESOURCES"] = resource_path
+        os.environ["GRAMPS_RESOURCES"] = os.path.join(resource_path, "build", "share")
     errors = run()
     if errors and isinstance(errors, list):
         for error in errors:

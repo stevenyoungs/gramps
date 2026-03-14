@@ -15,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -155,12 +154,12 @@ class PlaceBaseView(ListView):
     def navigation_type(self):
         return "Place"
 
-    def setup_filter(self):
-        """Build the default filters and add them to the filter menu.
+    def setup_searches(self):
+        """Build the default searches and add them to the search bar.
         This overrides the listview method because we use the hidden
         COL_SEARCH that has alt names as well as primary name for name
         searching"""
-        self.search_bar.setup_filter(
+        self.search_bar.setup_searches(
             [
                 (
                     self.COLUMNS[pair[1]][0],
@@ -476,6 +475,8 @@ class PlaceBaseView(ListView):
       </section>
       <section>
         <placeholder id='QuickReport'>
+        </placeholder>
+        <placeholder id='WebConnect'>
         </placeholder>
       </section>
       <section>

@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 
@@ -372,6 +371,10 @@ class StyledTextEditor(Gtk.TextView):
 
         # variable to not copy to clipboard on double/triple click
         self.selclick = False
+
+    def __del__(self):
+        # ensure that the spell checker gets removed with the editor (bug #13795)
+        self.spellcheck = None
 
     # virtual methods
 

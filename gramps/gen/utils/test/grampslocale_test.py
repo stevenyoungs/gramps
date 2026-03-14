@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 import unittest
@@ -106,6 +105,29 @@ class LexemeTest(unittest.TestCase):
 
     def testEmptyIterableLikeEmptyString(self):
         self.assertEqual(self.elex, "")
+
+
+class AddonTranslatorTest(unittest.TestCase):
+    """
+    Tests for the addon translator.
+    """
+
+    def setUp(self):
+        from ...const import GRAMPS_LOCALE as glocale
+
+        self._ = glocale.get_addon_translator(__file__, languages=["fr"]).gettext
+
+    def testAddon(self):
+        # A string in the "addon" domain.
+        self.assertEqual(self._("Test Message"), "Message d'essai")
+
+    def testGramps(self):
+        # A string in the "gramps" domain.
+        self.assertEqual(self._("United States of America"), "États-Unis")
+
+    def testUntranslated(self):
+        # An untranslated string.
+        self.assertEqual(self._("Untranslated string"), "Untranslated string")
 
 
 if __name__ == "__main__":

@@ -23,30 +23,30 @@
   <include href="https://gitlab.gnome.org/GNOME/gtk-osx/raw/master/modulesets-stable/gtk-osx.modules"/>
   <!--include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/-->
 
-  <distutils id="gramps-git" supports-non-srcdir-builds="no">
+  <pip id="gramps-git" supports-non-srcdir-builds="no">
     <branch module="gramps-project/gramps.git" repo="github"
             revision="maintenance/gramps52"
 	    checkoutdir="gramps-git"/>
     <dependencies>
       <dep package="meta-gramps-modules"/>
     </dependencies>
-  </distutils>
+  </pip>
  <pip id="gramps" supports-non-srcdir-builds="no">
-    <branch module="gramps-project/gramps/archive/v6.0.0-beta2.tar.gz"
-	    repo="github-tarball" version="6.0.0-beta2"
-            checkoutdir="gramps-gramps-6.0.0-beta2" />
+    <branch module="gramps-project/gramps/archive/v6.0.6.tar.gz"
+	    repo="github-tarball" version="6.0.6"
+            checkoutdir="gramps-gramps-6.0.6" />
     <dependencies>
       <dep package="meta-gramps-modules"/>
     </dependencies>
   </pip>
 
-  <distutils id="gramps-addons-git">
+  <pip id="gramps-addons-git">
     <branch module="gramps-project/gramps-addons"
 	    repo="github"/>
     <dependencies>
       <dep package="gramps-git"/>
     </dependencies>
-  </distutils>
+  </pip>
 
   <meson id="json-glib" mesonargs="-Dgtk_doc=disabled -Dman=false -Dtests=false">
     <branch module="json-glib/1.10/json-glib-1.10.6.tar.xz"
@@ -58,11 +58,17 @@
     </dependencies>
   </meson>
 
+  <pip id="lmxl">
+    <branch module="2b/b4/bbccb250adbee490553b6a52712c46c20ea1ba533a643f1424b27ffc6845/lxml-5.1.0.tar.gz"
+            version="5.1.0"
+            hash="sha256:3eea6ed6e6c918e468e693c41ef07f3c3acc310b70ddd9cc72d9ef84bc9564ca"
+            repo="pymodules" />
+  </pip>
+
   <pip id="orjson">
     <branch module="ae/f9/5dea21763eeff8c1590076918a446ea3d6140743e0e36f58f369928ed0f4/orjson-3.10.15.tar.gz"
             version="3.10.15"
-            repo="pymodules"
-            />
+            repo="pymodules" />
   </pip>
 
   <meson id="geocode-glib" mesonargs="-Denable-gtk-doc=false">
@@ -180,6 +186,7 @@
       <dep package="hunspell"/>
       <dep package="iso-codes"/>
       <dep package="librsvg"/>
+      <dep package="lmxl"/>
       <dep package="meta-gtk-osx-gtk3"/>
       <dep package="orjson"/>
       <dep package="osmgpsmap"/>

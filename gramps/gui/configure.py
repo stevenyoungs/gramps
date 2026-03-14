@@ -18,9 +18,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -2188,6 +2187,16 @@ class GrampsPreferences(ConfigureDialog):
                 " entered, these names display in a box. This"
                 " setting sets the size of this box."
             ),
+        )
+
+        row += 1
+        # Maximum visible length of a note in characters.
+        self.add_spinner(
+            grid,
+            _("Note preview length"),
+            row,
+            "interface.note-preview-length",
+            (80, 2000),
         )
 
         row += 1

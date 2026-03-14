@@ -18,9 +18,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -41,7 +40,7 @@ import logging
 # Gramps imports
 #
 # ---------------------------------------------------------------
-from .const import USER_CONFIG, USER_DATA, USER_HOME, VERSION_DIR
+from .const import USER_CONFIG, USER_DATA, USER_HOME, VERSION_DIR, VERSION_DIR_NAME
 from .utils.configmanager import ConfigManager
 from .const import GRAMPS_LOCALE as glocale
 
@@ -177,14 +176,14 @@ register("behavior.welcome", 100)
 register("behavior.web-search-url", "https://google.com/search?q=%(text)s")
 register(
     "behavior.addons-url",
-    "https://raw.githubusercontent.com/gramps-project/addons/master/gramps60",
+    f"https://raw.githubusercontent.com/gramps-project/addons/master/{VERSION_DIR_NAME}",
 )
 register(
     "behavior.addons-projects",
     [
         [
             "Gramps",
-            "https://raw.githubusercontent.com/gramps-project/addons/master/gramps60",
+            f"https://raw.githubusercontent.com/gramps-project/addons/master/{VERSION_DIR_NAME}",
             True,
         ]
     ],
@@ -275,6 +274,7 @@ register("interface.toolbar-tools", True)
 register("interface.view", True)
 register("interface.surname-box-height", 150)
 register("interface.treemodel-cache-size", 1000)
+register("interface.note-preview-length", 80)
 
 register("paths.recent-export-dir", USER_HOME)
 register("paths.recent-file", "")
@@ -391,11 +391,24 @@ register("utf8.killed-symbol", "x")
 if __debug__:  # enable a simple CLI test to see if the datestrings exist
     register("test.january", _("January", "localized lexeme inflections"))
 
+
 # ---------------------------------------------------------------
 #
 # Upgrade Conversions go here.
 #
 # ---------------------------------------------------------------
+def load_previous(ini_file):
+    """
+    Attempt to load a `gramps.ini` file from an earlier version.
+    Return True if the file exists.
+    """
+    if os.path.exists(ini_file):
+        logging.info("Importing old config file '%s'...", ini_file)
+        CONFIGMAN.load(ini_file)
+        logging.info("Done importing old config file '%s'", ini_file)
+        return True
+    return False
+
 
 # If we have not already upgraded to this version,
 # we can tell by seeing if there is a key file for this version:
@@ -410,6 +423,7 @@ if not os.path.exists(CONFIGMAN.filename):
     # check previous version of gramps:
     fullpath, filename = os.path.split(CONFIGMAN.filename)
     fullpath, previous = os.path.split(fullpath)
+    oldpath = os.path.join(USER_HOME, ".gramps")
     match = re.match(r"gramps(\d*)", previous)
     if match:
         # cycle back looking for previous versions of gramps
@@ -422,11 +436,11 @@ if not os.path.exists(CONFIGMAN.filename):
             # Perhaps addings specific list of versions to check
             # -----------------------------------------
             digits = str(int(match.groups()[0]) - i)
-            previous_grampsini = os.path.join(fullpath, "gramps" + digits, filename)
-            if os.path.exists(previous_grampsini):
-                logging.info("Importing old config file '%s'...", previous_grampsini)
-                CONFIGMAN.load(previous_grampsini)
-                logging.info("Done importing old config file '%s'", previous_grampsini)
+            grampsini = os.path.join(fullpath, "gramps" + digits, filename)
+            if load_previous(grampsini):
+                break
+            grampsini = os.path.join(oldpath, "gramps" + digits, filename)
+            if load_previous(grampsini):
                 break
 
 # ---------------------------------------------------------------
@@ -439,3 +453,15 @@ CONFIGMAN.load()
 config = CONFIGMAN
 if config.get("database.backend") == "bsddb":
     config.set("database.backend", "sqlite")
+# if copying a config from an older version, the addons location is likely wrong, so fix it.
+config.set(
+    "behavior.addons-url",
+    f"https://raw.githubusercontent.com/gramps-project/addons/master/{VERSION_DIR_NAME}",
+)
+projects = config.get("behavior.addons-projects")
+for proj in projects:
+    if "raw.githubusercontent.com/gramps-project/addons/master" in proj[1]:
+        proj[1] = (
+            f"https://raw.githubusercontent.com/gramps-project/addons/master/{VERSION_DIR_NAME}"
+        )
+config.set("behavior.addons-projects", projects)

@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -180,13 +179,13 @@ class CitationTreeView(LibSourceView, ListView):
             # add in Bookmarks.CitationBookmarks
             pass
 
-    def setup_filter(self):
+    def setup_searches(self):
         """
         Override the setup of the default Search Bar in listview, so that only
         the searchable source fields are shown.
         """
 
-        self.search_bar.setup_filter(
+        self.search_bar.setup_searches(
             [
                 (self.COLUMNS[pair[1]][0], pair[1], pair[1] in self.exact_search())
                 for pair in self.column_order()
@@ -551,6 +550,8 @@ class CitationTreeView(LibSourceView, ListView):
       </section>
       <section>
         <placeholder id='QuickReport'>
+        </placeholder>
+        <placeholder id='WebConnect'>
         </placeholder>
       </section>
     </menu>
