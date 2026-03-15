@@ -49,7 +49,7 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 class HasNoteTagBase(Rule):
     """
-    Objects having a note with a particular tag..
+    Objects having a note with a particular tag.
     """
 
     labels = [_("Tag:")]
