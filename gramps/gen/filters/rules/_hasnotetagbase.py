@@ -59,7 +59,7 @@ class HasNoteTagBase(Rule):
 
     def __init__(self, arg, use_regex=False, use_case=False):
         super().__init__(arg, use_regex, use_case)
-        self.tag = None
+        self.tag_handle = None
 
     def prepare(self, db: Database, user):
         """
