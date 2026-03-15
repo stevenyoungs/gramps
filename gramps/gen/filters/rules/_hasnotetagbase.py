@@ -54,7 +54,7 @@ class HasNoteTagBase(Rule):
 
     labels = [_("Tag:")]
     name = _("Objects with notes with a specified tag.")
-    description = _("Matches notes with a specified tag ")
+    description = _("Matches notes with a specified tag")
     category = _("General filters")
 
     def __init__(self, arg, use_regex=False, use_case=False):
