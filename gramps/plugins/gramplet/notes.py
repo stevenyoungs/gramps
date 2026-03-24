@@ -150,6 +150,7 @@ class NotesOf(Notes):
         self.object_class = object_class
 
     def db_changed(self):
+        self.connect_signal(self.object_class, self.update)
         self.connect(
             self.dbstate.db, "%s-update" % self.object_class.lower(), self.update
         )
@@ -162,7 +163,6 @@ class NotesOf(Notes):
 
     def active_changed(self, handle):
         self.update()
-        self.connect_signal(self.object_class, self.update)
 
     def get_notes(self, obj):
         """
@@ -235,7 +235,6 @@ class PersonNotes(NotesOf):
 
     def db_changed(self):
         self.connect(self.dbstate.db, "person-update", self.update)
-        # superclass will call active_changed if the active Person changes
         self.connect(self.dbstate.db, "note-add", self.update)
         self.connect(self.dbstate.db, "note-update", self.update)
         self.connect(self.dbstate.db, "note-delete", self.update)
