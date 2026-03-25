@@ -71,7 +71,6 @@ PACKAGES = [
     "gi",
     "cairo",
     "xml",
-    "bsddb3",
     "lxml",
     "PIL",
     "json",

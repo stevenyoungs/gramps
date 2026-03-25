@@ -29,50 +29,48 @@ pacman -S --needed --noconfirm \
     base-devel \
     git \
     intltool \
-    mingw-w64-x86_64-adwaita-icon-theme \
-    mingw-w64-x86_64-geocode-glib \
-    mingw-w64-x86_64-ghostscript \
-    mingw-w64-x86_64-goocanvas \
-    mingw-w64-x86_64-hunspell \
-    mingw-w64-x86_64-iso-codes \
-    mingw-w64-x86_64-nsis \
-    mingw-w64-x86_64-osm-gps-map \
-    mingw-w64-x86_64-python \
-    mingw-w64-x86_64-python-bsddb3 \
-    mingw-w64-x86_64-python-build \
-    mingw-w64-x86_64-python-cairo \
-    mingw-w64-x86_64-python-cffi \
-    mingw-w64-x86_64-python-cx-freeze \
-    mingw-w64-x86_64-python-distlib \
-    mingw-w64-x86_64-python-gobject \
-    mingw-w64-x86_64-python-graphviz \
-    mingw-w64-x86_64-python-icu \
-    mingw-w64-x86_64-python-jsonschema \
-    mingw-w64-x86_64-python-lief \
-    mingw-w64-x86_64-python-lxml \
-    mingw-w64-x86_64-python-networkx \
-    mingw-w64-x86_64-python-nose \
-    mingw-w64-x86_64-python-packaging \
-    mingw-w64-x86_64-python-pillow \
-    mingw-w64-x86_64-python-pip \
-    mingw-w64-x86_64-python-psycopg2 \
-    mingw-w64-x86_64-python-requests \
-    mingw-w64-x86_64-python-setuptools \
-    mingw-w64-x86_64-python-wheel \
-    mingw-w64-x86_64-rust \
-    mingw-w64-x86_64-toolchain \
+    mingw-w64-ucrt-x86_64-adwaita-icon-theme \
+    mingw-w64-ucrt-x86_64-geocode-glib \
+    mingw-w64-ucrt-x86_64-gexiv2 \
+    mingw-w64-ucrt-x86_64-ghostscript \
+    mingw-w64-ucrt-x86_64-goocanvas \
+    mingw-w64-ucrt-x86_64-hunspell \
+    mingw-w64-ucrt-x86_64-iso-codes \
+    mingw-w64-ucrt-x86_64-nsis \
+    mingw-w64-ucrt-x86_64-osm-gps-map \
+    mingw-w64-ucrt-x86_64-python \
+    mingw-w64-ucrt-x86_64-python-build \
+    mingw-w64-ucrt-x86_64-python-cairo \
+    mingw-w64-ucrt-x86_64-python-cffi \
+    mingw-w64-ucrt-x86_64-python-cx-freeze \
+    mingw-w64-ucrt-x86_64-python-distlib \
+    mingw-w64-ucrt-x86_64-python-gobject \
+    mingw-w64-ucrt-x86_64-python-graphviz \
+    mingw-w64-ucrt-x86_64-python-icu \
+    mingw-w64-ucrt-x86_64-python-jsonschema \
+    mingw-w64-ucrt-x86_64-python-lief \
+    mingw-w64-ucrt-x86_64-python-lxml \
+    mingw-w64-ucrt-x86_64-python-networkx \
+    mingw-w64-ucrt-x86_64-python-nose \
+    mingw-w64-ucrt-x86_64-python-packaging \
+    mingw-w64-ucrt-x86_64-python-pillow \
+    mingw-w64-ucrt-x86_64-python-pip \
+    mingw-w64-ucrt-x86_64-python-psycopg2 \
+    mingw-w64-ucrt-x86_64-python-requests \
+    mingw-w64-ucrt-x86_64-python-setuptools \
+    mingw-w64-ucrt-x86_64-python-wheel \
+    mingw-w64-ucrt-x86_64-rust \
+    mingw-w64-ucrt-x86_64-toolchain \
     perl-XML-Parser \
     subversion \
     unzip
 
-pacman -U --needed --noconfirm https://repo.msys2.org/mingw/mingw64/mingw-w64-x86_64-exiv2-0.27.7-4-any.pkg.tar.zst
-pacman -U --needed --noconfirm https://repo.msys2.org/mingw/mingw64/mingw-w64-x86_64-gexiv2-0.14.6-4-any.pkg.tar.zst
-pacman -U --needed --noconfirm https://repo.msys2.org/mingw/mingw64/mingw-w64-x86_64-graphviz-12.2.1-4-any.pkg.tar.zst
-pacman -U --needed --noconfirm https://repo.msys2.org/mingw/mingw64/mingw-w64-x86_64-gspell-1.14.0-4-any.pkg.tar.zst
-pacman -U --needed --noconfirm https://repo.msys2.org/mingw/mingw64/mingw-w64-x86_64-enchant-2.6.7-5-any.pkg.tar.zst
-
-wget --no-verbose -N https://github.com/bpisoj/MINGW-packages/releases/download/v5.0/mingw-w64-x86_64-db-6.0.30-1-any.pkg.tar.xz
-pacman -U --needed --noconfirm mingw-w64-x86_64-db-6.0.30-1-any.pkg.tar.xz
+# Older versions from archives due to compatibility issues with
+# latest versions.  When resolved, move back to list above.
+pacman -U --needed --noconfirm \
+    https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-enchant-2.6.7-5-any.pkg.tar.zst \
+    https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-graphviz-12.2.1-4-any.pkg.tar.zst \
+    https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-gspell-1.14.0-4-any.pkg.tar.zst
 
 ## create a python virtual environment so that we have a clean starting point
 pythonvenv=$TMP/grampspythonenv
@@ -82,11 +80,11 @@ source $pythonvenv/bin/activate
 
 ## prerequisites in pip packages
 python -m pip install --upgrade pip
-pip install --upgrade asyncio orjson pydot pydotplus pygraphviz requests selenium
+pip install --upgrade orjson pydot pydotplus pygraphviz requests selenium
 
 ## download dictionaries
-mkdir -p /mingw64/share/enchant/hunspell
-pushd /mingw64/share/enchant/hunspell
+mkdir -p /ucrt64/share/enchant/hunspell
+pushd /ucrt64/share/enchant/hunspell
 rootdir=https://raw.githubusercontent.com/wooorm/dictionaries/main/dictionaries/
 dicts=(
     bg:bg_BG
@@ -132,8 +130,8 @@ for dict in "${dicts[@]}"; do
 done
 popd
 
-mkdir -p /mingw64/share/enchant/voikko
-pushd /mingw64/share/enchant/voikko
+mkdir -p /ucrt64/share/enchant/voikko
+pushd /ucrt64/share/enchant/voikko
 wget --no-verbose -N https://www.puimula.org/htp/testing/voikko-snapshot-v5/dict.zip
 unzip -q -o dict.zip
 rm dict.zip
@@ -142,29 +140,29 @@ popd
 # Assumption: script is executed from the 'aio' directory!
 
 ## create a directory structure for icons
-mkdir -p /mingw64/share/icons/gnome
-mkdir -p /mingw64/share/icons/gnome/48x48
-mkdir -p /mingw64/share/icons/gnome/48x48/mimetypes
-mkdir -p /mingw64/share/icons/gnome/scalable
-mkdir -p /mingw64/share/icons/gnome/scalable/mimetypes
-mkdir -p /mingw64/share/icons/gnome/scalable/places
+mkdir -p /ucrt64/share/icons/gnome
+mkdir -p /ucrt64/share/icons/gnome/48x48
+mkdir -p /ucrt64/share/icons/gnome/48x48/mimetypes
+mkdir -p /ucrt64/share/icons/gnome/scalable
+mkdir -p /ucrt64/share/icons/gnome/scalable/mimetypes
+mkdir -p /ucrt64/share/icons/gnome/scalable/places
 
 # Change to the gramps root directory
 cd ..
-cp images/gramps.png /mingw64/share/icons
+cp images/gramps.png /ucrt64/share/icons
 cd images/hicolor/48x48/mimetypes
 for f in *.png; do
-    cp $f /mingw64/share/icons/gnome/48x48/mimetypes/gnome-mime-$f
+    cp $f /ucrt64/share/icons/gnome/48x48/mimetypes/gnome-mime-$f
 done
 cd ../../scalable/mimetypes
 for f in *.svg; do
-    cp $f /mingw64/share/icons/gnome/scalable/mimetypes/gnome-mime-$f
+    cp $f /ucrt64/share/icons/gnome/scalable/mimetypes/gnome-mime-$f
 done
 cd ../../../..
-cp /mingw64/share/icons/hicolor/scalable/places/*.svg /mingw64/share/icons/gnome/scalable/places
+cp /ucrt64/share/icons/hicolor/scalable/places/*.svg /ucrt64/share/icons/gnome/scalable/places
 
 # build gramps
-rm -rf dist aio/dist
+rm -rf dist gramps.egg-info aio/dist aio/GrampsAIO64.egg-info aio/$MSYSTEM
 python -m build --wheel
 if `grep -q '^DEV_VERSION\s*=\s*True' gramps/version.py`; then
     # <branch_name>-<short_commit_id>
@@ -183,9 +181,9 @@ cat grampsaio64.nsi.template | sed "s/yourVersion/$appversion/;s/yourBuild/$appb
 # build cx_freeze executables
 python setup.py build_exe
 # build installer
-cd mingw64/src
+cd ucrt64/src
 makensis grampsaio64.nsi
-# result is in mingw64/src
+# result is in ucrt64/src
 
 # deactivate and delete the python virtual environment
 if [ "$1" = "true" ]; then
