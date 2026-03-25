@@ -233,15 +233,6 @@ class PersonNotes(NotesOf):
     def init(self):
         super().init("Person")
 
-    def db_changed(self):
-        self.connect(self.dbstate.db, "person-update", self.update)
-        self.connect(self.dbstate.db, "note-add", self.update)
-        self.connect(self.dbstate.db, "note-update", self.update)
-        self.connect(self.dbstate.db, "note-delete", self.update)
-
-    def active_changed(self, handle):
-        self.update()
-
 
 class EventNotes(NotesOf):
     """
