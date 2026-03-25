@@ -150,7 +150,6 @@ class NotesOf(Notes):
         self.object_class = object_class
 
     def db_changed(self):
-        self.connect_signal(self.object_class, self.update)
         self.connect(
             self.dbstate.db, "%s-update" % self.object_class.lower(), self.update
         )
@@ -160,6 +159,10 @@ class NotesOf(Notes):
         self.connect(self.dbstate.db, "note-add", self.update)
         self.connect(self.dbstate.db, "note-update", self.update)
         self.connect(self.dbstate.db, "note-delete", self.update)
+        # Avoid connecting Person object to update() because super class
+        # handles this already by connecting Person to active_changed()
+        if self.object_class != "Person":
+            self.connect_signal(self.object_class, self.update)
 
     def active_changed(self, handle):
         self.update()
