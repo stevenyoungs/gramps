@@ -32,6 +32,7 @@ perform a translation on import, eg Gtk.
 import platform
 import sys
 import os
+from pathlib import Path
 
 # -------------------------------------------------------------------------
 #
@@ -168,10 +169,7 @@ def get_env_var(name, default=None):
 
 def get_curr_dir():
     """
-    In Python2 on Windows, os.getcwd() returns a string encoded with
-    the current code page, which may not be able to correctly handle
-    an arbitrary unicode character in a path. This function uses the
-    native GetCurrentDirectory function to return a unicode cwd.
+    Returns the current working directory.
     """
     return os.getcwd()
 
@@ -182,13 +180,20 @@ def get_curr_dir():
 # specification.
 #
 # -------------------------------------------------------------------------
+def get_user_home_dir():
+    """
+    Returns the user's home directory.
+    """
+    return str(Path.home())
+
+
 def get_user_data_dir():
     """
     Returns a base directory in which to store user-specific application data.
     """
     if "XDG_DATA_HOME" in os.environ:
         return get_env_var("XDG_DATA_HOME")
-    return os.path.join(get_env_var("HOME"), ".local", "share")
+    return os.path.join(get_user_home_dir(), ".local", "share")
 
 
 def get_user_config_dir():
@@ -197,7 +202,7 @@ def get_user_config_dir():
     """
     if "XDG_CONFIG_HOME" in os.environ:
         return get_env_var("XDG_CONFIG_HOME")
-    return os.path.join(get_env_var("HOME"), ".config")
+    return os.path.join(get_user_home_dir(), ".config")
 
 
 def get_user_cache_dir():
@@ -206,4 +211,4 @@ def get_user_cache_dir():
     """
     if "XDG_CACHE_HOME" in os.environ:
         return get_env_var("XDG_CACHE_HOME")
-    return os.path.join(get_env_var("HOME"), ".cache")
+    return os.path.join(get_user_home_dir(), ".cache")
