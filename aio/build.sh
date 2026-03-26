@@ -176,8 +176,11 @@ appversion=$(grep "^VERSION_TUPLE" gramps/version.py | sed 's/.*(//;s/, */\./g;s
 unzip -q -d aio/dist dist/*.whl
 cd aio
 
+# escape sed replacement patterns
+escapedappversion=$(echo $appversion | sed 's/\\/\\\\/g; s/[\/&]/\\&/g')
+escapedappbuild=$(echo $appbuild | sed 's/\\/\\\\/g; s/[\/&]/\\&/g')
 # create nsis script
-cat grampsaio64.nsi.template | sed "s/yourVersion/$appversion/;s/yourBuild/$appbuild/" >grampsaio64.nsi
+cat grampsaio64.nsi.template | sed "s/yourVersion/$escapedappversion/;s/yourBuild/$escapedappbuild/" >grampsaio64.nsi
 # build cx_freeze executables
 python setup.py build_exe
 # build installer

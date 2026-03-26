@@ -24,11 +24,22 @@
 !define APPNAMEANDVERSION "${APPNAME} ${APPVERSION}"
 !define APP_PUBLISHER "The Gramps project"
 !define APP_WEB_SITE "https://gramps-project.org"
+; created a sanitized OutFile by replacing any characters which are not valid in a filename with "_"
+!define OUTFILE "GrampsAIO-${APPVERSION}-${APPBUILD}_win64.exe"
+!searchreplace OUTFILE ${OutFile} "<" "_"
+!searchreplace OUTFILE ${OutFile} ">" "_"
+!searchreplace OUTFILE ${OutFile} ":" "_"
+!searchreplace OUTFILE ${OutFile} "$\"" "_"
+!searchreplace OUTFILE ${OutFile} "/" "_"
+!searchreplace OUTFILE ${OutFile} "\" "_"
+!searchreplace OUTFILE ${OutFile} "|" "_"
+!searchreplace OUTFILE ${OutFile} "?" "_"
+!searchreplace OUTFILE ${OutFile} "*" "_"
 BrandingText "Version ${APPVERSION}-${APPBUILD}"
 
 ; Main Install settings
 Name "${APPNAME}-${APPVERSION}-${APPBUILD}"
-OutFile "GrampsAIO-${APPVERSION}-${APPBUILD}_win64.exe"
+OutFile ${OUTFILE}
 
 CRCCheck on
 SetCompressor /SOLID /FINAL LZMA
