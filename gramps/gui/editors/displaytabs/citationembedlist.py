@@ -177,11 +177,19 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
     def share_button_clicked(self, obj):
         SelectCitation = SelectorFactory("Citation")
 
-        sel = SelectCitation(self.dbstate, self.uistate, self.track)
+        # do not allow multiple selection, as it is not clear what behaviour should follow if the user
+        # selects multiple sources
+        sel = SelectCitation(
+            self.dbstate, self.uistate, self.track, allow_multiple_selection=False
+        )
         objct = sel.run()
         LOG.debug("selected object: %s" % objct)
         # the object returned should either be a Source or a Citation
         if objct:
+            if not isinstance(objct, (Source, Citation)):
+                raise ValueError(
+                    f"selection must be either source or citation, got {type(objct)}"
+                )
             source = objct if isinstance(objct, Source) else None
             citation = objct if isinstance(objct, Citation) else Citation()
             try:
