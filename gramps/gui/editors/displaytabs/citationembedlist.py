@@ -177,8 +177,8 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
     def share_button_clicked(self, obj):
         SelectCitation = SelectorFactory("Citation")
 
-        # do not allow multiple selection, as it is not clear what behaviour should follow if the user
-        # selects multiple sources
+        # Multiple selection disabled: unclear UX for mixed Source/Citation selections
+        # and for multiple sources. Single selection prevents confusion.
         sel = SelectCitation(
             self.dbstate, self.uistate, self.track, allow_multiple_selection=False
         )
