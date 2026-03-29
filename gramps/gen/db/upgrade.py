@@ -138,24 +138,6 @@ def gramps_upgrade_23(self):
     self._txn_commit()
 
 
-def upgrade_event_ref_role_23(event_ref_list):
-    """
-    Coalesce custom event role types in to built-in role types
-    """
-    upgraded = False
-    new_event_ref_list = []
-    for event_ref in event_ref_list:
-        if event_ref.role.value == EventRoleType.CUSTOM:
-            event_role_type = data_to_object(event_ref.role)
-            event_role_type.string = event_role_type.string
-            if event_role_type.value != EventRoleType.CUSTOM:
-                upgraded = True
-                event_ref["role"] = object_to_data(event_role_type)
-        new_event_ref_list.append((event_ref))
-
-    return (upgraded, new_event_ref_list)
-
-
 def _default_familysearch_sync_json_22():
     """
     Return the raw v22 FamilySearch sync JSON structure for Person records.
