@@ -308,17 +308,19 @@ class ChildEmbedList(DbGUIElement, EmbeddedList):
         people = sel.run()
 
         if people:
+            # add the child references to the family
             for person in people:
                 ref = ChildRef()
                 ref.ref = person.get_handle()
                 self.family.add_child_ref(ref)
-                self.rebuild()
-                GLib.idle_add(
-                    self.tree.scroll_to_cell,
-                    len(self.family.get_child_ref_list()) - len(people),
-                )
-                if len(people) == 1:
-                    self.call_edit_childref(ref)
+            self.rebuild()
+            # scroll to the first added child
+            GLib.idle_add(
+                self.tree.scroll_to_cell,
+                len(self.family.get_child_ref_list()) - len(people),
+            )
+            if len(people) == 1:
+                self.call_edit_childref(self.family.get_child_ref_list()[-1])
 
     def run(self, skip):
         skip_list = [_f for _f in skip if _f]
