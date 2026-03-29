@@ -191,24 +191,35 @@ def get_user_data_dir():
     """
     Returns a base directory in which to store user-specific application data.
     """
-    if "XDG_DATA_HOME" in os.environ:
-        return get_env_var("XDG_DATA_HOME")
-    return os.path.join(get_user_home_dir(), ".local", "share")
+    if win():
+        return get_env_var(
+                "APPDATA", os.path.join(get_user_home_dir(), "AppData", "Roaming")
+            )
+    else:
+        if "XDG_DATA_HOME" in os.environ:
+            return get_env_var("XDG_DATA_HOME")
+        return os.path.join(get_user_home_dir(), ".local", "share")
 
 
 def get_user_config_dir():
     """
     Returns a base directory in which to store user-specific configuration settings.
     """
-    if "XDG_CONFIG_HOME" in os.environ:
-        return get_env_var("XDG_CONFIG_HOME")
-    return os.path.join(get_user_home_dir(), ".config")
+    if win():
+        return get_user_data_dir()
+    else:
+        if "XDG_CONFIG_HOME" in os.environ:
+            return get_env_var("XDG_CONFIG_HOME")
+        return os.path.join(get_user_home_dir(), ".config")
 
 
 def get_user_cache_dir():
     """
     Returns a base directory in which to store temporary cached data.
     """
-    if "XDG_CACHE_HOME" in os.environ:
-        return get_env_var("XDG_CACHE_HOME")
-    return os.path.join(get_user_home_dir(), ".cache")
+    if win():
+        return os.path.join(get_user_home_dir(), "AppData", "Local", "Microsoft", "Windows", "INetCache")
+    else:
+        if "XDG_CACHE_HOME" in os.environ:
+            return get_env_var("XDG_CACHE_HOME")
+        return os.path.join(get_user_home_dir(), ".cache")
