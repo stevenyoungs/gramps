@@ -146,20 +146,9 @@ def mod_key():
     return "<alt>"
 
 
-# Python2 on Windows munges environemnt variables to match the system
-# code page. This breaks all manner of things and the workaround
-# though a bit ugly, is encapsulated here. Use this to retrieve
-# environment variables if there's any chance they might contain
-# Unicode, and especially for paths.
-
-# Shamelessly lifted from https://stackoverflow.com/questions/2608200/problems-with-umlauts-in-python-appdata-environvent-variable, answer 1.
-
-
 def get_env_var(name, default=None):
     """
-    Python2 on Windows can't directly read unicode values from
-    environment variables. This routine does so using the native C
-    wide-character function.
+    Returns the value of the specified environment variable, or default if the variable is not defined.
     """
     if not name or name not in os.environ:
         return default
@@ -193,8 +182,8 @@ def get_user_data_dir():
     """
     if win():
         return get_env_var(
-                "APPDATA", os.path.join(get_user_home_dir(), "AppData", "Roaming")
-            )
+            "APPDATA", os.path.join(get_user_home_dir(), "AppData", "Roaming")
+        )
     else:
         if "XDG_DATA_HOME" in os.environ:
             return get_env_var("XDG_DATA_HOME")
@@ -218,7 +207,9 @@ def get_user_cache_dir():
     Returns a base directory in which to store temporary cached data.
     """
     if win():
-        return os.path.join(get_user_home_dir(), "AppData", "Local", "Microsoft", "Windows", "INetCache")
+        return os.path.join(
+            get_user_home_dir(), "AppData", "Local", "Microsoft", "Windows", "INetCache"
+        )
     else:
         if "XDG_CACHE_HOME" in os.environ:
             return get_env_var("XDG_CACHE_HOME")
