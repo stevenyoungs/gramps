@@ -49,6 +49,10 @@ jobs:
       run: |
         cd aio
         ./build.sh ${{ inputs.cleanup }} ${{ inputs.build-number }}
+    - name: Run unit test suite
+      run: |
+        export GRAMPS_RESOURCES=build/share
+        python3 -m unittest discover -p "*_test.py"
     - uses: actions/upload-artifact@v6
       with:
         name: GrampsAIO
