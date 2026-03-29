@@ -303,12 +303,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         )
         events = sel.run()
         if events:
-            if len(events) > 1:
-                for event in events:
-                    ref = EventRef()
-                    ref.set_role(self.default_role())
-                    self.object_added(ref, event)
-            else:
+            if len(events) == 1:
                 try:
                     ref = EventRef()
                     ref.set_role(self.default_role())
@@ -328,6 +323,11 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                         self.__blocked_text(),
                         parent=self.uistate.window,
                     )
+            else:
+                for event in events:
+                    ref = EventRef()
+                    ref.set_role(self.default_role())
+                    self.object_added(ref, event)
 
     def edit_button_clicked(self, obj):
         ref = self.get_selected()
