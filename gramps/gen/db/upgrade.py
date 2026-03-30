@@ -94,7 +94,6 @@ def gramps_upgrade_23(self):
 
         # loop over all people and coalesce duplicate custom event role names
         with self.get_person_cursor() as cursor:
-            key_map = CLASS_TO_KEY_MAP["Person"]
             for _, person in cursor:
                 updated = False
                 for event_ref in person.event_ref_list:
@@ -107,12 +106,11 @@ def gramps_upgrade_23(self):
                         event_role.set(event_role.string)
                         updated = True
                 if updated:
-                    self._commit_raw(person, key_map)
+                    self._commit_raw(person, PERSON_KEY)
                     self.update()
 
         # loop over all families and coalesce duplicate custom event role names
         with self.get_family_cursor() as cursor:
-            key_map = CLASS_TO_KEY_MAP["Family"]
             for _, family in cursor:
                 updated = False
                 for event_ref in family.event_ref_list:
@@ -125,7 +123,7 @@ def gramps_upgrade_23(self):
                         event_role.set(event_role.string)
                         updated = True
                 if updated:
-                    self._commit_raw(family, key_map)
+                    self._commit_raw(family, FAMILY_KEY)
                     self.update()
 
         # finally delete the duplicate custom role name
