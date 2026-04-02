@@ -38,6 +38,7 @@ import logging
 #
 # ------------------------------------------------------------------------
 from gramps.cli.clidbman import NAME_FILE
+from gramps.gen.db import DbTxn
 from gramps.gen.db.dbconst import CLASS_TO_KEY_MAP
 from gramps.gen.lib import (
     EventRoleType,
@@ -75,7 +76,7 @@ def gramps_upgrade_23(self):
     """
     Coalesce custom event role types in to built-in role types
     """
-    self._txn_begin()
+    print("Upgrading database from version 22 to 23. This may take a while...")
 
     # Searches for duplicated event role names
     #
@@ -88,13 +89,13 @@ def gramps_upgrade_23(self):
     custom_roles = set(self.get_event_roles())
     standard_roles = set(EventRoleType().get_standard_names())
     duplicate_roles = standard_roles.intersection(custom_roles)
-    if len(duplicate_roles):
-        # there are some custom roles which duplicate standard roles.
-        # it is not guaranteed that the duplicate custom roles are actually used by any EventRefs
+    with DbTxn("Update to schema 23", self) as transaction:
+        if len(duplicate_roles):
+            # there are some custom roles which duplicate standard roles.
+            # it is not guaranteed that the duplicate custom roles are actually used by any EventRefs
 
-        # loop over all people and coalesce duplicate custom event role names
-        with self.get_person_cursor() as cursor:
-            for _, person in cursor:
+            # loop over all people and coalesce duplicate custom event role names
+            for person in self.iter_people():
                 updated = False
                 for event_ref in person.event_ref_list:
                     event_role = event_ref.get_role()
@@ -102,16 +103,14 @@ def gramps_upgrade_23(self):
                     if (event_role.value == EventRoleType.CUSTOM) and (
                         event_role.string in duplicate_roles
                     ):
-                        # reassigning the string will cause the standard value to be used
-                        event_role.set(event_role.string)
+                        event_ref.set_role(event_role.string)
                         updated = True
                 if updated:
-                    self._commit_raw(person, PERSON_KEY)
+                    self._commit_base(person, PERSON_KEY, transaction, None)
                     self.update()
 
-        # loop over all families and coalesce duplicate custom event role names
-        with self.get_family_cursor() as cursor:
-            for _, family in cursor:
+            # loop over all families and coalesce duplicate custom event role names
+            for family in self.iter_families():
                 updated = False
                 for event_ref in family.event_ref_list:
                     event_role = event_ref.get_role()
@@ -119,18 +118,17 @@ def gramps_upgrade_23(self):
                     if (event_role.value == EventRoleType.CUSTOM) and (
                         event_role.string in duplicate_roles
                     ):
-                        # reassigning the string will cause the standard value to be used
-                        event_role.set(event_role.string)
+                        event_ref.set_role(event_role.string)
                         updated = True
                 if updated:
-                    self._commit_raw(family, FAMILY_KEY)
+                    self._commit_base(family, FAMILY_KEY, transaction, None)
                     self.update()
 
-        # finally delete the duplicate custom role name
-        event_role_names = getattr(self, "event_role_names", None)
-        if event_role_names is not None:
-            for role_name in duplicate_roles:
-                event_role_names.discard(role_name)
+            # finally delete the duplicate custom role name
+            event_role_names = getattr(self, "event_role_names", None)
+            if event_role_names is not None:
+                for role_name in duplicate_roles:
+                    event_role_names.discard(role_name)
 
     self._set_metadata("version", 23, use_txn=False)
     self._txn_commit()
