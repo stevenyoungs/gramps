@@ -72,11 +72,22 @@ _ = glocale.translation.gettext
 LOG = logging.getLogger(".upgrade")
 
 
-def gramps_upgrade_23(self):
+def gramps_upgrade_23(db):
     """
     Coalesce custom event role types in to built-in role types
     """
-    print("Upgrading database from version 22 to 23. This may take a while...")
+
+    def update_event_ref_list(object, duplicate_roles):
+        modified = False
+        for event_ref in object.event_ref_list:
+            event_role = event_ref.get_role()
+            # only update custom event roles which have the same name as one of the duplicate event role names
+            if (event_role.value == EventRoleType.CUSTOM) and (
+                event_role.string in duplicate_roles
+            ):
+                event_ref.set_role(event_role.string)
+                modified = True
+        return modified
 
     # Searches for duplicated event role names
     #
@@ -86,52 +97,33 @@ def gramps_upgrade_23(self):
     # matches may not be found and those custom roles will not be coalesced. Improving this would require
     # matching against locale-independent identifiers or performing additional normalization/mapping; for now,
     # this is a known limitation.
-    custom_roles = set(self.get_event_roles())
+    custom_roles = set(db.get_event_roles())
     standard_roles = set(EventRoleType().get_standard_names())
     duplicate_roles = standard_roles.intersection(custom_roles)
-    with DbTxn("Update to schema 23", self) as transaction:
+    with DbTxn("Update to schema 23", db) as transaction:
         if len(duplicate_roles):
             # there are some custom roles which duplicate standard roles.
             # it is not guaranteed that the duplicate custom roles are actually used by any EventRefs
 
             # loop over all people and coalesce duplicate custom event role names
-            for person in self.iter_people():
-                updated = False
-                for event_ref in person.event_ref_list:
-                    event_role = event_ref.get_role()
-                    # only update custom event roles which have the same name as one of the duplicate event role names
-                    if (event_role.value == EventRoleType.CUSTOM) and (
-                        event_role.string in duplicate_roles
-                    ):
-                        event_ref.set_role(event_role.string)
-                        updated = True
-                if updated:
-                    self._commit_base(person, PERSON_KEY, transaction, None)
-                    self.update()
+            for person in db.iter_people():
+                if update_event_ref_list(person, duplicate_roles):
+                    db._commit_base(person, PERSON_KEY, transaction, None)
+                    db.update()
 
             # loop over all families and coalesce duplicate custom event role names
-            for family in self.iter_families():
-                updated = False
-                for event_ref in family.event_ref_list:
-                    event_role = event_ref.get_role()
-                    # only update custom event roles which have the same name as one of the duplicate event role names
-                    if (event_role.value == EventRoleType.CUSTOM) and (
-                        event_role.string in duplicate_roles
-                    ):
-                        event_ref.set_role(event_role.string)
-                        updated = True
-                if updated:
-                    self._commit_base(family, FAMILY_KEY, transaction, None)
-                    self.update()
+            for family in db.iter_families():
+                if update_event_ref_list(family, duplicate_roles):
+                    db._commit_base(family, FAMILY_KEY, transaction, None)
+                    db.update()
 
-            # finally delete the duplicate custom role name
-            event_role_names = getattr(self, "event_role_names", None)
+            # finally delete the, now unused, duplicate custom role names
+            event_role_names = getattr(db, "event_role_names", None)
             if event_role_names is not None:
                 for role_name in duplicate_roles:
                     event_role_names.discard(role_name)
 
-    self._set_metadata("version", 23, use_txn=False)
-    self._txn_commit()
+        db._set_metadata("version", 23, use_txn=False)
 
 
 def _default_familysearch_sync_json_22():
