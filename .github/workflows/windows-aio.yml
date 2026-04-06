@@ -53,4 +53,5 @@ jobs:
       with:
         name: GrampsAIO
         path: D:\a\gramps\gramps\aio\mingw64\src\GrampsAIO-*.exe
+        if-no-files-found: error
         retention-days: 7
