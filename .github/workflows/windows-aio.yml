@@ -54,4 +54,5 @@ jobs:
         name: GrampsAIO
         path: D:\a\gramps\gramps\aio\mingw64\src\GrampsAIO-*.exe
         if-no-files-found: error
+        compression-level: 0 # no compression
         retention-days: 7

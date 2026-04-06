@@ -54,4 +54,5 @@ jobs:
         name: GrampsAIO-PyInstaller
         path: D:\a\gramps\gramps\aio-pyinstaller\dist\grampsaio\src\GrampsAIO-*.exe
         if-no-files-found: error
+        compression-level: 0 # no compression
         retention-days: 7
