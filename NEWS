@@ -1,3 +1,23 @@
+2026-04-09
+Version 6.0.8
+* Update translations: cs, de_AT, en_GB, fa, fi, fr, ga, he, hr, it, mn, nl, pl,
+  pt_PT, ru, sk, sr, sv, zh_CN.
+* Fix xgettext format string warning.
+* Fix AttributeError when PersistentTreeView is GtkBuilder-created.
+  Fixes #14159.
+* Update DTD and RNG schemas.
+* Fix Notpatronymic and Rawsurnames format code entry. Fixes #14146.
+* Avoid duplicate calls to update() in Person view.
+* Remove redundant methods on PersonNotes class.
+* Fix signals in notes gramplet. Fixes #14148, #13866.
+* Fix ImageThumb savev() passing strings instead of lists.
+* Fix Serbian date modifiers.
+* Fix incorrect person gender schema max.
+* Update copyright year in Windows AIO.
+* Various fixes to the Windows AIO build.
+* Update GitHub upload-artifact action version to v6.
+* Add PyInstaller-based Windows AIO workflow.
+
 2026-03-15
 Version 6.0.7
 * Update translations: ba, bg, cs, da, de, de_AT, el, en_GB, fa, fi, fr, ga, he,
