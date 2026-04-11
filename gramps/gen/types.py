@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2025       David Straub
-# Copyright (C) 2025       Steve Youngs
+# Copyright (C) 2025-2026  Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -37,6 +37,11 @@ from .lib import (
     Tag,
 )
 from .lib.tableobj import TableObject
+
+AnyPrimaryObject = (
+    Person | Family | Event | Place | Source | Repository | Citation | Media | Note
+)
+AnyObject = AnyPrimaryObject | Tag
 
 PersonHandle = NewType("PersonHandle", str)
 FamilyHandle = NewType("FamilyHandle", str)
