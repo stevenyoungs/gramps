@@ -58,7 +58,7 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.selected_handles: Set[PersonHandle] = set()
+        self.selected_handles: set[PersonHandle] = set()
 
         self.matchfilt = MatchesFilter(self.list[0:1])
         self.matchfilt.requestprepare(db, user)
