@@ -1590,7 +1590,7 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def add_to_surname_list(self, person, batch_transaction, name):
+    def add_to_surname_list(self, person, batch_transaction):
         """
         Add surname from given person to list of surnames
         """
