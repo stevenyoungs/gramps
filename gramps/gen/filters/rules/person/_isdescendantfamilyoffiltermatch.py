@@ -22,8 +22,6 @@
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
-
 from ....const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
