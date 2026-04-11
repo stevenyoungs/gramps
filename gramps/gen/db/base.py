@@ -250,11 +250,20 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_repo_bookmarks(self):
+    def get_repository_bookmarks(self):
         """
         Return the list of Repository handles in the bookmarks.
         """
         raise NotImplementedError
+
+    def get_repo_bookmarks(self):
+        """
+        Deprecated alias for get_repository_bookmarks().
+
+        .. version-deprecated:: 6.2
+            Use :py:meth:`get_repository_bookmarks` instead.
+        """
+        return self.get_repository_bookmarks()
 
     def get_source_bookmarks(self):
         """
