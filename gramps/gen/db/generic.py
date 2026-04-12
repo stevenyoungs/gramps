@@ -362,13 +362,13 @@ class Cursor:
         try:
             return next(self._iter)
         except:
-            return
+            return None
 
     def next(self):
         try:
             return next(self._iter)
         except:
-            return
+            return None
 
     def close(self):
         pass
