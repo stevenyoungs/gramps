@@ -209,7 +209,7 @@ class DbTxn(defaultdict):
         """
 
         if self.first is None or self.last is None:
-            return []
+            return range(0)
         if not reverse:
             return range(self.first, self.last + 1)
         return range(self.last, self.first - 1, -1)
