@@ -86,15 +86,15 @@ class DbTxn(defaultdict):
         elapsed_time = time.time() - self.start_time
         if __debug__ and _LOG.isEnabledFor(logging.DEBUG):
             frame = inspect.currentframe()
-            c_frame = frame.f_back
-            c_code = c_frame.f_code
+            c_frame = frame.f_back if frame is not None else None
+            c_code = c_frame.f_code if c_frame is not None else None
             _LOG.debug(
                 "    **** DbTxn %s exited. Called from file %s, "
                 "line %s, in %s **** %.2f seconds",
                 hex(id(self)),
-                c_code.co_filename,
-                c_frame.f_lineno,
-                c_code.co_name,
+                c_code.co_filename if c_code is not None else "Unknown",
+                c_frame.f_lineno if c_frame is not None else "Unknown",
+                c_code.co_name if c_code is not None else "Unknown",
                 elapsed_time,
             )
 
