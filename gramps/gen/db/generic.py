@@ -353,18 +353,18 @@ class Cursor:
     Simple iteration handler
     """
 
-    def __init__(self, iterator):
+    def __init__(self, iterator) -> None:
         self.iterator = iterator
         self._iter = self.__iter__()
 
-    def __enter__(self):
+    def __enter__(self) -> Cursor:
         return self
 
     def __iter__(self) -> Iterator[tuple[AnyHandle, AnyDataDict]]:
         for handle, data in self.iterator():
             yield (handle, data)
 
-    def __next__(self):
+    def __next__(self) -> tuple[AnyHandle, AnyDataDict] | None:
         try:
             return self._iter.__next__()
         except StopIteration:
@@ -377,20 +377,20 @@ class Cursor:
         for handle, data in self.iterator():
             yield (handle, data)
 
-    def first(self):
+    def first(self) -> tuple[AnyHandle, AnyDataDict] | None:
         self._iter = self.__iter__()
         try:
             return next(self._iter)
         except:
             return None
 
-    def next(self):
+    def next(self) -> tuple[AnyHandle, AnyDataDict] | None:
         try:
             return next(self._iter)
         except:
             return None
 
-    def close(self):
+    def close(self) -> None:
         pass
 
 
