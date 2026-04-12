@@ -27,12 +27,16 @@ database.
 # Python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import (
+    annotations,
+)  # required for type hinting until Python 3.14+ is minimum
 import inspect
 import logging
 import os
 import pickle
 import time
 from collections import defaultdict
+from typing import Literal, TYPE_CHECKING
 
 # -------------------------------------------------------------------------
 #
@@ -40,6 +44,9 @@ from collections import defaultdict
 #
 # -------------------------------------------------------------------------
 from .dbconst import DBLOGNAME
+
+if TYPE_CHECKING:
+    from . import DbWriteBase
 
 _LOG = logging.getLogger(DBLOGNAME)
 
@@ -64,8 +71,15 @@ class DbTxn(defaultdict):
         "start_time",
         "__dict__",
     )
+    msg: str
+    db: DbWriteBase
+    batch: bool
+    first: int | None
+    last: int | None
+    start_time: float
+    timestamp: float
 
-    def __enter__(self):
+    def __enter__(self) -> DbTxn:
         """
         Context manager entry method
         """
@@ -74,7 +88,7 @@ class DbTxn(defaultdict):
         self.db.transaction_begin(self)
         return self
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
+    def __exit__(self, exc_type, exc_val, exc_tb) -> Literal[False]:
         """
         Context manager exit method
         """
@@ -100,7 +114,7 @@ class DbTxn(defaultdict):
 
         return False
 
-    def __init__(self, msg, grampsdb, batch=False, **kwargs):
+    def __init__(self, msg: str, grampsdb: DbWriteBase, batch: bool = False, **kwargs):
         """
         Create a new transaction.
 
@@ -168,21 +182,21 @@ class DbTxn(defaultdict):
         self.last = None
         self.start_time = 0
 
-    def get_description(self):
+    def get_description(self) -> str:
         """
         Return the text string that describes the logical operation performed
         by the Transaction.
         """
         return self.msg
 
-    def set_description(self, msg):
+    def set_description(self, msg: str) -> None:
         """
         Set the text string that describes the logical operation performed by
         the Transaction.
         """
         self.msg = msg
 
-    def add(self, obj_type, trans_type, handle, old_data, new_data):
+    def add(self, obj_type, trans_type, handle, old_data, new_data) -> None:
         """
         Add a commit operation to the Transaction.
 
@@ -200,7 +214,7 @@ class DbTxn(defaultdict):
         _LOG.debug("added to trans: %d %d %s", obj_type, trans_type, handle)
         self[(obj_type, trans_type)] += [(handle, new_data)]
 
-    def get_recnos(self, reverse=False):
+    def get_recnos(self, reverse: bool = False) -> range:
         """
         Return a list of record numbers associated with the transaction.
 
@@ -214,7 +228,7 @@ class DbTxn(defaultdict):
             return range(self.first, self.last + 1)
         return range(self.last, self.first - 1, -1)
 
-    def get_record(self, recno):
+    def get_record(self, recno: int):
         """
         Return a tuple representing the PrimaryObject type, database handle
         for the PrimaryObject, and a tuple representing the data created by
@@ -222,7 +236,7 @@ class DbTxn(defaultdict):
         """
         return pickle.loads(self.commitdb[recno])
 
-    def __len__(self):
+    def __len__(self) -> int:
         """
         Return the number of commits associated with the Transaction.
         """
