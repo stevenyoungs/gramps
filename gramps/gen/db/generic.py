@@ -167,7 +167,7 @@ class DbGenericUndo(DbUndo):
         super().__init__(grampsdb)
         self.undodb = []
 
-    def open(self, value=None):
+    def open(self, value=None) -> None:
         """
         Open the backing storage.  Needs to be overridden in the derived
         class.
@@ -179,34 +179,34 @@ class DbGenericUndo(DbUndo):
         class.
         """
 
-    def append(self, value):
+    def append(self, value) -> None:
         """
         Add a new entry on the end.  Needs to be overridden in the derived
         class.
         """
         self.undodb.append(value)
 
-    def __getitem__(self, index):
+    def __getitem__(self, index: int):
         """
         Returns an entry by index number.  Needs to be overridden in the
         derived class.
         """
         return self.undodb[index]
 
-    def __setitem__(self, index, value):
+    def __setitem__(self, index: int, value) -> None:
         """
         Set an entry to a value.  Needs to be overridden in the derived class.
         """
         self.undodb[index] = value
 
-    def __len__(self):
+    def __len__(self) -> int:
         """
         Returns the number of entries.  Needs to be overridden in the derived
         class.
         """
         return len(self.undodb)
 
-    def _redo(self, update_history):
+    def _redo(self, update_history: bool) -> bool:
         """
         Access the last undone transaction, and revert the data to the state
         before the transaction was undone.
@@ -217,7 +217,9 @@ class DbGenericUndo(DbUndo):
         db = self.db
         subitems = transaction.get_recnos()
         # sigs[obj_type][trans_type]
-        sigs = [[[] for trans_type in range(3)] for key in range(11)]
+        sigs: list[list[list[AnyHandle]]] = [
+            [[] for trans_type in range(3)] for key in range(11)
+        ]
 
         # Process all records in the transaction
         try:
@@ -255,7 +257,7 @@ class DbGenericUndo(DbUndo):
             db.undo_history_callback()
         return True
 
-    def _undo(self, update_history):
+    def _undo(self, update_history: bool) -> bool:
         """
         Access the last committed transaction, and revert the data to the
         state before the transaction was committed.
@@ -266,7 +268,9 @@ class DbGenericUndo(DbUndo):
         db = self.db
         subitems = transaction.get_recnos(reverse=True)
         # sigs[obj_type][trans_type]
-        sigs = [[[] for trans_type in range(3)] for key in range(11)]
+        sigs: list[list[list[AnyHandle]]] = [
+            [[] for trans_type in range(3)] for key in range(11)
+        ]
 
         # Process all records in the transaction
         try:
@@ -303,7 +307,7 @@ class DbGenericUndo(DbUndo):
             db.undo_history_callback()
         return True
 
-    def undo_sigs(self, sigs, undo):
+    def undo_sigs(self, sigs: list[list[list[AnyHandle]]], undo: bool) -> None:
         """
         Helper method to undo/redo the signals for changes made
         We want to do deletes and adds first
@@ -2495,7 +2499,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             ]
         )
 
-    def _after_commit(self, transaction: DbTxn):
+    def _after_commit(self, transaction: DbTxn) -> None:
         """
         Post-transaction commit processing
         """
