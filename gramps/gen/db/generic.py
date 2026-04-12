@@ -702,6 +702,18 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # All tests passed.  Inform caller that we are NOT read only
         return False
 
+    def _schema_exists(self) -> bool:
+        """
+        Overload this method to see if the schema exists.
+        """
+        raise NotImplementedError
+
+    def _create_schema(self, json_data: bool) -> None:
+        """
+        Overload this method to create and update the schema
+        """
+        raise NotImplementedError
+
     def load(
         self,
         directory,
