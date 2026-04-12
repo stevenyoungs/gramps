@@ -2698,8 +2698,22 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def undo(self, update_history=True):
         return self.undodb.undo(update_history)
 
-    def redo(self, update_history=True):
-        return self.undodb.redo(update_history)
+    def undo_reference(self, data, handle: AnyHandle) -> None:
+        """
+        Helper method to undo a reference map entry
+        """
+        raise NotImplementedError
+
+    def undo_data(self, data, handle: AnyHandle, obj_key: int) -> None:
+        """
+        Helper method to undo/redo the changes made
+        """
+        raise NotImplementedError
+
+    def redo(self, update_history: bool = True) -> bool:
+        if self.undodb is not None:
+            return self.undodb.redo(update_history)
+        return False
 
     def get_summary(self):
         """
