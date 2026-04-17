@@ -422,3 +422,20 @@ class GroupEmbeddedList(EmbeddedList):
                 self._move_down(pos, ref[1])
         elif ref and ref[1] is None:
             self._move_down_group(ref[0])
+
+    def clean_up(self):
+        """
+        Clean up GTK objects to release resources.
+
+        Disconnects signal handlers on TreeViewColumn objects and calls
+        parent cleanup to destroy the model and GTK objects.
+        """
+        # Disconnect column click handlers if columns exist
+        if hasattr(self, "columns") and self.columns:
+            # Disconnect all handlers on all columns
+            for column in self.columns:
+                for handler_id in column.list_signal_handlers():
+                    column.handler_disconnect(handler_id)
+
+        # Call parent class cleanup
+        EmbeddedList.clean_up(self)

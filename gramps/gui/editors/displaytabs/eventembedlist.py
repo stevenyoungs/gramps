@@ -491,3 +491,20 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         self.tree.expand_all()
         if prebuildpath is not None:
             self.selection.select_path(prebuildpath)
+
+    def clean_up(self):
+        """
+        Clean up GTK objects and database signal handlers.
+
+        Disconnects all database callbacks registered via DbGUIElement.
+        On Windows, accumulated signal handlers can contribute to GDI resource
+        leaks if not properly disconnected.
+
+        This is called automatically when the window closes via the
+        ManagedWindow.clean_up() mechanism.
+        """
+        # Disconnect all database callbacks
+        self._cleanup_callbacks()
+
+        # Call parent class cleanup
+        GroupEmbeddedList.clean_up(self)
