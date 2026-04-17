@@ -604,7 +604,7 @@ class EmbeddedList(ButtonTab):
         selectedpath = None
         if node:
             selectedpath = model.get_path(node)
-        if self.model and hasattr(self.model, "destroy"):
+        if self.model is not None and hasattr(self.model, "destroy"):
             self.tree.set_model(None)
             self.model.destroy()
         try:
@@ -650,17 +650,16 @@ class EmbeddedList(ButtonTab):
 
     def clean_up(self):
         """
-        Clean up GTK objects to release Windows GDI resources (bitmaps and
-        device contexts).
-
-        This method is called automatically when the tab/window closes via
-        the ManagedWindow.clean_up() mechanism. It ensures that all GTK
-        objects are properly destroyed:
-        - Clears and destroys the model to release rendering cache
-        - Clears column header image references
+        Clean up GTK objects to release resources
+        Called via ManagedWindow.clean_up() chain.
         """
         # Clear and destroy the model to release GDI resources
-        if hasattr(self, "model") and self.model and hasattr(self.model, "destroy"):
+
+        if (
+            hasattr(self, "model")
+            and self.model is not None
+            and hasattr(self.model, "destroy")
+        ):
             self.tree.set_model(None)
             self.model.destroy()
             self.model = None
@@ -669,4 +668,4 @@ class EmbeddedList(ButtonTab):
         self.column_header_images = []
 
         # Call parent class cleanup which will handle tracked references
-        ButtonTab.clean_up(self)
+        super().clean_up()

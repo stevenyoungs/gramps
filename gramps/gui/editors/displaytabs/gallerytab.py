@@ -662,17 +662,14 @@ class GalleryTab(ButtonTab, DbGUIElement):
 
     def clean_up(self):
         """
-        Clean up GTK objects to release Windows GDI resources (bitmaps and
-        device contexts).
-
-        This explicitly clears the icon model which holds Pixbuf objects
-        (high GDI cost), and destroys the model to release resources.
-        On Windows, Pixbuf objects and device contexts accumulate if not
-        explicitly cleaned up, eventually causing crashes.
+        Clean up GTK objects to release resources
         """
         # Clear the icon model to release Pixbuf GDI resources
         if self.iconmodel is not None:
             self.iconmodel.clear()
 
+        # Disconnect all database callbacks
+        self._cleanup_callbacks()
+
         # Call parent class cleanup which will handle tracked references
-        ButtonTab.clean_up(self)
+        super().clean_up()

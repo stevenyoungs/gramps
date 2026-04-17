@@ -506,5 +506,5 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         # Disconnect all database callbacks
         self._cleanup_callbacks()
 
-        # Call parent class cleanup
-        GroupEmbeddedList.clean_up(self)
+        # Call parent class cleanup which will handle tracked references
+        super().clean_up()

@@ -156,12 +156,3 @@ class BackRefList(EmbeddedList):
     def edit_button_clicked(self, obj):
         reftype, ref = self.find_node()
         edit_object(self.dbstate, self.uistate, reftype, ref)
-
-    def clean_up(self):
-        """
-        Clean up GTK objects
-
-        """
-
-        # Call parent class cleanup
-        EmbeddedList.clean_up(self)
