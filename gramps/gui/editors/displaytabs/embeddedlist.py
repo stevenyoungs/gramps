@@ -641,3 +641,21 @@ class EmbeddedList(ButtonTab):
         """
         self.changed = True
         self.rebuild()
+
+    def clean_up(self):
+        """
+        Clean up GTK objects to release Windows GDI resources (bitmaps and
+        device contexts).
+
+        This method is called automatically when the tab/window closes via
+        the ManagedWindow.clean_up() mechanism. It ensures that all GTK
+        objects are properly destroyed.
+        """
+        # Clear and destroy the model to release GDI resources
+        if hasattr(self, "model") and self.model and hasattr(self.model, "destroy"):
+            self.tree.set_model(None)
+            self.model.destroy()
+            self.model = None
+
+        # Call parent class cleanup
+        ButtonTab.clean_up(self)
