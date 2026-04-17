@@ -427,15 +427,9 @@ class GroupEmbeddedList(EmbeddedList):
         """
         Clean up GTK objects to release resources.
 
-        Disconnects signal handlers on TreeViewColumn objects and calls
-        parent cleanup to destroy the model and GTK objects.
+        Calls parent cleanup to destroy the model and GTK objects.
+        Signal handlers on TreeViewColumn objects are automatically
+        cleaned up when columns are removed.
         """
-        # Disconnect column click handlers if columns exist
-        if hasattr(self, "columns") and self.columns:
-            # Disconnect all handlers on all columns
-            for column in self.columns:
-                for handler_id in column.list_signal_handlers():
-                    column.handler_disconnect(handler_id)
-
-        # Call parent class cleanup
+        # Call parent class cleanup which handles columns and model
         EmbeddedList.clean_up(self)

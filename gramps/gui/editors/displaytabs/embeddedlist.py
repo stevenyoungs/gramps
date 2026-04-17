@@ -93,6 +93,7 @@ class EmbeddedList(ButtonTab):
         Create a new list, using the passed build_model to populate the list.
         """
         self.config_key = config_key
+        self.column_header_images = []
 
         ButtonTab.__init__(
             self,
@@ -121,6 +122,7 @@ class EmbeddedList(ButtonTab):
         self.col_icons = {}
         self.columns = []
         self.build_columns()
+        self.track_ref_for_deletion("column_header_images")
 
         if self._DND_TYPE:
             self._set_dnd()
@@ -489,6 +491,8 @@ class EmbeddedList(ButtonTab):
 
         list(map(self.tree.remove_column, self.columns))
         self.columns = []
+        # Clear previously created column header images
+        self.column_header_images = []
         self.setup_editable_col()
 
         # loop through the values returned by column_order
@@ -547,6 +551,8 @@ class EmbeddedList(ButtonTab):
                 image.show()
                 column.set_widget(image)
                 column.set_resizable(False)
+                # Track image objects for proper cleanup to prevent GDI leaks
+                self.column_header_images.append(image)
             else:
                 # insert the colum into the tree
                 column.set_resizable(True)
@@ -649,7 +655,9 @@ class EmbeddedList(ButtonTab):
 
         This method is called automatically when the tab/window closes via
         the ManagedWindow.clean_up() mechanism. It ensures that all GTK
-        objects are properly destroyed.
+        objects are properly destroyed:
+        - Clears and destroys the model to release rendering cache
+        - Clears column header image references
         """
         # Clear and destroy the model to release GDI resources
         if hasattr(self, "model") and self.model and hasattr(self.model, "destroy"):
@@ -657,5 +665,8 @@ class EmbeddedList(ButtonTab):
             self.model.destroy()
             self.model = None
 
-        # Call parent class cleanup
+        # Clear column header images to allow garbage collection
+        self.column_header_images = []
+
+        # Call parent class cleanup which will handle tracked references
         ButtonTab.clean_up(self)
