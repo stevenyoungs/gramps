@@ -495,13 +495,6 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
     def clean_up(self):
         """
         Clean up GTK objects and database signal handlers.
-
-        Disconnects all database callbacks registered via DbGUIElement.
-        On Windows, accumulated signal handlers can contribute to GDI resource
-        leaks if not properly disconnected.
-
-        This is called automatically when the window closes via the
-        ManagedWindow.clean_up() mechanism.
         """
         # Disconnect all database callbacks
         self._cleanup_callbacks()

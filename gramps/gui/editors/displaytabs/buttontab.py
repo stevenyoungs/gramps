@@ -338,10 +338,3 @@ class ButtonTab(GrampsTab):
             # if self.up_btn :
             #    self.up_btn.set_sensitive(False)
             #    self.down_btn.set_sensitive(False)
-
-    def clean_up(self):
-        """
-        Clean up GTK objects. Called via ManagedWindow.clean_up() chain.
-        """
-        # Call parent class cleanup
-        GrampsTab.clean_up(self)

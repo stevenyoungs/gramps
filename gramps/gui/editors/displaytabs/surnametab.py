@@ -444,19 +444,11 @@ class SurnameTab(EmbeddedList):
 
     def clean_up(self):
         """
-        Clean up GTK objects to release Windows GDI resources (bitmaps and
-        device contexts).
-
-        This explicitly destroys the ListStore and other GTK objects that
-        hold GDI resources. On Windows, GTK objects accumulate GDI handles
-        if not explicitly cleaned up, eventually causing crashes.
-
-        This is called automatically when the window closes via the
-        ManagedWindow.clean_up() mechanism.
+        Clean up GTK objects to release resources.
         """
         # Explicitly destroy the combo box model to release GDI resources
         if self.cmborig is not None:
             self.cmborig.clear()
 
         # Call parent class cleanup
-        EmbeddedList.clean_up(self)
+        super().clean_up()
