@@ -707,7 +707,7 @@ class DBAPI(DbGeneric):
         """
         self.dbapi.execute("SELECT grouping FROM name_group WHERE name = ?", [key])
         row = self.dbapi.fetchone()
-        return row and row[0] is not None
+        return row is not None and row[0] is not None
 
     def set_name_group_mapping(self, name, group):
         """
