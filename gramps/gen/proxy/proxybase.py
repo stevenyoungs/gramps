@@ -49,6 +49,7 @@ from ..lib import (
 )
 from ..lib.json_utils import object_to_data
 from ..const import GRAMPS_LOCALE as glocale
+from ..errors import AccessDeniedError, HandleError
 
 
 class ProxyCursor:
@@ -476,12 +477,25 @@ class ProxyDbBase(DbReadBase):
         return self.__iter_object(self.include_tag, self.db.iter_tags)
 
     @staticmethod
+    def gfilter_none(predicate, obj):
+        """
+        Returns obj if predicate is True, else returns None
+        """
+        (
+            obj
+            if predicate is not None and obj is not None and predicate(obj.handle)
+            else None
+        )
+
+    @staticmethod
     def gfilter(predicate, obj):
         """
-        Returns obj if predicate is True or not callable, else returns None
+        Returns obj if predicate is True, else raises an error
         """
-        if predicate is not None and obj is not None:
-            return obj if predicate(obj.handle) else None
+        if obj is None:
+            raise HandleError("obj is None")
+        if not predicate(obj.handle):
+            raise AccessDeniedError(f"predicate returned false for handle {obj.handle}")
         return obj
 
     def __getattr__(self, name):
@@ -589,7 +603,7 @@ class ProxyDbBase(DbReadBase):
         Finds a Person in the database from the passed Gramps ID.
         If no such Person exists, None is returned.
         """
-        return self.gfilter(
+        return self.gfilter_none(
             self.include_person, self.db.get_person_from_gramps_id(gramps_id)
         )
 
@@ -598,7 +612,7 @@ class ProxyDbBase(DbReadBase):
         Finds a Family in the database from the passed Gramps ID.
         If no such Family exists, None is returned.
         """
-        return self.gfilter(
+        return self.gfilter_none(
             self.include_family, self.db.get_family_from_gramps_id(gramps_id)
         )
 
@@ -607,7 +621,7 @@ class ProxyDbBase(DbReadBase):
         Finds an Event in the database from the passed Gramps ID.
         If no such Event exists, None is returned.
         """
-        return self.gfilter(
+        return self.gfilter_none(
             self.include_event, self.db.get_event_from_gramps_id(gramps_id)
         )
 
@@ -616,7 +630,7 @@ class ProxyDbBase(DbReadBase):
         Finds a Place in the database from the passed gramps' ID.
         If no such Place exists, None is returned.
         """
-        return self.gfilter(
+        return self.gfilter_none(
             self.include_place, self.db.get_place_from_gramps_id(gramps_id)
         )
 
@@ -625,7 +639,7 @@ class ProxyDbBase(DbReadBase):
         Finds a Source in the database from the passed gramps' ID.
         If no such Source exists, None is returned.
         """
-        return self.gfilter(
+        return self.gfilter_none(
             self.include_source, self.db.get_source_from_gramps_id(gramps_id)
         )
 
@@ -634,7 +648,7 @@ class ProxyDbBase(DbReadBase):
         Finds a Citation in the database from the passed gramps' ID.
         If no such Citation exists, None is returned.
         """
-        return self.gfilter(
+        return self.gfilter_none(
             self.include_citation, self.db.get_citation_from_gramps_id(gramps_id)
         )
 
@@ -643,7 +657,7 @@ class ProxyDbBase(DbReadBase):
         Finds a Media in the database from the passed gramps' ID.
         If no such Media exists, None is returned.
         """
-        return self.gfilter(
+        return self.gfilter_none(
             self.include_media, self.db.get_media_from_gramps_id(gramps_id)
         )
 
@@ -652,7 +666,7 @@ class ProxyDbBase(DbReadBase):
         Finds a Repository in the database from the passed gramps' ID.
         If no such Repository exists, None is returned.
         """
-        return self.gfilter(
+        return self.gfilter_none(
             self.include_repository, self.db.get_repository_from_gramps_id(gramps_id)
         )
 
@@ -661,7 +675,7 @@ class ProxyDbBase(DbReadBase):
         Finds a Note in the database from the passed gramps' ID.
         If no such Note exists, None is returned.
         """
-        return self.gfilter(
+        return self.gfilter_none(
             self.include_note, self.db.get_note_from_gramps_id(gramps_id)
         )
 
@@ -670,7 +684,7 @@ class ProxyDbBase(DbReadBase):
         Finds a Tag in the database from the passed tag name.
         If no such Tag exists, None is returned.
         """
-        return self.gfilter(self.include_tag, self.db.get_tag_from_name(name))
+        return self.gfilter_none(self.include_tag, self.db.get_tag_from_name(name))
 
     def get_name_group_mapping(self, surname):
         """
@@ -874,7 +888,9 @@ class ProxyDbBase(DbReadBase):
         Returns True if the handle exists in the current Person database.
         """
         return (
-            self.gfilter(self.include_person, self.db.get_person_from_handle(handle))
+            self.gfilter_none(
+                self.include_person, self.db.get_person_from_handle(handle)
+            )
             is not None
         )
 
@@ -883,7 +899,9 @@ class ProxyDbBase(DbReadBase):
         Returns True if the handle exists in the current Family database.
         """
         return (
-            self.gfilter(self.include_family, self.db.get_family_from_handle(handle))
+            self.gfilter_none(
+                self.include_family, self.db.get_family_from_handle(handle)
+            )
             is not None
         )
 
@@ -892,7 +910,7 @@ class ProxyDbBase(DbReadBase):
         returns True if the handle exists in the current Event database.
         """
         return (
-            self.gfilter(self.include_event, self.db.get_event_from_handle(handle))
+            self.gfilter_none(self.include_event, self.db.get_event_from_handle(handle))
             is not None
         )
 
@@ -901,7 +919,9 @@ class ProxyDbBase(DbReadBase):
         returns True if the handle exists in the current Source database.
         """
         return (
-            self.gfilter(self.include_source, self.db.get_source_from_handle(handle))
+            self.gfilter_none(
+                self.include_source, self.db.get_source_from_handle(handle)
+            )
             is not None
         )
 
@@ -910,7 +930,7 @@ class ProxyDbBase(DbReadBase):
         returns True if the handle exists in the current Citation database.
         """
         return (
-            self.gfilter(
+            self.gfilter_none(
                 self.include_citation, self.db.get_citation_from_handle(handle)
             )
             is not None
@@ -921,7 +941,7 @@ class ProxyDbBase(DbReadBase):
         returns True if the handle exists in the current Place database.
         """
         return (
-            self.gfilter(self.include_place, self.db.get_place_from_handle(handle))
+            self.gfilter_none(self.include_place, self.db.get_place_from_handle(handle))
             is not None
         )
 
@@ -930,7 +950,7 @@ class ProxyDbBase(DbReadBase):
         returns True if the handle exists in the current Mediadatabase.
         """
         return (
-            self.gfilter(self.include_media, self.db.get_media_from_handle(handle))
+            self.gfilter_none(self.include_media, self.db.get_media_from_handle(handle))
             is not None
         )
 
@@ -939,7 +959,7 @@ class ProxyDbBase(DbReadBase):
         returns True if the handle exists in the current Repository database.
         """
         return (
-            self.gfilter(
+            self.gfilter_none(
                 self.include_repository, self.db.get_repository_from_handle(handle)
             )
             is not None
@@ -950,7 +970,7 @@ class ProxyDbBase(DbReadBase):
         returns True if the handle exists in the current Note database.
         """
         return (
-            self.gfilter(self.include_note, self.db.get_note_from_handle(handle))
+            self.gfilter_none(self.include_note, self.db.get_note_from_handle(handle))
             is not None
         )
 
@@ -959,7 +979,7 @@ class ProxyDbBase(DbReadBase):
         returns True if the handle exists in the current Tag database.
         """
         return (
-            self.gfilter(self.include_tag, self.db.get_tag_from_handle(handle))
+            self.gfilter_none(self.include_tag, self.db.get_tag_from_handle(handle))
             is not None
         )
 
