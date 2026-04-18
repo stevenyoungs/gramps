@@ -104,7 +104,7 @@ def gramps_upgrade_23(db):
     standard_roles = set(EventRoleType().get_standard_names())
     duplicate_roles = standard_roles.intersection(custom_roles)
     with DbTxn("Update to schema 23", db) as transaction:
-        if len(duplicate_roles):
+        if duplicate_roles:
             # there are some custom roles which duplicate standard roles.
             # it is not guaranteed that the duplicate custom roles are actually used by any EventRefs
 
