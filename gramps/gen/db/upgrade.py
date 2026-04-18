@@ -43,8 +43,10 @@ from gramps.gen.db.dbconst import CLASS_TO_KEY_MAP
 from gramps.gen.lib import (
     EventRoleType,
     EventType,
+    Family,
     FamilySearchSync,
     NameOriginType,
+    Person,
     Tag,
     MarkerType,
 )
@@ -76,9 +78,11 @@ def gramps_upgrade_23(db):
     Coalesce custom event role types in to built-in role types
     """
 
-    def update_event_ref_list(object, duplicate_roles):
+    def update_event_ref_list(
+        person_or_family: Person | Family, duplicate_roles: set[str]
+    ) -> bool:
         modified = False
-        for event_ref in object.event_ref_list:
+        for event_ref in person_or_family.event_ref_list:
             event_role = event_ref.get_role()
             # only update custom event roles which have the same name as one of the duplicate event role names
             if (event_role.value == EventRoleType.CUSTOM) and (
