@@ -48,7 +48,6 @@ from gramps.gen.lib import (
     Tag,
     MarkerType,
 )
-from gramps.gen.lib.json_utils import data_to_object, object_to_data
 from gramps.gen.utils.file import create_checksum
 from gramps.gen.utils.id import create_id
 from gramps.gui.dialog import InfoDialog
