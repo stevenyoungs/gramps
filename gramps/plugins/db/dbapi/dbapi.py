@@ -1106,7 +1106,7 @@ class DBAPI(DbGeneric):
     def _get_gramps_ids(self, obj_key):
         table = KEY_TO_NAME_MAP[obj_key]
         self.dbapi.execute(f"SELECT gramps_id FROM {table}")
-        return [row[0] for row in self.dbapi.fetchall()]
+        return [cast(PrimaryObjectGrampsID, row[0]) for row in self.dbapi.fetchall()]
 
     def _get_raw_data(self, obj_key, handle):
         table = KEY_TO_NAME_MAP[obj_key]
@@ -1259,13 +1259,13 @@ class DBAPI(DbGeneric):
 
         # Derived fields
         if table == "Person":
-            given_name, surname = self._get_person_data(obj)
+            given_name, surname = self._get_person_data(cast(Person, obj))
             sets.append("given_name = ?")
             values.append(given_name)
             sets.append("surname = ?")
             values.append(surname)
         if table == "Place":
-            handle = self._get_place_data(obj)
+            handle = self._get_place_data(cast(Place, obj))
             sets.append("enclosed_by = ?")
             values.append(handle)
 

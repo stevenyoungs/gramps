@@ -1206,10 +1206,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         Helper function for find_next_<object>_gramps_id methods
         """
-        index = prefix % map_index
+        index = cast(PrimaryObjectGrampsID, prefix % map_index)
         while self._has_gramps_id(obj_key, index):
             map_index += 1
-            index = prefix % map_index
+            index = cast(PrimaryObjectGrampsID, prefix % map_index)
         map_index += 1
         return (map_index, index)
 
@@ -1221,7 +1221,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.pmap_index, gid = self._find_next_gramps_id(
             self.person_prefix, self.pmap_index, PERSON_KEY
         )
-        return gid
+        return cast(PersonGrampsID, gid)
 
     def find_next_place_gramps_id(self) -> PlaceGrampsID:
         """
@@ -1231,7 +1231,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.lmap_index, gid = self._find_next_gramps_id(
             self.place_prefix, self.lmap_index, PLACE_KEY
         )
-        return gid
+        return cast(PlaceGrampsID, gid)
 
     def find_next_event_gramps_id(self) -> EventGrampsID:
         """
@@ -1241,7 +1241,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.emap_index, gid = self._find_next_gramps_id(
             self.event_prefix, self.emap_index, EVENT_KEY
         )
-        return gid
+        return cast(EventGrampsID, gid)
 
     def find_next_media_gramps_id(self) -> MediaGrampsID:
         """
@@ -1251,7 +1251,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.omap_index, gid = self._find_next_gramps_id(
             self.media_prefix, self.omap_index, MEDIA_KEY
         )
-        return gid
+        return cast(MediaGrampsID, gid)
 
     def find_next_citation_gramps_id(self) -> CitationGrampsID:
         """
@@ -1261,7 +1261,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.cmap_index, gid = self._find_next_gramps_id(
             self.citation_prefix, self.cmap_index, CITATION_KEY
         )
-        return gid
+        return cast(CitationGrampsID, gid)
 
     def find_next_source_gramps_id(self) -> SourceGrampsID:
         """
@@ -1271,7 +1271,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.smap_index, gid = self._find_next_gramps_id(
             self.source_prefix, self.smap_index, SOURCE_KEY
         )
-        return gid
+        return cast(SourceGrampsID, gid)
 
     def find_next_family_gramps_id(self) -> FamilyGrampsID:
         """
@@ -1281,7 +1281,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.fmap_index, gid = self._find_next_gramps_id(
             self.family_prefix, self.fmap_index, FAMILY_KEY
         )
-        return gid
+        return cast(FamilyGrampsID, gid)
 
     def find_next_repository_gramps_id(self) -> RepositoryGrampsID:
         """
@@ -1291,7 +1291,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.rmap_index, gid = self._find_next_gramps_id(
             self.repository_prefix, self.rmap_index, REPOSITORY_KEY
         )
-        return gid
+        return cast(RepositoryGrampsID, gid)
 
     def find_next_note_gramps_id(self) -> NoteGrampsID:
         """
@@ -1301,7 +1301,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.nmap_index, gid = self._find_next_gramps_id(
             self.note_prefix, self.nmap_index, NOTE_KEY
         )
-        return gid
+        return cast(NoteGrampsID, gid)
 
     ################################################################
     #
@@ -1393,63 +1393,63 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Return a list of Gramps IDs, one ID for each Person in the
         database.
         """
-        return self._get_gramps_ids(PERSON_KEY)
+        return cast(list[PersonGrampsID], self._get_gramps_ids(PERSON_KEY))
 
     def get_family_gramps_ids(self):
         """
         Return a list of Gramps IDs, one ID for each Family in the
         database.
         """
-        return self._get_gramps_ids(FAMILY_KEY)
+        return cast(list[FamilyGrampsID], self._get_gramps_ids(FAMILY_KEY))
 
     def get_source_gramps_ids(self):
         """
         Return a list of Gramps IDs, one ID for each Source in the
         database.
         """
-        return self._get_gramps_ids(SOURCE_KEY)
+        return cast(list[SourceGrampsID], self._get_gramps_ids(SOURCE_KEY))
 
     def get_citation_gramps_ids(self):
         """
         Return a list of Gramps IDs, one ID for each Citation in the
         database.
         """
-        return self._get_gramps_ids(CITATION_KEY)
+        return cast(list[CitationGrampsID], self._get_gramps_ids(CITATION_KEY))
 
     def get_event_gramps_ids(self):
         """
         Return a list of Gramps IDs, one ID for each Event in the
         database.
         """
-        return self._get_gramps_ids(EVENT_KEY)
+        return cast(list[EventGrampsID], self._get_gramps_ids(EVENT_KEY))
 
     def get_media_gramps_ids(self):
         """
         Return a list of Gramps IDs, one ID for each Media in the
         database.
         """
-        return self._get_gramps_ids(MEDIA_KEY)
+        return cast(list[MediaGrampsID], self._get_gramps_ids(MEDIA_KEY))
 
     def get_place_gramps_ids(self):
         """
         Return a list of Gramps IDs, one ID for each Place in the
         database.
         """
-        return self._get_gramps_ids(PLACE_KEY)
+        return cast(list[PlaceGrampsID], self._get_gramps_ids(PLACE_KEY))
 
     def get_repository_gramps_ids(self):
         """
         Return a list of Gramps IDs, one ID for each Repository in the
         database.
         """
-        return self._get_gramps_ids(REPOSITORY_KEY)
+        return cast(list[RepositoryGrampsID], self._get_gramps_ids(REPOSITORY_KEY))
 
     def get_note_gramps_ids(self):
         """
         Return a list of Gramps IDs, one ID for each Note in the
         database.
         """
-        return self._get_gramps_ids(NOTE_KEY)
+        return cast(list[NoteGrampsID], self._get_gramps_ids(NOTE_KEY))
 
     ################################################################
     #
@@ -1674,62 +1674,66 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         Return an iterator over handles for Persons in the database
         """
-        return self._iter_handles(PERSON_KEY)
+        return cast(Generator[PersonHandle, None, None], self._iter_handles(PERSON_KEY))
 
     def iter_family_handles(self) -> Generator[FamilyHandle]:
         """
         Return an iterator over handles for Families in the database
         """
-        return self._iter_handles(FAMILY_KEY)
+        return cast(Generator[FamilyHandle, None, None], self._iter_handles(FAMILY_KEY))
 
     def iter_citation_handles(self) -> Generator[CitationHandle]:
         """
         Return an iterator over database handles, one handle for each Citation
         in the database.
         """
-        return self._iter_handles(CITATION_KEY)
+        return cast(
+            Generator[CitationHandle, None, None], self._iter_handles(CITATION_KEY)
+        )
 
     def iter_event_handles(self) -> Generator[EventHandle]:
         """
         Return an iterator over handles for Events in the database
         """
-        return self._iter_handles(EVENT_KEY)
+        return cast(Generator[EventHandle, None, None], self._iter_handles(EVENT_KEY))
 
     def iter_media_handles(self) -> Generator[MediaHandle]:
         """
         Return an iterator over handles for Media in the database
         """
-        return self._iter_handles(MEDIA_KEY)
+        return cast(Generator[MediaHandle, None, None], self._iter_handles(MEDIA_KEY))
 
     def iter_note_handles(self) -> Generator[NoteHandle]:
         """
         Return an iterator over handles for Notes in the database
         """
-        return self._iter_handles(NOTE_KEY)
+        return cast(Generator[NoteHandle, None, None], self._iter_handles(NOTE_KEY))
 
     def iter_place_handles(self) -> Generator[PlaceHandle]:
         """
         Return an iterator over handles for Places in the database
         """
-        return self._iter_handles(PLACE_KEY)
+        return cast(Generator[PlaceHandle, None, None], self._iter_handles(PLACE_KEY))
 
     def iter_repository_handles(self) -> Generator[RepositoryHandle]:
         """
         Return an iterator over handles for Repositories in the database
         """
-        return self._iter_handles(REPOSITORY_KEY)
+        return cast(
+            Generator[RepositoryHandle, None, None], self._iter_handles(REPOSITORY_KEY)
+        )
 
     def iter_source_handles(self) -> Generator[SourceHandle]:
         """
         Return an iterator over handles for Sources in the database
         """
-        return self._iter_handles(SOURCE_KEY)
+        return cast(Generator[SourceHandle, None, None], self._iter_handles(SOURCE_KEY))
 
     def iter_tag_handles(self) -> Generator[TagHandle]:
         """
         Return an iterator over handles for Tags in the database
         """
-        return self._iter_handles(TAG_KEY)
+        return cast(Generator[TagHandle, None, None], self._iter_handles(TAG_KEY))
 
     ################################################################
     #
@@ -1798,61 +1802,78 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         Return an iterator over raw Person data.
         """
-        return self._iter_raw_data(PERSON_KEY)
+        return cast(
+            Generator[PersonDataDict, None, None], self._iter_raw_data(PERSON_KEY)
+        )
 
     def _iter_raw_family_data(self):
         """
         Return an iterator over raw Family data.
         """
-        return self._iter_raw_data(FAMILY_KEY)
+        return cast(
+            Generator[FamilyDataDict, None, None], self._iter_raw_data(FAMILY_KEY)
+        )
 
     def _iter_raw_event_data(self):
         """
         Return an iterator over raw Event data.
         """
-        return self._iter_raw_data(EVENT_KEY)
+        return cast(
+            Generator[EventDataDict, None, None], self._iter_raw_data(EVENT_KEY)
+        )
 
     def _iter_raw_place_data(self):
         """
         Return an iterator over raw Place data.
         """
-        return self._iter_raw_data(PLACE_KEY)
+        return cast(
+            Generator[PlaceDataDict, None, None], self._iter_raw_data(PLACE_KEY)
+        )
 
     def _iter_raw_repository_data(self):
         """
         Return an iterator over raw Repository data.
         """
-        return self._iter_raw_data(REPOSITORY_KEY)
+        return cast(
+            Generator[RepositoryDataDict, None, None],
+            self._iter_raw_data(REPOSITORY_KEY),
+        )
 
     def _iter_raw_source_data(self):
         """
         Return an iterator over raw Source data.
         """
-        return self._iter_raw_data(SOURCE_KEY)
+        return cast(
+            Generator[SourceDataDict, None, None], self._iter_raw_data(SOURCE_KEY)
+        )
 
     def _iter_raw_citation_data(self):
         """
         Return an iterator over raw Citation data.
         """
-        return self._iter_raw_data(CITATION_KEY)
+        return cast(
+            Generator[CitationDataDict, None, None], self._iter_raw_data(CITATION_KEY)
+        )
 
     def _iter_raw_media_data(self):
         """
         Return an iterator over raw Media data.
         """
-        return self._iter_raw_data(MEDIA_KEY)
+        return cast(
+            Generator[MediaDataDict, None, None], self._iter_raw_data(MEDIA_KEY)
+        )
 
     def _iter_raw_note_data(self):
         """
         Return an iterator over raw Note data.
         """
-        return self._iter_raw_data(NOTE_KEY)
+        return cast(Generator[NoteDataDict, None, None], self._iter_raw_data(NOTE_KEY))
 
     def _iter_raw_tag_data(self):
         """
         Return an iterator over raw Tag data.
         """
-        return self._iter_raw_data(TAG_KEY)
+        return cast(Generator[TagDataDict, None, None], self._iter_raw_data(TAG_KEY))
 
     def _iter_raw_place_tree_data(self):
         """
@@ -1873,34 +1894,34 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         raise NotImplementedError
 
     def get_raw_person_data(self, handle):
-        return self._get_raw_data(PERSON_KEY, handle)
+        return cast(PersonDataDict, self._get_raw_data(PERSON_KEY, handle))
 
     def get_raw_family_data(self, handle):
-        return self._get_raw_data(FAMILY_KEY, handle)
+        return cast(FamilyDataDict, self._get_raw_data(FAMILY_KEY, handle))
 
     def get_raw_source_data(self, handle):
-        return self._get_raw_data(SOURCE_KEY, handle)
+        return cast(SourceDataDict, self._get_raw_data(SOURCE_KEY, handle))
 
     def get_raw_citation_data(self, handle):
-        return self._get_raw_data(CITATION_KEY, handle)
+        return cast(CitationDataDict, self._get_raw_data(CITATION_KEY, handle))
 
     def get_raw_event_data(self, handle):
-        return self._get_raw_data(EVENT_KEY, handle)
+        return cast(EventDataDict, self._get_raw_data(EVENT_KEY, handle))
 
     def get_raw_media_data(self, handle):
-        return self._get_raw_data(MEDIA_KEY, handle)
+        return cast(MediaDataDict, self._get_raw_data(MEDIA_KEY, handle))
 
     def get_raw_place_data(self, handle):
-        return self._get_raw_data(PLACE_KEY, handle)
+        return cast(PlaceDataDict, self._get_raw_data(PLACE_KEY, handle))
 
     def get_raw_repository_data(self, handle):
-        return self._get_raw_data(REPOSITORY_KEY, handle)
+        return cast(RepositoryDataDict, self._get_raw_data(REPOSITORY_KEY, handle))
 
     def get_raw_note_data(self, handle):
-        return self._get_raw_data(NOTE_KEY, handle)
+        return cast(NoteDataDict, self._get_raw_data(NOTE_KEY, handle))
 
     def get_raw_tag_data(self, handle):
-        return self._get_raw_data(TAG_KEY, handle)
+        return cast(TagDataDict, self._get_raw_data(TAG_KEY, handle))
 
     ################################################################
     #
@@ -1911,32 +1932,27 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def _get_raw_from_id_data(self, obj_key, gramps_id):
         raise NotImplementedError
 
-    def _get_raw_person_from_id_data(self, gramps_id: PersonGrampsID):
-        return self._get_raw_from_id_data(PERSON_KEY, gramps_id)
+        return cast(PersonDataDict, self._get_raw_from_id_data(PERSON_KEY, gramps_id))
 
-    def _get_raw_family_from_id_data(self, gramps_id: FamilyGrampsID):
-        return self._get_raw_from_id_data(FAMILY_KEY, gramps_id)
+        return cast(FamilyDataDict, self._get_raw_from_id_data(FAMILY_KEY, gramps_id))
 
-    def _get_raw_source_from_id_data(self, gramps_id: SourceGrampsID):
-        return self._get_raw_from_id_data(SOURCE_KEY, gramps_id)
+        return cast(SourceDataDict, self._get_raw_from_id_data(SOURCE_KEY, gramps_id))
 
-    def _get_raw_citation_from_id_data(self, gramps_id: CitationGrampsID):
-        return self._get_raw_from_id_data(CITATION_KEY, gramps_id)
+        return cast(
+            CitationDataDict, self._get_raw_from_id_data(CITATION_KEY, gramps_id)
+        )
 
-    def _get_raw_event_from_id_data(self, gramps_id: EventGrampsID):
-        return self._get_raw_from_id_data(EVENT_KEY, gramps_id)
+        return cast(EventDataDict, self._get_raw_from_id_data(EVENT_KEY, gramps_id))
 
-    def _get_raw_media_from_id_data(self, gramps_id: MediaGrampsID):
-        return self._get_raw_from_id_data(MEDIA_KEY, gramps_id)
+        return cast(MediaDataDict, self._get_raw_from_id_data(MEDIA_KEY, gramps_id))
 
-    def _get_raw_place_from_id_data(self, gramps_id: PlaceGrampsID):
-        return self._get_raw_from_id_data(PLACE_KEY, gramps_id)
+        return cast(PlaceDataDict, self._get_raw_from_id_data(PLACE_KEY, gramps_id))
 
-    def _get_raw_repository_from_id_data(self, gramps_id: RepositoryGrampsID):
-        return self._get_raw_from_id_data(REPOSITORY_KEY, gramps_id)
+        return cast(
+            RepositoryDataDict, self._get_raw_from_id_data(REPOSITORY_KEY, gramps_id)
+        )
 
-    def _get_raw_note_from_id_data(self, gramps_id: NoteGrampsID):
-        return self._get_raw_from_id_data(NOTE_KEY, gramps_id)
+        return cast(NoteDataDict, self._get_raw_from_id_data(NOTE_KEY, gramps_id))
 
     ################################################################
     #
@@ -1955,81 +1971,103 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         commit_func(obj, trans)
         return obj.handle
 
-    def add_person(self, person: Person, transaction, set_gid=True):
-        return self._add_base(
-            person,
-            transaction,
-            set_gid,
-            self.find_next_person_gramps_id,
-            self.commit_person,
+        return cast(
+            PersonHandle,
+            self._add_base(
+                person,
+                transaction,
+                set_gid,
+                self.find_next_person_gramps_id,
+                self.commit_person,
+            ),
         )
 
-    def add_family(self, family: Family, transaction, set_gid=True):
-        return self._add_base(
-            family,
-            transaction,
-            set_gid,
-            self.find_next_family_gramps_id,
-            self.commit_family,
+        return cast(
+            FamilyHandle,
+            self._add_base(
+                family,
+                transaction,
+                set_gid,
+                self.find_next_family_gramps_id,
+                self.commit_family,
+            ),
         )
 
-    def add_event(self, event: Event, transaction, set_gid=True):
-        return self._add_base(
-            event,
-            transaction,
-            set_gid,
-            self.find_next_event_gramps_id,
-            self.commit_event,
+        return cast(
+            EventHandle,
+            self._add_base(
+                event,
+                transaction,
+                set_gid,
+                self.find_next_event_gramps_id,
+                self.commit_event,
+            ),
         )
 
-    def add_place(self, place: Place, transaction, set_gid=True):
-        return self._add_base(
-            place,
-            transaction,
-            set_gid,
-            self.find_next_place_gramps_id,
-            self.commit_place,
+        return cast(
+            PlaceHandle,
+            self._add_base(
+                place,
+                transaction,
+                set_gid,
+                self.find_next_place_gramps_id,
+                self.commit_place,
+            ),
         )
 
-    def add_repository(self, repository: Repository, transaction, set_gid=True):
-        return self._add_base(
-            repository,
-            transaction,
-            set_gid,
-            self.find_next_repository_gramps_id,
-            self.commit_repository,
+        return cast(
+            RepositoryHandle,
+            self._add_base(
+                repository,
+                transaction,
+                set_gid,
+                self.find_next_repository_gramps_id,
+                self.commit_repository,
+            ),
         )
 
-    def add_source(self, source: Source, transaction, set_gid=True):
-        return self._add_base(
-            source,
-            transaction,
-            set_gid,
-            self.find_next_source_gramps_id,
-            self.commit_source,
+        return cast(
+            SourceHandle,
+            self._add_base(
+                source,
+                transaction,
+                set_gid,
+                self.find_next_source_gramps_id,
+                self.commit_source,
+            ),
         )
 
-    def add_citation(self, citation: Citation, transaction, set_gid=True):
-        return self._add_base(
-            citation,
-            transaction,
-            set_gid,
-            self.find_next_citation_gramps_id,
-            self.commit_citation,
+        return cast(
+            CitationHandle,
+            self._add_base(
+                citation,
+                transaction,
+                set_gid,
+                self.find_next_citation_gramps_id,
+                self.commit_citation,
+            ),
         )
 
-    def add_media(self, media: Media, transaction, set_gid=True):
-        return self._add_base(
-            media,
-            transaction,
-            set_gid,
-            self.find_next_media_gramps_id,
-            self.commit_media,
+        return cast(
+            MediaHandle,
+            self._add_base(
+                media,
+                transaction,
+                set_gid,
+                self.find_next_media_gramps_id,
+                self.commit_media,
+            ),
         )
 
-    def add_note(self, note: Note, transaction, set_gid=True):
-        return self._add_base(
-            note, transaction, set_gid, self.find_next_note_gramps_id, self.commit_note
+        return cast(
+            NoteHandle,
+            self._add_base(
+                note,
+                transaction,
+                set_gid,
+                self.find_next_note_gramps_id,
+                self.commit_note,
+            ),
         )
 
     def add_tag(self, tag: Tag, transaction):
