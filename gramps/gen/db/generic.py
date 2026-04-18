@@ -2696,7 +2696,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return self.undodb
 
     def undo(self, update_history=True):
-        return self.undodb.undo(update_history)
+        if self.undodb is not None:
+            return self.undodb.undo(update_history)
+        return False
 
     def undo_reference(self, data, handle: AnyHandle) -> None:
         """

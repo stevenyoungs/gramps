@@ -418,7 +418,8 @@ class DBAPI(DbGeneric):
                             self.emit(signal, (handles,))
         self.transaction = None
         msg = transaction.get_description()
-        self.undodb.commit(transaction, msg)
+        if self.undodb is not None:
+            self.undodb.commit(transaction, msg)
         self._after_commit(transaction)
         transaction.clear()
         self.has_changed += 1  # Also gives commits since startup
