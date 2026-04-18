@@ -3151,11 +3151,13 @@ class CheckIntegrity:
 
         if self.duplicated_event_role_names:
             self.text.write(
-                _("%d duplicate event role names coalesced. %d references updated\n")
-                % (
-                    self.duplicated_event_role_names,
-                    self.duplicated_event_role_references,
+                _(
+                    "%(names)d duplicate event role names coalesced. %(refs)d references updated\n"
                 )
+                % {
+                    "names": self.duplicated_event_role_names,
+                    "refs": self.duplicated_event_role_references,
+                }
             )
 
         return errors

@@ -197,7 +197,7 @@ class Person(
                 "gender": {
                     "type": "integer",
                     "minimum": 0,
-                    "maximum": 2,
+                    "maximum": 3,
                     "title": _("Gender"),
                 },
                 "primary_name": Name.get_schema(),

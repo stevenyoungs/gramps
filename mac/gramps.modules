@@ -20,8 +20,8 @@
   <repository type="tarball" name="pythonware"
               href="http://effbot.org/downloads/"/>
 
-  <include href="https://gitlab.gnome.org/GNOME/gtk-osx/raw/master/modulesets-stable/gtk-osx.modules"/>
-  <!--include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/-->
+  <!--include href="https://gitlab.gnome.org/GNOME/gtk-osx/raw/master/modulesets-stable/gtk-osx.modules"/-->
+  <include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/>
 
   <pip id="gramps-git" supports-non-srcdir-builds="no">
     <branch module="gramps-project/gramps.git" repo="github"
@@ -32,9 +32,9 @@
     </dependencies>
   </pip>
  <pip id="gramps" supports-non-srcdir-builds="no">
-    <branch module="gramps-project/gramps/archive/v6.0.7.tar.gz"
-	    repo="github-tarball" version="6.0.7"
-            checkoutdir="gramps-gramps-6.0.7" />
+    <branch module="gramps-project/gramps/archive/v6.0.8.tar.gz"
+	    repo="github-tarball" version="6.0.8"
+            checkoutdir="gramps-gramps-6.0.8" />
     <dependencies>
       <dep package="meta-gramps-modules"/>
     </dependencies>
