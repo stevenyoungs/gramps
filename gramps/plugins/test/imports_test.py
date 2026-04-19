@@ -31,6 +31,7 @@ import sys
 import re
 import locale
 from time import localtime, strptime
+from unittest import SkipTest
 from unittest.mock import patch
 import zipfile
 import shutil
@@ -40,6 +41,7 @@ import shutil
 from gramps.gen.utils.config import config
 
 config.set("preferences.date-format", 0)
+from gramps.gen.constfunc import win
 from gramps.gen.const import GRAMPS_LOCALE as glocale, TEST_DIR, TEST_RANDOM
 from gramps.gen.constfunc import win
 from gramps.gen.db.utils import import_as_dict
@@ -239,6 +241,10 @@ def db_load(zipfn, self):
             else:
                 dbid = "bsddb"
 
+            # skip if the bsddb backend is not available
+            if dbid == "bsddb" and win():
+                self.skipTest("bsddb not supported on Windows")
+
             db = make_database(dbid)
             db.disable_signals()
 
@@ -254,6 +260,9 @@ def db_load(zipfn, self):
                 continue
         return db
     # Get here is there is an exception the while loop does not handle
+    except SkipTest:
+        # SkipTest, so raise upwards for test framework to handle
+        raise
     except (
         DbVersionError,
         DbPythonError,
