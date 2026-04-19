@@ -11,7 +11,6 @@ docs/_build/
 
 # Gramps AIO build artifacts
 aio/grampsaio64.nsi
-aio/mingw-w64-x86_64-db-*.pkg.tar.xz
 aio/ucrt64
 *.egg-info
 
