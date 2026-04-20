@@ -35,6 +35,7 @@ This package implements access to Gramps configuration.
 import os
 import re
 import logging
+import sys
 
 # ---------------------------------------------------------------
 #
@@ -458,7 +459,8 @@ if not os.path.exists(CONFIGMAN.filename):
 # Now, load the settings from the config file, if one
 #
 # ---------------------------------------------------------------
-CONFIGMAN.load()
+if not "unittest" in sys.modules.keys():
+    CONFIGMAN.load()
 
 config = CONFIGMAN
 if config.get("database.backend") == "bsddb":
