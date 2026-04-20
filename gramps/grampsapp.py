@@ -235,7 +235,7 @@ except ImportError:
 #
 # -------------------------------------------------------------------------
 try:
-    signal.signal(signal.SIGCHLD, signal.SIG_DFL)
+    signal.signal(signal.SIGCHLD, signal.SIG_DFL)  # type: ignore[attr-defined] # SIGCHLD is not defined on all platforms
 except:
     pass
 
