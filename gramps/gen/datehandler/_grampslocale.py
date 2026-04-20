@@ -48,7 +48,7 @@ codeset = glocale.encoding  # TODO I don't think "codeset" is used anymore
 
 try:
     if sys.platform == "win32":
-        raise locale.Error # local.nl_langinfo is not supported on Windows
+        raise locale.Error  # local.nl_langinfo is not supported on Windows
 
     # here only for the upgrade tool, see _datestrings.py __main__
     _deprecated_long_months = (
