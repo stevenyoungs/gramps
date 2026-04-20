@@ -183,6 +183,33 @@ escapedappbuild=$(echo $appbuild | sed 's/\\/\\\\/g; s/[\/&]/\\&/g')
 cat grampsaio64.nsi.template | sed "s/yourVersion/$escapedappversion/;s/yourBuild/$escapedappbuild/" >grampsaio64.nsi
 # build cx_freeze executables
 python setup.py build_exe
+
+# Smoke test the frozen pip before packaging so stdlib-coverage gaps are
+# caught here instead of by end users running the Addon Manager.
+# $MSYSTEM is MINGW64/UCRT64/etc.; the matching build tree is the
+# lowercase equivalent, so the command below works across environments
+# without needing to be edited when the rest of the script is modernized.
+echo "Smoke-testing bundled pip..."
+msys_dir="${MSYSTEM,,}"
+smoke_fail=0
+for cmd in "./${msys_dir}/pip.exe --version" "./${msys_dir}/pip.exe install --dry-run --ignore-installed certifi"; do
+    echo "--- $cmd ---"
+    smoke_out=$($cmd 2>&1) || true
+    echo "$smoke_out"
+    if echo "$smoke_out" | grep -qiE "ImportError|ModuleNotFoundError|Traceback"; then
+        echo "ERROR: Frozen pip emitted an error or traceback running: $cmd"
+        smoke_fail=1
+    fi
+done
+if [ "$smoke_fail" -ne 0 ]; then
+    echo "ERROR: pip smoke test failed; aborting build before NSIS."
+    echo "  Likely cause: a stdlib submodule pip (or one of its vendored"
+    echo "  libraries) imports lazily was not picked up by cx_Freeze's"
+    echo "  static scan. Add the missing module to INCLUDES or its parent"
+    echo "  package to PACKAGES in aio/setup.py and rebuild."
+    exit 1
+fi
+
 # build installer
 cd ucrt64/src
 makensis grampsaio64.nsi
