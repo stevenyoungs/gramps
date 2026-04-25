@@ -310,7 +310,10 @@ class Callback:
                     )
                     self.__callback_map[signal_name].remove(cb)
 
-    def disconnect_all(self):  # Find the key in the callback map.
+    def disconnect_all(self) -> None:
+        """
+        Disconnect all callbacks.
+        """
         for signal_name in self.__callback_map:
             keymap = copy.copy(self.__callback_map[signal_name])
             for key in keymap:
