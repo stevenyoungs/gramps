@@ -551,7 +551,7 @@ class EmbeddedList(ButtonTab):
                 image.show()
                 column.set_widget(image)
                 column.set_resizable(False)
-                # Track image objects for proper cleanup to prevent GDI leaks
+                # Track image objects for proper cleanup to prevent resource leaks
                 self.column_header_images.append(image)
             else:
                 # insert the colum into the tree
