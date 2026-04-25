@@ -34,11 +34,15 @@ to communicate events to any callback methods in either the database code
 or the UI code.
 """
 
-import sys
-import types
+# -------------------------------------------------------------------------
+#
+# Standard python modules
+#
+# -------------------------------------------------------------------------
 import traceback
 import inspect
-import copy
+import sys
+import types
 
 log = sys.stderr.write
 
@@ -198,10 +202,17 @@ class Callback:
     # If this True no signals will be emitted from any instance of
     # any class derived from this class. This should be toggled using
     # the class methods, disable_all_signals() and enable_all_signals().
-    __BLOCK_ALL_SIGNALS = False
-    __LOG_ALL = False
+    __BLOCK_ALL_SIGNALS: bool = False
+    __LOG_ALL: bool = False
 
-    def __init__(self):
+    __enable_logging: bool
+    __block_instance_signals: bool
+    __callback_map: dict[str, list[tuple[int, types.FunctionType | types.MethodType]]]
+    __signal_map: dict[str, tuple]
+    _current_key: int
+    _current_signals: list[str]
+
+    def __init__(self) -> None:
         self.__enable_logging = False  # controls whether lots of debug
         # information will be produced.
         self.__block_instance_signals = False  # controls the blocking of
@@ -230,10 +241,11 @@ class Callback:
         # are consolidated into a single dictionary.
         # The signals can't change so we only need to do this once.
 
-        def trav(cls):
+        def trav(cls) -> list[dict[str, tuple]]:
             """A traversal function to walk through all the classes in
             the inheritance tree. The return is a list of all the
             __signals__ dictionaries."""
+            signal_list: list[dict[str, tuple]]
             if "__signals__" in cls.__dict__:
                 signal_list = [cls.__signals__]
             else:
@@ -264,7 +276,9 @@ class Callback:
             )
         )
 
-    def connect(self, signal_name, callback):
+    def connect(
+        self, signal_name: str, callback: types.FunctionType | types.MethodType
+    ) -> int | None:
         """
         Connect a callable to a signal_name. The callable will be called
         with the signal is emitted. The callable must accept the argument
@@ -290,7 +304,7 @@ class Callback:
 
         return self._current_key
 
-    def disconnect(self, key):
+    def disconnect(self, key: int) -> None:
         """
         Disconnect a callback.
         """
@@ -315,10 +329,10 @@ class Callback:
             keymap = copy.copy(self.__callback_map[signal_name])
             for key in keymap:
                 self.__callback_map[signal_name].remove(key)
-            self.__callback_map[signal_name] = None
+            self.__callback_map[signal_name] = []
         self.__callback_map = {}
 
-    def emit(self, signal_name, args=tuple()):
+    def emit(self, signal_name: str, args: tuple = tuple()) -> None:
         """
         Emit the signal called signal_name. The args must be a tuple of
         arguments that match the types declared for the signals signature.
@@ -329,9 +343,13 @@ class Callback:
 
         # Check signal exists
         frame = inspect.currentframe()
-        c_frame = frame.f_back
-        c_code = c_frame.f_code
-        frame_info = (c_code.co_filename, c_frame.f_lineno, c_code.co_name)
+        c_frame = frame.f_back if frame is not None else None
+        c_code = c_frame.f_code if c_frame is not None else None
+        frame_info = (
+            c_code.co_filename if c_code is not None else "Unknown",
+            c_frame.f_lineno if c_frame is not None else 0,
+            c_code.co_name if c_code is not None else "Unknown",
+        )
         if signal_name not in self.__signal_map:
             self._warn(
                 "Attempt to emit to unknown signal: %s\n"
@@ -427,25 +445,25 @@ class Callback:
     #
     # instance signals control methods
     #
-    def disable_signals(self):
+    def disable_signals(self) -> None:
         self.__block_instance_signals = True
 
-    def enable_signals(self):
+    def enable_signals(self) -> None:
         self.__block_instance_signals = False
 
     # logging methods
 
-    def disable_logging(self):
+    def disable_logging(self) -> None:
         self.__enable_logging = False
 
-    def enable_logging(self):
+    def enable_logging(self) -> None:
         self.__enable_logging = True
 
-    def _log(self, msg):
+    def _log(self, msg: str) -> None:
         if self.__LOG_ALL or self.__enable_logging:
             log("%s: %s" % (self.__class__.__name__, str(msg)))
 
-    def _warn(self, msg):
+    def _warn(self, msg: str) -> None:
         log("Warning: %s: %s" % (self.__class__.__name__, str(msg)))
 
     #
@@ -453,13 +471,13 @@ class Callback:
     #
 
     @classmethod
-    def log_all(cls, enable):
+    def log_all(cls, enable: bool) -> None:
         cls.__LOG_ALL = enable
 
     @classmethod
-    def disable_all_signals(cls):
+    def disable_all_signals(cls) -> None:
         cls.__BLOCK_ALL_SIGNALS = True
 
     @classmethod
-    def enable_all_signals(cls):
+    def enable_all_signals(cls) -> None:
         cls.__BLOCK_ALL_SIGNALS = False
