@@ -665,7 +665,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         Clean up GTK objects to release resources
         """
         # Clear the icon model to release Pixbuf GDI resources
-        if self.iconmodel is not None:
+        if hasattr(self, "iconmodel") and self.iconmodel is not None:
             self.iconmodel.clear()
 
         # Disconnect all database callbacks
