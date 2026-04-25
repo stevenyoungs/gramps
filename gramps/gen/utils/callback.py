@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2005  Donald N. Allingham
 # Copyright (C) 2009       Gary Burton
+# Copyright (C) 2026       Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -251,9 +252,7 @@ class Callback:
                 if k in self.__signal_map:
                     # signal name clash
                     sys.stderr.write("Warning: signal name clash: %s\n" % str(k))
-                self.__signal_map[k] = v
-        # Set to None to prevent a memory leak in this recursive function
-        trav = None
+                self.__signal_map[k] = v if v is not None else ()
 
         # self.__signal_map now contains the canonical list
         # of signals that this instance can emit.
@@ -377,7 +376,7 @@ class Callback:
 
             # type check arguments
             arg_types = self.__signal_map[signal_name]
-            if arg_types is None and len(args) > 0:
+            if len(args) != len(arg_types):
                 self._warn(
                     "Signal emitted with "
                     "wrong number of args: %s\n"
@@ -387,34 +386,23 @@ class Callback:
                 )
                 return
 
-            if len(args) > 0:
-                if len(args) != len(arg_types):
+            for i in range(0, len(arg_types)):
+                if not isinstance(args[i], arg_types[i]):
                     self._warn(
                         "Signal emitted with "
-                        "wrong number of args: %s\n"
+                        "wrong arg types: %s\n"
                         "         from: file: %s\n"
                         "               line: %d\n"
-                        "               func: %s\n" % ((str(signal_name),) + frame_info)
+                        "               func: %s\n"
+                        "    arg passed was: %s, type of arg passed %s,  type should be: %s\n"
+                        % (
+                            (str(signal_name),)
+                            + frame_info
+                            + (args[i], repr(type(args[i])), repr(arg_types[i]))
+                        )
                     )
                     return
 
-                if arg_types is not None:
-                    for i in range(0, len(arg_types)):
-                        if not isinstance(args[i], arg_types[i]):
-                            self._warn(
-                                "Signal emitted with "
-                                "wrong arg types: %s\n"
-                                "         from: file: %s\n"
-                                "               line: %d\n"
-                                "               func: %s\n"
-                                "    arg passed was: %s, type of arg passed %s,  type should be: %s\n"
-                                % (
-                                    (str(signal_name),)
-                                    + frame_info
-                                    + (args[i], repr(type(args[i])), repr(arg_types[i]))
-                                )
-                            )
-                            return
             if signal_name in self.__callback_map:
                 self._log("emitting signal: %s\n" % (signal_name,))
                 # Don't bother if there are no callbacks.
