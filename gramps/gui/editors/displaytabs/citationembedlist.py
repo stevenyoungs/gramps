@@ -185,33 +185,35 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         objct = sel.run()
         LOG.debug("selected object: %s" % objct)
         # the object returned should either be a Source or a Citation
-        if objct:
+        if objct is not None:
             if not isinstance(objct, (Source, Citation)):
                 raise ValueError(
-                    f"selection must be either source or citation, got {type(objct)}"
+                    _("Selection must be either a source or a citation, got %s")
+                    % type(objct)
                 )
-            source = objct if isinstance(objct, Source) else None
-            citation = objct if isinstance(objct, Citation) else Citation()
-            try:
-                from .. import EditCitation
+            if isinstance(objct, Citation):
+                self.add_callback(objct.handle)
+            else:  # objct is a Source
+                try:
+                    from .. import EditCitation
 
-                EditCitation(
-                    self.dbstate,
-                    self.uistate,
-                    self.track,
-                    citation,
-                    source,
-                    callback=self.add_callback,
-                    callertitle=self.callertitle,
-                )
-            except WindowActiveError:
-                from ...dialog import WarningDialog
+                    EditCitation(
+                        self.dbstate,
+                        self.uistate,
+                        self.track,
+                        Citation(),
+                        objct,
+                        callback=self.add_callback,
+                        callertitle=self.callertitle,
+                    )
+                except WindowActiveError:
+                    from ...dialog import WarningDialog
 
-                WarningDialog(
-                    _("Cannot share this reference"),
-                    self.__blocked_text(),
-                    parent=self.uistate.window,
-                )
+                    WarningDialog(
+                        _("Cannot share this reference"),
+                        self.__blocked_text(),
+                        parent=self.uistate.window,
+                    )
 
     def __blocked_text(self):
         """
