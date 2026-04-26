@@ -44,8 +44,6 @@ from gi.repository import Gtk
 #
 # -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-
-_ = glocale.translation.gettext
 from gramps.gen.dbstate import DbState
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gui.managedwindow import ManagedWindow
@@ -59,6 +57,8 @@ from gramps.gui.dialog import ErrorDialog
 from gramps.gui.plug import tool
 from gramps.gui.glade import Glade
 from gramps.gui.selectors.selectperson import SelectPerson
+
+_ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
