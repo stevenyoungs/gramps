@@ -274,10 +274,8 @@ class Callback:
         """
         # Check that signal exists.
         if signal_name not in self.__signal_map:
-            self._log(
-                "Warning: attempt to connect to unknown signal: %s\n" % str(signal_name)
-            )
-            return
+            self._warn("attempt to connect to unknown signal: %s\n" % str(signal_name))
+            return None
 
         # Add callable to callback_map
         if signal_name not in self.__callback_map:
