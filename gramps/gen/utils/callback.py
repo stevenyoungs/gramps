@@ -196,7 +196,7 @@ class Callback:
 
     # If this True no signals will be emitted from any instance of
     # any class derived from this class. This should be toggled using
-    # the class methods, dissable_all_signals() and enable_all_signals().
+    # the class methods, disable_all_signals() and enable_all_signals().
     __BLOCK_ALL_SIGNALS = False
     __LOG_ALL = False
 
@@ -255,7 +255,7 @@ class Callback:
         # Set to None to prevent a memory leak in this recursive function
         trav = None
 
-        # self.__signal_map now contains the connonical list
+        # self.__signal_map now contains the canonical list
         # of signals that this instance can emit.
 
         self._log(
