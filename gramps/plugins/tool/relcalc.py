@@ -82,9 +82,6 @@ class RelCalc(tool.Tool, SelectPerson):
         """
         uistate = user.uistate
         self.history = uistate.get_history("Person")
-        self.history_connection: int = self.history.connect(
-            "active-changed", self.active_changed
-        )
 
         self.relationship = get_relationship_calculator(glocale)
 
@@ -134,6 +131,10 @@ class RelCalc(tool.Tool, SelectPerson):
 
         # refresh the UI based on the currently active person
         self.active_changed(uistate.get_active("Person"))
+
+        self.history_connection: int = self.history.connect(
+            "active-changed", self.active_changed
+        )
 
     def _connect_db_signals(self):
         self.db_connections.extend(
