@@ -414,7 +414,9 @@ class Callback:
             if signal_name in self.__callback_map:
                 self._log("emitting signal: %s\n" % (signal_name,))
                 # Don't bother if there are no callbacks.
-                for key, fn in self.__callback_map[signal_name]:
+                for key, fn in list(
+                    self.__callback_map[signal_name]
+                ):  # copy for safe iteration
                     self._log("Calling callback with key: %s\n" % (key,))
                     try:
                         if isinstance(fn, types.FunctionType) or isinstance(
