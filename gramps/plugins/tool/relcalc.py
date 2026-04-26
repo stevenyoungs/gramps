@@ -83,7 +83,7 @@ class RelCalc(tool.Tool, SelectPerson):
         uistate = user.uistate
         self.history = uistate.get_history("Person")
 
-        self.relationship = get_relationship_calculator(glocale)
+        self.relationship = get_relationship_calculator()
 
         self.WIKI_HELP_PAGE = WIKI_HELP_PAGE
         self.WIKI_HELP_SEC = WIKI_HELP_SEC
