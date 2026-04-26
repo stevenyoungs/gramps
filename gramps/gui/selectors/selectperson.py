@@ -76,6 +76,7 @@ class SelectPerson(BaseSelector):
             self.title = title
         if not hasattr(self, "WIKI_HELP_PAGE"):  # allow derived class to define
             self.WIKI_HELP_PAGE = URL_MANUAL_SECT1
+        if not hasattr(self, "WIKI_HELP_SEC"):  # allow derived class to define
             if title == _("Select Father"):
                 self.WIKI_HELP_SEC = _("Select_Father_selector", "manual")
             elif title == _("Select Mother"):
