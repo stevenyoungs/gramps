@@ -437,7 +437,7 @@ class BaseSelector(ManagedWindow):
 
     def _disconnect_db_signals(self):
         for key in self.db_connections:
-            self.dbstate.db.disconnect(key)
+            self.db.disconnect(key)
         self.db_connections.clear()
 
     def _cleanup_on_exit(self):
