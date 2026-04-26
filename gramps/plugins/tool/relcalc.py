@@ -240,11 +240,11 @@ class RelCalc(tool.Tool, SelectPerson):
             }
             length = len(common)
             if length == 1:
-                person = self.dbstate.db.get_person_from_handle(common[0])
+                ancestor = self.dbstate.db.get_person_from_handle(common[0])
                 if common[0] in [other_person.handle, person.handle]:
                     commontext = ""
                 else:
-                    name = name_displayer.display(person)
+                    name = name_displayer.display(ancestor)
                     commontext = " " + _("Their common ancestor is %s.") % name
             elif length == 2:
                 p1c = self.dbstate.db.get_person_from_handle(common[0])
@@ -257,12 +257,12 @@ class RelCalc(tool.Tool, SelectPerson):
             elif length > 2:
                 index = 0
                 commontext = " " + _("Their common ancestors are: ")
-                for person_handle in common:
-                    person = self.dbstate.db.get_person_from_handle(person_handle)
+                for ancestor_handle in common:
+                    ancestor = self.dbstate.db.get_person_from_handle(ancestor_handle)
                     if index:
                         # TODO for Arabic, should the next comma be translated?
                         commontext += ", "
-                    commontext += name_displayer.display(person)
+                    commontext += name_displayer.display(ancestor)
                     index += 1
                 commontext += "."
             else:
