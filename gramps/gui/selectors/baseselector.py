@@ -453,6 +453,7 @@ class BaseSelector(ManagedWindow):
         self.tree = None
         self.columns.clear()
         self.search_bar.destroy()
+        self.db = None
 
     def close(self, *obj):
         ManagedWindow.close(self)
