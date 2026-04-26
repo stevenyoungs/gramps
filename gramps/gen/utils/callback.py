@@ -308,18 +308,15 @@ class Callback:
         """
         Disconnect a callback.
         """
-
-        # Find the key in the callback map.
-        for signal_name in self.__callback_map:
-            for cb in self.__callback_map[signal_name]:
-                skey, fn = cb
-                if skey == key:
-                    # delete the callback from the map.
+        for signal_name, callbacks in self.__callback_map.items():
+            for i, (cb_key, cb) in enumerate(callbacks):
+                if cb_key == key:
                     self._log(
                         "Disconnecting callback from signal"
-                        ": %s with key: %s\n" % (signal_name, str(key))
+                        ": %s with key: %s\n" % (signal_name, key)
                     )
-                    self.__callback_map[signal_name].remove(cb)
+                    del callbacks[i]
+                    return  # key maps to exactly one callback so break early
 
     def disconnect_all(self) -> None:
         """
