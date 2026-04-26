@@ -284,7 +284,8 @@ class Callback:
         with the signal is emitted. The callable must accept the argument
         types declared in the signals signature.
 
-        returns a unique key that can be passed to :meth:`disconnect`.
+        returns a unique key that can be passed to :meth:`disconnect` or
+        None on failure.
         """
         # Check that signal exists.
         if signal_name not in self.__signal_map:
