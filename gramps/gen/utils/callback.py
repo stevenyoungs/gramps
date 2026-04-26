@@ -386,7 +386,7 @@ class Callback:
                 )
                 return
 
-            for i in range(0, len(arg_types)):
+            for i in range(len(arg_types)):
                 if not isinstance(args[i], arg_types[i]):
                     self._warn(
                         "Signal emitted with "
