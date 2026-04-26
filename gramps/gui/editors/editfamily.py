@@ -309,6 +309,7 @@ class ChildEmbedList(DbGUIElement, EmbeddedList):
 
         if people:
             # add the child references to the family
+            first_new_index = len(self.family.get_child_ref_list())
             for person in people:
                 ref = ChildRef()
                 ref.ref = person.get_handle()
@@ -317,7 +318,7 @@ class ChildEmbedList(DbGUIElement, EmbeddedList):
             # scroll to the first added child
             GLib.idle_add(
                 self.tree.scroll_to_cell,
-                len(self.family.get_child_ref_list()) - len(people),
+                first_new_index,
             )
             if len(people) == 1:
                 self.call_edit_childref(self.family.get_child_ref_list()[-1])
