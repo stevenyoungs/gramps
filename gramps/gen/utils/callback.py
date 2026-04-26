@@ -325,12 +325,7 @@ class Callback:
         """
         Disconnect all callbacks.
         """
-        for signal_name in self.__callback_map:
-            keymap = copy.copy(self.__callback_map[signal_name])
-            for key in keymap:
-                self.__callback_map[signal_name].remove(key)
-            self.__callback_map[signal_name] = []
-        self.__callback_map = {}
+        self.__callback_map.clear()
 
     def emit(self, signal_name: str, args: tuple = tuple()) -> None:
         """
