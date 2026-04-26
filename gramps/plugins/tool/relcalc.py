@@ -136,17 +136,20 @@ class RelCalc(tool.Tool, SelectPerson):
         self.active_changed(uistate.get_active("Person"))
 
     def _connect_db_signals(self):
-        self.db_connections.append(
-            self.dbstate.db.connect("person-delete", self.person_callback)
+        self.db_connections.extend(
+            [
+                connection
+                for connection in [
+                    self.dbstate.db.connect("person-delete", self.person_callback),
+                    # any change to a family might alter the relationship to the active person
+                    self.dbstate.db.connect("family-add", self.family_callback),
+                    self.dbstate.db.connect("family-delete", self.family_callback),
+                    self.dbstate.db.connect("family-update", self.family_callback),
+                ]
+                if connection is not None
+            ]
         )
-        # any change to a family might alter the relationship to the active person
-        self.db_connections.append(self.dbstate.db.connect("family-add", self.family_callback))
-        self.db_connections.append(
-            self.dbstate.db.connect("family-delete", self.family_callback)
-        )
-        self.db_connections.append(
-            self.dbstate.db.connect("family-update", self.family_callback)
-        )
+
         super()._connect_db_signals()
 
     def _sel_changed(self, obj):
@@ -198,7 +201,7 @@ class RelCalc(tool.Tool, SelectPerson):
         if handle is not None:
             # use self.dbstate.db because the order of signals during a db change
             # may result in active_changed being called before super()._db_changed
-            # 
+            #
             self.person = self.dbstate.db.get_person_from_handle(handle)
             name: str = name_displayer.display(self.person) if self.person else ""
 
