@@ -310,6 +310,7 @@ class ChildEmbedList(DbGUIElement, EmbeddedList):
         if people:
             # add the child references to the family
             first_new_index = len(self.family.get_child_ref_list())
+            ref = None
             for person in people:
                 ref = ChildRef()
                 ref.ref = person.get_handle()
@@ -321,7 +322,7 @@ class ChildEmbedList(DbGUIElement, EmbeddedList):
                 first_new_index,
             )
             if len(people) == 1:
-                self.call_edit_childref(self.family.get_child_ref_list()[-1])
+                self.call_edit_childref(ref)
 
     def run(self, skip):
         skip_list = [_f for _f in skip if _f]
