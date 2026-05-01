@@ -4,7 +4,7 @@
 # Copyright (C) 2015-2016 Gramps Development Team
 # Copyright (C) 2016      Nick Hall
 # Copyright (C) 2024      Doug Blank
-# Copyright (C) 2024,2025 Steve Youngs <steve@youngs.cc>
+# Copyright (C) 2024-2026 Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,6 +30,7 @@ Gramps generic database handler
 #
 # ------------------------------------------------------------------------
 from __future__ import annotations
+from abc import ABCMeta, abstractmethod
 import bisect
 import logging
 import os
@@ -37,6 +38,7 @@ import pickle
 import random
 import re
 import time
+from collections.abc import Iterator
 from pathlib import Path
 from typing import Any, Generator, Type
 
@@ -142,7 +144,7 @@ SIGBASE = (
 # DbGenericUndo class
 #
 # ------------------------------------------------------------------------
-class DbGenericUndo(DbUndo):
+class DbGenericUndo(DbUndo, metaclass=ABCMeta):
     """
     Generic undo/redo handler
     """
@@ -341,8 +343,8 @@ class Cursor:
         return self
 
     def __iter__(self):
-        for handle, data in self.iterator():
-            yield (handle, data)
+        for data in self.iterator():
+            yield (data.handle, data)
 
     def __next__(self):
         try:
@@ -354,8 +356,8 @@ class Cursor:
         pass
 
     def iter(self):
-        for handle, data in self.iterator():
-            yield (handle, data)
+        for data in self.iterator():
+            yield (data.handle, data)
 
     def first(self):
         self._iter = self.__iter__()
@@ -1779,6 +1781,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
+    @abstractmethod
     def _iter_raw_data(self, obj_key):
         raise NotImplementedError
 
@@ -1854,6 +1857,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
+    @abstractmethod
     def _get_raw_data(self, obj_key, handle):
         """
         Return raw (serialized) object from handle.
@@ -1896,6 +1900,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
+    @abstractmethod
     def _get_raw_from_id_data(self, obj_key, gramps_id):
         raise NotImplementedError
 
