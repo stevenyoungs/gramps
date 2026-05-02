@@ -1880,68 +1880,94 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def _iter_raw_data(self, obj_key: int) -> Iterator[tuple[AnyHandle, AnyDataDict]]:
         raise NotImplementedError
 
-    def _iter_raw_person_data(self) -> Iterator[PersonDataDict]:
+    def _iter_raw_person_data(self) -> Iterator[tuple[PersonHandle, PersonDataDict]]:
         """
         Return an iterator over raw Person data.
         """
-        return cast(Iterator[PersonDataDict], self._iter_raw_data(PERSON_KEY))
+        return cast(
+            Iterator[tuple[PersonHandle, PersonDataDict]],
+            self._iter_raw_data(PERSON_KEY),
+        )
 
-    def _iter_raw_family_data(self) -> Iterator[FamilyDataDict]:
+    def _iter_raw_family_data(self) -> Iterator[tuple[FamilyHandle, FamilyDataDict]]:
         """
         Return an iterator over raw Family data.
         """
-        return cast(Iterator[FamilyDataDict], self._iter_raw_data(FAMILY_KEY))
+        return cast(
+            Iterator[tuple[FamilyHandle, FamilyDataDict]],
+            self._iter_raw_data(FAMILY_KEY),
+        )
 
-    def _iter_raw_event_data(self) -> Iterator[EventDataDict]:
+    def _iter_raw_event_data(self) -> Iterator[tuple[EventHandle, EventDataDict]]:
         """
         Return an iterator over raw Event data.
         """
-        return cast(Iterator[EventDataDict], self._iter_raw_data(EVENT_KEY))
+        return cast(
+            Iterator[tuple[EventHandle, EventDataDict]], self._iter_raw_data(EVENT_KEY)
+        )
 
-    def _iter_raw_place_data(self) -> Iterator[PlaceDataDict]:
+    def _iter_raw_place_data(self) -> Iterator[tuple[PlaceHandle, PlaceDataDict]]:
         """
         Return an iterator over raw Place data.
         """
-        return cast(Iterator[PlaceDataDict], self._iter_raw_data(PLACE_KEY))
+        return cast(
+            Iterator[tuple[PlaceHandle, PlaceDataDict]], self._iter_raw_data(PLACE_KEY)
+        )
 
-    def _iter_raw_repository_data(self) -> Iterator[RepositoryDataDict]:
+    def _iter_raw_repository_data(
+        self,
+    ) -> Iterator[tuple[RepositoryHandle, RepositoryDataDict]]:
         """
         Return an iterator over raw Repository data.
         """
         return cast(
-            Iterator[RepositoryDataDict],
+            Iterator[tuple[RepositoryHandle, RepositoryDataDict]],
             self._iter_raw_data(REPOSITORY_KEY),
         )
 
-    def _iter_raw_source_data(self) -> Iterator[SourceDataDict]:
+    def _iter_raw_source_data(self) -> Iterator[tuple[SourceHandle, SourceDataDict]]:
         """
         Return an iterator over raw Source data.
         """
-        return cast(Iterator[SourceDataDict], self._iter_raw_data(SOURCE_KEY))
+        return cast(
+            Iterator[tuple[SourceHandle, SourceDataDict]],
+            self._iter_raw_data(SOURCE_KEY),
+        )
 
-    def _iter_raw_citation_data(self) -> Iterator[CitationDataDict]:
+    def _iter_raw_citation_data(
+        self,
+    ) -> Iterator[tuple[CitationHandle, CitationDataDict]]:
         """
         Return an iterator over raw Citation data.
         """
-        return cast(Iterator[CitationDataDict], self._iter_raw_data(CITATION_KEY))
+        return cast(
+            Iterator[tuple[CitationHandle, CitationDataDict]],
+            self._iter_raw_data(CITATION_KEY),
+        )
 
-    def _iter_raw_media_data(self) -> Iterator[MediaDataDict]:
+    def _iter_raw_media_data(self) -> Iterator[tuple[MediaHandle, MediaDataDict]]:
         """
         Return an iterator over raw Media data.
         """
-        return cast(Iterator[MediaDataDict], self._iter_raw_data(MEDIA_KEY))
+        return cast(
+            Iterator[tuple[MediaHandle, MediaDataDict]], self._iter_raw_data(MEDIA_KEY)
+        )
 
-    def _iter_raw_note_data(self) -> Iterator[NoteDataDict]:
+    def _iter_raw_note_data(self) -> Iterator[tuple[NoteHandle, NoteDataDict]]:
         """
         Return an iterator over raw Note data.
         """
-        return cast(Iterator[NoteDataDict], self._iter_raw_data(NOTE_KEY))
+        return cast(
+            Iterator[tuple[NoteHandle, NoteDataDict]], self._iter_raw_data(NOTE_KEY)
+        )
 
-    def _iter_raw_tag_data(self) -> Iterator[TagDataDict]:
+    def _iter_raw_tag_data(self) -> Iterator[tuple[TagHandle, TagDataDict]]:
         """
         Return an iterator over raw Tag data.
         """
-        return cast(Iterator[TagDataDict], self._iter_raw_data(TAG_KEY))
+        return cast(
+            Iterator[tuple[TagHandle, TagDataDict]], self._iter_raw_data(TAG_KEY)
+        )
 
     def _iter_raw_place_tree_data(self):
         """
