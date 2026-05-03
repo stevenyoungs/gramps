@@ -25,7 +25,7 @@ This module is the base class for all geography view module
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 from __future__ import annotations

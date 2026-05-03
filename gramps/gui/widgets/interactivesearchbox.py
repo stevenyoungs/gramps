@@ -24,7 +24,7 @@ GtkWidget showing a box for interactive-search in Gtk.TreeView
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import logging

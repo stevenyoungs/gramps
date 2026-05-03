@@ -24,7 +24,7 @@ Handle the csv format when exporting views
 
 # -------------------------------------------------------------------------
 #
-# python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import logging

@@ -35,7 +35,7 @@ Create a relationship graph using Graphviz
 
 # ------------------------------------------------------------------------
 #
-# python modules
+# Standard Python modules
 #
 # ------------------------------------------------------------------------
 from functools import partial

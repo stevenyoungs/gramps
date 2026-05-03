@@ -26,7 +26,7 @@
 
 # ------------------------------------------------------------------------
 #
-# python modules
+# Standard Python modules
 #
 # ------------------------------------------------------------------------
 from math import pi, cos, sin, log10, acos, asin, degrees, radians

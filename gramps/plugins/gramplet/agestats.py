@@ -26,7 +26,7 @@ This Gramplet shows distributions of age breakdowns of various types.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 from collections import defaultdict

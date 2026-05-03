@@ -29,7 +29,7 @@ Generate an hourglass graph using the Graphviz generator.
 
 # ------------------------------------------------------------------------
 #
-# python modules
+# Standard Python modules
 #
 # ------------------------------------------------------------------------
 import html

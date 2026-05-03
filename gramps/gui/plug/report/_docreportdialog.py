@@ -25,7 +25,7 @@ base class for generating dialogs for docgen-derived reports
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import os

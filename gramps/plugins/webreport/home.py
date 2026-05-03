@@ -40,7 +40,7 @@ Classe:
 """
 
 # ------------------------------------------------
-# python modules
+# Standard Python modules
 # ------------------------------------------------
 from decimal import getcontext
 import logging

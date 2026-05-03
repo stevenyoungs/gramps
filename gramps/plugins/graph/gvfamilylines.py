@@ -28,7 +28,7 @@ Family Lines, a Graphviz-based plugin for Gramps.
 
 # ------------------------------------------------------------------------
 #
-# python modules
+# Standard Python modules
 #
 # ------------------------------------------------------------------------
 from functools import partial

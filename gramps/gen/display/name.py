@@ -54,7 +54,7 @@ Specific symbols for parts of a name are defined:
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 from __future__ import annotations

@@ -47,7 +47,7 @@ methods should be changed to generate exceptions. Possibly by globally changing
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 from __future__ import annotations

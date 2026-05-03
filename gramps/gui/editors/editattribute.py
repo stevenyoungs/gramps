@@ -26,7 +26,7 @@ mechanism for the user to edit attribute information.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 

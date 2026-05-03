@@ -25,7 +25,7 @@ Show uncollected objects in a window.
 
 # ------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # ------------------------------------------------------------------------
 import weakref

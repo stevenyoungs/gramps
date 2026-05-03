@@ -26,7 +26,7 @@ mechanism for the user to edit personal LDS information.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 

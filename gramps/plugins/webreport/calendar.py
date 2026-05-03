@@ -29,7 +29,7 @@ Web Calendar generator.
 """
 
 # ------------------------------------------------------------------------
-# python modules
+# Standard Python modules
 # ------------------------------------------------------------------------
 import os
 import datetime

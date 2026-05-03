@@ -39,7 +39,7 @@ Classe:
 """
 
 # ------------------------------------------------
-# python modules
+# Standard Python modules
 # ------------------------------------------------
 from collections import defaultdict
 from decimal import getcontext

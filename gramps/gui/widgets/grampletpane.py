@@ -24,7 +24,7 @@ GrampletView interface.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gdk

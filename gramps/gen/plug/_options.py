@@ -27,7 +27,7 @@ General option handling, including saving and parsing.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import os

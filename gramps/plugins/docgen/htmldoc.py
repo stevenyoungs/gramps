@@ -30,7 +30,7 @@ Report output generator for html documents, based on Html and HtmlBackend
 
 # ------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # ------------------------------------------------------------------------
 import os

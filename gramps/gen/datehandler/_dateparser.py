@@ -27,7 +27,7 @@ date parsing class. The default base class provides parsing for English.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 from __future__ import annotations

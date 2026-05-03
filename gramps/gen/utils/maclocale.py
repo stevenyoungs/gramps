@@ -69,7 +69,7 @@ locale, leaving $LANGUAGE unset (which is the same as setting it to
 
 # ------------------------------------------------------------------------
 #
-# python modules
+# Standard Python modules
 #
 # ------------------------------------------------------------------------
 

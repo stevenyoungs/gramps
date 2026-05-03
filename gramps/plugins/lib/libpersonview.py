@@ -61,7 +61,7 @@ from gramps.gen.plug import CATEGORY_QR_PERSON
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale

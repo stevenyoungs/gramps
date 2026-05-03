@@ -41,7 +41,7 @@ Classe:
 """
 
 # ------------------------------------------------
-# python modules
+# Standard Python modules
 # ------------------------------------------------
 from functools import partial
 import os

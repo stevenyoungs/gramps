@@ -23,7 +23,7 @@ Provide the base class for GRAMPS' DataView classes
 
 # ----------------------------------------------------------------
 #
-# python modules
+# Standard Python modules
 #
 # ----------------------------------------------------------------
 from __future__ import annotations

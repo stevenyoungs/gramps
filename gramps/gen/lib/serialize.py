@@ -24,7 +24,7 @@ Serialization utilities for Gramps.
 
 # ------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # ------------------------------------------------------------------------
 import pickle

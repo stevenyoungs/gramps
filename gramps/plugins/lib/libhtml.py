@@ -27,7 +27,7 @@ This module exports the Html class
 """
 
 # ------------------------------------------------------------------------
-# Python modules
+# Standard Python modules
 # ------------------------------------------------------------------------
 from __future__ import annotations
 

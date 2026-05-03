@@ -26,7 +26,7 @@ perform a translation on import, eg Gtk.
 
 # ------------------------------------------------------------------------
 #
-# python modules
+# Standard Python modules
 #
 # ------------------------------------------------------------------------
 import platform

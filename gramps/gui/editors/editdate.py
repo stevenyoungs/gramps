@@ -32,7 +32,7 @@ unambiguously built using UI controls such as menus and spin buttons.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 

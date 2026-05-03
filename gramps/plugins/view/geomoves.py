@@ -25,7 +25,7 @@ Geography for one person and all his descendant
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import operator

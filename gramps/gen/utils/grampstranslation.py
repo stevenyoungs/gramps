@@ -25,7 +25,7 @@ for reports so that they can be created in a different language from the UI's.
 
 # ------------------------------------------------------------------------
 #
-# python modules
+# Standard Python modules
 #
 # ------------------------------------------------------------------------
 from __future__ import annotations

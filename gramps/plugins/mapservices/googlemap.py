@@ -22,7 +22,7 @@ Google Maps map service plugin. Open place in maps.google.com
 
 # ------------------------------------------------------------------------
 #
-# python modules
+# Standard Python modules
 #
 # ------------------------------------------------------------------------
 

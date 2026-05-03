@@ -26,7 +26,7 @@ This package implements access to Gramps configuration.
 
 # ---------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # ---------------------------------------------------------------
 from __future__ import annotations

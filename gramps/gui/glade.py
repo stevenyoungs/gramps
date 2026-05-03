@@ -32,7 +32,7 @@ This module exports the Glade class.
 
 # ------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # ------------------------------------------------------------------------
 import sys

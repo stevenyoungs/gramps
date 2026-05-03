@@ -27,7 +27,7 @@ localized tasks.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 from __future__ import annotations

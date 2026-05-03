@@ -38,7 +38,7 @@ Classe:
 """
 
 # ------------------------------------------------
-# python modules
+# Standard Python modules
 # ------------------------------------------------
 from collections import defaultdict
 from operator import itemgetter

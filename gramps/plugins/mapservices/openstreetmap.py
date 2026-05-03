@@ -22,7 +22,7 @@ OpenStreetMap map service plugin. Open place in openstreetmap.org
 
 # ------------------------------------------------------------------------
 #
-# python modules
+# Standard Python modules
 #
 # ------------------------------------------------------------------------
 

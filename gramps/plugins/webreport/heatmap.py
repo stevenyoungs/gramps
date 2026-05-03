@@ -19,7 +19,7 @@
 """Heatmap web report."""
 
 # ------------------------------------------------
-# python modules
+# Standard Python modules
 # ------------------------------------------------
 import logging
 from string import Template

@@ -24,7 +24,7 @@ Proxy class for the Gramps databases. Filter out all data marked private.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import types

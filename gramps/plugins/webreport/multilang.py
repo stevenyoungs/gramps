@@ -24,7 +24,7 @@ Narrative Web index for multi languages
 """
 
 # ------------------------------------------------
-# python modules
+# Standard Python modules
 # ------------------------------------------------
 import logging
 

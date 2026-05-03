@@ -25,7 +25,7 @@ The EditPersonRef module provides the EditPersonRef class.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 

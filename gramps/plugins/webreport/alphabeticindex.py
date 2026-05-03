@@ -28,7 +28,7 @@ Class:
 """
 
 # ------------------------------------------------
-# python modules
+# Standard Python modules
 # ------------------------------------------------
 from unicodedata import normalize
 from collections import defaultdict

@@ -27,7 +27,7 @@ mechanism for the user to edit address information.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 

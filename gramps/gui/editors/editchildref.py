@@ -25,7 +25,7 @@ The EditChildRef module provides the EditChildRef class.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import pickle

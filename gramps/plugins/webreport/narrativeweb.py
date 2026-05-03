@@ -44,7 +44,7 @@ Classes:
 """
 
 # ------------------------------------------------
-# python modules
+# Standard Python modules
 # ------------------------------------------------
 import logging
 from functools import partial

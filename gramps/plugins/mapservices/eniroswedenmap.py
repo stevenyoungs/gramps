@@ -25,7 +25,7 @@ Eniro Sweden (Denmark) map service plugin. Opens place in kartor.eniro.se
 
 # ------------------------------------------------------------------------
 #
-# python modules
+# Standard Python modules
 #
 # ------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale

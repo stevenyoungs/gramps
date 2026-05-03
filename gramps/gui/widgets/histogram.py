@@ -22,7 +22,7 @@ Provides a simple histogram widget for use in gramplets.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import math
