@@ -967,7 +967,7 @@ class ProxyDbBase(DbReadBase):
         returns the list of Repository handles in the bookmarks
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`get_repository_bookmarks` instead.
+        Use :py:meth:`get_repository_bookmarks` instead.
         """
         return self.get_repository_bookmarks()
 

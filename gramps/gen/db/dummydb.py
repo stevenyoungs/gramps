@@ -956,7 +956,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         Deprecated alias for get_repository_bookmarks().
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`get_repository_bookmarks` instead.
+        Use :py:meth:`get_repository_bookmarks` instead.
         """
         return self.get_repository_bookmarks()
 

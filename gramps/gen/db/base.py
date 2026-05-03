@@ -307,7 +307,7 @@ class DbReadBase:
         Deprecated alias for get_repository_bookmarks().
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`get_repository_bookmarks` instead.
+        Use :py:meth:`get_repository_bookmarks` instead.
         """
         return self.get_repository_bookmarks()
 
@@ -922,7 +922,7 @@ class DbReadBase:
         Return the number of citations currently in the database.
 
         .. version-deprecated:: 6.2
-           Use :py:meth:`count_citation` instead.
+        Use :py:meth:`count_citation` instead.
         """
         raise NotImplementedError
 
@@ -931,7 +931,7 @@ class DbReadBase:
         Return the number of events currently in the database.
 
         .. version-deprecated:: 6.2
-           Use :py:meth:`count_event` instead.
+        Use :py:meth:`count_event` instead.
         """
         raise NotImplementedError
 
@@ -940,7 +940,7 @@ class DbReadBase:
         Return the number of families currently in the database.
 
         .. version-deprecated:: 6.2
-           Use :py:meth:`count_family` instead.
+        Use :py:meth:`count_family` instead.
         """
         raise NotImplementedError
 
@@ -949,7 +949,7 @@ class DbReadBase:
         Return the number of media objects currently in the database.
 
         .. version-deprecated:: 6.2
-           Use :py:meth:`count_media` instead.
+        Use :py:meth:`count_media` instead.
         """
         raise NotImplementedError
 
@@ -958,7 +958,7 @@ class DbReadBase:
         Return the number of notes currently in the database.
 
         .. version-deprecated:: 6.2
-           Use :py:meth:`count_note` instead.
+        Use :py:meth:`count_note` instead.
         """
         raise NotImplementedError
 
@@ -967,7 +967,7 @@ class DbReadBase:
         Return the number of people currently in the database.
 
         .. version-deprecated:: 6.2
-           Use :py:meth:`count_person` instead.
+        Use :py:meth:`count_person` instead.
         """
         raise NotImplementedError
 
@@ -976,7 +976,7 @@ class DbReadBase:
         Return the number of places currently in the database.
 
         .. version-deprecated:: 6.2
-           Use :py:meth:`count_place` instead.
+        Use :py:meth:`count_place` instead.
         """
         raise NotImplementedError
 
@@ -985,7 +985,7 @@ class DbReadBase:
         Return the number of source repositories currently in the database.
 
         .. version-deprecated:: 6.2
-           Use :py:meth:`count_repository` instead.
+        Use :py:meth:`count_repository` instead.
         """
         raise NotImplementedError
 
@@ -994,7 +994,7 @@ class DbReadBase:
         Return the number of sources currently in the database.
 
         .. version-deprecated:: 6.2
-           Use :py:meth:`count_source` instead.
+        Use :py:meth:`count_source` instead.
         """
         raise NotImplementedError
 
@@ -1003,7 +1003,7 @@ class DbReadBase:
         Return the number of tags currently in the database.
 
         .. version-deprecated:: 6.2
-           Use :py:meth:`count_tag` instead.
+        Use :py:meth:`count_tag` instead.
         """
         raise NotImplementedError
 
@@ -1045,7 +1045,7 @@ class DbReadBase:
         Return True if the Gramps ID exists in the Citation table.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`has_citation_from_gramps_id` instead.
+        Use :py:meth:`has_citation_from_gramps_id` instead.
         """
         raise NotImplementedError
 
@@ -1054,7 +1054,7 @@ class DbReadBase:
         Return True if the Gramps ID exists in the Event table.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`has_event_from_gramps_id` instead.
+        Use :py:meth:`has_event_from_gramps_id` instead.
         """
         raise NotImplementedError
 
@@ -1063,7 +1063,7 @@ class DbReadBase:
         Return True if the Gramps ID exists in the Family table.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`has_family_from_gramps_id` instead.
+        Use :py:meth:`has_family_from_gramps_id` instead.
         """
         raise NotImplementedError
 
@@ -1072,7 +1072,7 @@ class DbReadBase:
         Return True if the Gramps ID exists in the Media table.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`has_media_from_gramps_id` instead.
+        Use :py:meth:`has_media_from_gramps_id` instead.
         """
         raise NotImplementedError
 
@@ -1081,7 +1081,7 @@ class DbReadBase:
         Return True if the Gramps ID exists in the Note table.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`has_note_from_gramps_id` instead.
+        Use :py:meth:`has_note_from_gramps_id` instead.
         """
         raise NotImplementedError
 
@@ -1090,7 +1090,7 @@ class DbReadBase:
         Return True if the Gramps ID exists in the Person table.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`has_person_from_gramps_id` instead.
+        Use :py:meth:`has_person_from_gramps_id` instead.
         """
         raise NotImplementedError
 
@@ -1099,7 +1099,7 @@ class DbReadBase:
         Return True if the Gramps ID exists in the Place table.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`has_place_from_gramps_id` instead.
+        Use :py:meth:`has_place_from_gramps_id` instead.
         """
         raise NotImplementedError
 
@@ -1108,7 +1108,7 @@ class DbReadBase:
         Return True if the Gramps ID exists in the Repository table.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`has_repository_from_gramps_id` instead.
+        Use :py:meth:`has_repository_from_gramps_id` instead.
         """
         raise NotImplementedError
 
@@ -1117,7 +1117,7 @@ class DbReadBase:
         Return True if the Gramps ID exists in the Source table.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`has_source_from_gramps_id` instead.
+        Use :py:meth:`has_source_from_gramps_id` instead.
         """
         raise NotImplementedError
 
@@ -1126,7 +1126,7 @@ class DbReadBase:
         Return True if the handle exists in the current Event database.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`has_event_from_handle` instead.
+        Use :py:meth:`has_event_from_handle` instead.
         """
         raise NotImplementedError
 
@@ -1135,7 +1135,7 @@ class DbReadBase:
         Return True if the handle exists in the current Family database.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`has_family_from_handle` instead.
+        Use :py:meth:`has_family_from_handle` instead.
         """
         raise NotImplementedError
 
@@ -1144,7 +1144,7 @@ class DbReadBase:
         Return True if the handle exists in the current Mediadatabase.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`has_media_from_handle` instead.
+        Use :py:meth:`has_media_from_handle` instead.
         """
         raise NotImplementedError
 
@@ -1153,7 +1153,7 @@ class DbReadBase:
         Return True if the handle exists in the current Note database.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`has_note_from_handle` instead.
+        Use :py:meth:`has_note_from_handle` instead.
         """
         raise NotImplementedError
 
@@ -1162,7 +1162,7 @@ class DbReadBase:
         Return True if the handle exists in the current Person database.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`has_person_from_handle` instead.
+        Use :py:meth:`has_person_from_handle` instead.
         """
         raise NotImplementedError
 
@@ -1171,7 +1171,7 @@ class DbReadBase:
         Return True if the handle exists in the current Place database.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`has_place_from_handle` instead.
+        Use :py:meth:`has_place_from_handle` instead.
         """
         raise NotImplementedError
 
@@ -1180,7 +1180,7 @@ class DbReadBase:
         Return True if the handle exists in the current Repository database.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`has_repository_from_handle` instead.
+        Use :py:meth:`has_repository_from_handle` instead.
         """
         raise NotImplementedError
 
@@ -1189,7 +1189,7 @@ class DbReadBase:
         Return True if the handle exists in the current Source database.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`has_source_from_handle` instead.
+        Use :py:meth:`has_source_from_handle` instead.
         """
         raise NotImplementedError
 
@@ -1198,7 +1198,7 @@ class DbReadBase:
         Return True if the handle exists in the current Citation database.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`has_citation_from_handle` instead.
+        Use :py:meth:`has_citation_from_handle` instead.
         """
         raise NotImplementedError
 
@@ -1207,7 +1207,7 @@ class DbReadBase:
         Return True if the handle exists in the current Tag database.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`has_tag_from_handle` instead.
+        Use :py:meth:`has_tag_from_handle` instead.
         """
         raise NotImplementedError
 
@@ -1228,7 +1228,7 @@ class DbReadBase:
         Return an iterator over objects for Citations in the database
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`iter_citation` instead.
+        Use :py:meth:`iter_citation` instead.
         """
         raise NotImplementedError
 
@@ -1237,7 +1237,7 @@ class DbReadBase:
         Return an iterator over objects for Events in the database
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`iter_event` instead.
+        Use :py:meth:`iter_event` instead.
         """
         raise NotImplementedError
 
@@ -1246,7 +1246,7 @@ class DbReadBase:
         Return an iterator over objects for Families in the database
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`iter_family` instead.
+        Use :py:meth:`iter_family` instead.
         """
         raise NotImplementedError
 
@@ -1261,7 +1261,7 @@ class DbReadBase:
         Return an iterator over objects for Notes in the database
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`iter_note` instead.
+        Use :py:meth:`iter_note` instead.
         """
         raise NotImplementedError
 
@@ -1270,7 +1270,7 @@ class DbReadBase:
         Return an iterator over objects for Persons in the database
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`iter_person` instead.
+        Use :py:meth:`iter_person` instead.
         """
         raise NotImplementedError
 
@@ -1279,7 +1279,7 @@ class DbReadBase:
         Return an iterator over objects for Places in the database
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`iter_place` instead.
+        Use :py:meth:`iter_place` instead.
         """
         raise NotImplementedError
 
@@ -1288,7 +1288,7 @@ class DbReadBase:
         Return an iterator over objects for Repositories in the database
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`iter_repository` instead.
+        Use :py:meth:`iter_repository` instead.
         """
         raise NotImplementedError
 
@@ -1297,7 +1297,7 @@ class DbReadBase:
         Return an iterator over objects for Sources in the database
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`iter_source` instead.
+        Use :py:meth:`iter_source` instead.
         """
         raise NotImplementedError
 
@@ -1306,7 +1306,7 @@ class DbReadBase:
         Return an iterator over objects for Tags in the database
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`iter_tag` instead.
+        Use :py:meth:`iter_tag` instead.
         """
         raise NotImplementedError
 
@@ -1978,70 +1978,70 @@ class DbReadBase:
     def get_raw_person_data(self, handle):
         """
         .. version-deprecated:: 6.2
-            Use :py:meth:`get_person_data_from_handle` instead.
+        Use :py:meth:`get_person_data_from_handle` instead.
         """
         raise NotImplementedError
 
     def get_raw_family_data(self, handle):
         """
         .. version-deprecated:: 6.2
-            Use :py:meth:`get_family_data_from_handle` instead.
+        Use :py:meth:`get_family_data_from_handle` instead.
         """
         raise NotImplementedError
 
     def get_raw_source_data(self, handle):
         """
         .. version-deprecated:: 6.2
-            Use :py:meth:`get_source_data_from_handle` instead.
+        Use :py:meth:`get_source_data_from_handle` instead.
         """
         raise NotImplementedError
 
     def get_raw_citation_data(self, handle):
         """
         .. version-deprecated:: 6.2
-            Use :py:meth:`get_citation_data_from_handle` instead.
+        Use :py:meth:`get_citation_data_from_handle` instead.
         """
         raise NotImplementedError
 
     def get_raw_event_data(self, handle):
         """
         .. version-deprecated:: 6.2
-            Use :py:meth:`get_event_data_from_handle` instead.
+        Use :py:meth:`get_event_data_from_handle` instead.
         """
         raise NotImplementedError
 
     def get_raw_media_data(self, handle):
         """
         .. version-deprecated:: 6.2
-            Use :py:meth:`get_media_data_from_handle` instead.
+        Use :py:meth:`get_media_data_from_handle` instead.
         """
         raise NotImplementedError
 
     def get_raw_place_data(self, handle):
         """
         .. version-deprecated:: 6.2
-            Use :py:meth:`get_place_data_from_handle` instead.
+        Use :py:meth:`get_place_data_from_handle` instead.
         """
         raise NotImplementedError
 
     def get_raw_repository_data(self, handle):
         """
         .. version-deprecated:: 6.2
-            Use :py:meth:`get_repository_data_from_handle` instead.
+        Use :py:meth:`get_repository_data_from_handle` instead.
         """
         raise NotImplementedError
 
     def get_raw_note_data(self, handle):
         """
         .. version-deprecated:: 6.2
-            Use :py:meth:`get_note_data_from_handle` instead.
+        Use :py:meth:`get_note_data_from_handle` instead.
         """
         raise NotImplementedError
 
     def get_raw_tag_data(self, handle):
         """
         .. version-deprecated:: 6.2
-            Use :py:meth:`get_tag_data_from_handle` instead.
+        Use :py:meth:`get_tag_data_from_handle` instead.
         """
         raise NotImplementedError
 
@@ -2056,7 +2056,7 @@ class DbReadBase:
         Return an iterator over raw Person data.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`iter_person_data` instead.
+        Use :py:meth:`iter_person_data` instead.
         """
         raise NotImplementedError
 
@@ -2065,7 +2065,7 @@ class DbReadBase:
         Return an iterator over raw Family data.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`iter_family_data` instead.
+        Use :py:meth:`iter_family_data` instead.
         """
         raise NotImplementedError
 
@@ -2074,7 +2074,7 @@ class DbReadBase:
         Return an iterator over raw Event data.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`iter_event_data` instead.
+        Use :py:meth:`iter_event_data` instead.
         """
         raise NotImplementedError
 
@@ -2083,7 +2083,7 @@ class DbReadBase:
         Return an iterator over raw Place data.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`iter_place_data` instead.
+        Use :py:meth:`iter_place_data` instead.
         """
         raise NotImplementedError
 
@@ -2092,7 +2092,7 @@ class DbReadBase:
         Return an iterator over raw Repository data.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`iter_repository_data` instead.
+        Use :py:meth:`iter_repository_data` instead.
         """
         raise NotImplementedError
 
@@ -2101,7 +2101,7 @@ class DbReadBase:
         Return an iterator over raw Source data.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`iter_source_data` instead.
+        Use :py:meth:`iter_source_data` instead.
         """
         raise NotImplementedError
 
@@ -2110,7 +2110,7 @@ class DbReadBase:
         Return an iterator over raw Citation data.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`iter_citation_data` instead.
+        Use :py:meth:`iter_citation_data` instead.
         """
         raise NotImplementedError
 
@@ -2119,7 +2119,7 @@ class DbReadBase:
         Return an iterator over raw Media data.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`iter_media_data` instead.
+        Use :py:meth:`iter_media_data` instead.
         """
         raise NotImplementedError
 
@@ -2128,7 +2128,7 @@ class DbReadBase:
         Return an iterator over raw Note data.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`iter_note_data` instead.
+        Use :py:meth:`iter_note_data` instead.
         """
         raise NotImplementedError
 
@@ -2137,7 +2137,7 @@ class DbReadBase:
         Return an iterator over raw Tag data.
 
         .. version-deprecated:: 6.2
-            Use :py:meth:`iter_tag_data` instead.
+        Use :py:meth:`iter_tag_data` instead.
         """
         raise NotImplementedError
 
@@ -2150,63 +2150,63 @@ class DbReadBase:
     def _get_raw_person_from_id_data(self, gramps_id: PersonGrampsID):
         """
         .. version-deprecated:: 6.2
-             Use :py:meth:`get_person_data_from_gramps_id` instead.
+        Use :py:meth:`get_person_data_from_gramps_id` instead.
         """
         raise NotImplementedError
 
     def _get_raw_family_from_id_data(self, gramps_id: FamilyGrampsID):
         """
         .. version-deprecated:: 6.2
-             Use :py:meth:`get_family_data_from_gramps_id` instead.
+        Use :py:meth:`get_family_data_from_gramps_id` instead.
         """
         raise NotImplementedError
 
     def _get_raw_source_from_id_data(self, gramps_id: SourceGrampsID):
         """
         .. version-deprecated:: 6.2
-             Use :py:meth:`get_source_data_from_gramps_id` instead.
+        Use :py:meth:`get_source_data_from_gramps_id` instead.
         """
         raise NotImplementedError
 
     def _get_raw_citation_from_id_data(self, gramps_id: CitationGrampsID):
         """
         .. version-deprecated:: 6.2
-             Use :py:meth:`get_citation_data_from_gramps_id` instead.
+        Use :py:meth:`get_citation_data_from_gramps_id` instead.
         """
         raise NotImplementedError
 
     def _get_raw_event_from_id_data(self, gramps_id: EventGrampsID):
         """
         .. version-deprecated:: 6.2
-             Use :py:meth:`get_event_data_from_gramps_id` instead.
+        Use :py:meth:`get_event_data_from_gramps_id` instead.
         """
         raise NotImplementedError
 
     def _get_raw_media_from_id_data(self, gramps_id: MediaGrampsID):
         """
         .. version-deprecated:: 6.2
-             Use :py:meth:`get_media_data_from_gramps_id` instead.
+        Use :py:meth:`get_media_data_from_gramps_id` instead.
         """
         raise NotImplementedError
 
     def _get_raw_place_from_id_data(self, gramps_id: PlaceGrampsID):
         """
         .. version-deprecated:: 6.2
-             Use :py:meth:`get_place_data_from_gramps_id` instead.
+        Use :py:meth:`get_place_data_from_gramps_id` instead.
         """
         raise NotImplementedError
 
     def _get_raw_repository_from_id_data(self, gramps_id: RepositoryGrampsID):
         """
         .. version-deprecated:: 6.2
-             Use :py:meth:`get_repository_data_from_gramps_id` instead.
+        Use :py:meth:`get_repository_data_from_gramps_id` instead.
         """
         raise NotImplementedError
 
     def _get_raw_note_from_id_data(self, gramps_id: NoteGrampsID):
         """
         .. version-deprecated:: 6.2
-             Use :py:meth:`get_note_data_from_gramps_id` instead.
+        Use :py:meth:`get_note_data_from_gramps_id` instead.
         """
         raise NotImplementedError
 
