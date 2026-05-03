@@ -28,7 +28,7 @@ from this class.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 from collections.abc import Iterator
