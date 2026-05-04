@@ -28,12 +28,6 @@ Relationship View
 # -------------------------------------------------------------------------
 from html import escape
 import pickle
-
-# -------------------------------------------------------------------------
-#
-# Set up logging
-#
-# -------------------------------------------------------------------------
 import logging
 
 _LOG = logging.getLogger("plugin.relview")
@@ -49,7 +43,7 @@ from gi.repository import Pango
 
 # -------------------------------------------------------------------------
 #
-# Gramps Modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale

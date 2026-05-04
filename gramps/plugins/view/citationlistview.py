@@ -40,7 +40,7 @@ from gi.repository import Gtk
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gui.views.treemodels.citationlistmodel import CitationListModel

@@ -25,19 +25,19 @@
 #
 # -------------------------------------------------------------------------
 import logging
-from gi.repository import GObject
 
 # -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
+from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Pango, PangoCairo
 
 # -------------------------------------------------------------------------
 #
-# Gramps Modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.config import config

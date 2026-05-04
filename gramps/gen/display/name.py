@@ -54,10 +54,16 @@ Specific symbols for parts of a name are defined:
 
 # -------------------------------------------------------------------------
 #
-# Standard Python modules
+# Future imports
 #
 # -------------------------------------------------------------------------
 from __future__ import annotations
+
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import re
 import logging
 from typing import Callable

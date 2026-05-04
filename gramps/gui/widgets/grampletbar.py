@@ -25,7 +25,7 @@ Module that implements the gramplet bar fuctionality.
 
 # -------------------------------------------------------------------------
 #
-# Set up logging
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import logging

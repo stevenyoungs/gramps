@@ -28,6 +28,11 @@
 # Set up logging
 #
 # -------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import logging
 
 _LOG = logging.getLogger("gui.widgets.reorderfam")
@@ -40,7 +45,7 @@ _LOG = logging.getLogger("gui.widgets.reorderfam")
 
 # -------------------------------------------------------------------------
 #
-# Gramps Modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale

@@ -29,21 +29,21 @@ Geography for events
 #
 # -------------------------------------------------------------------------
 import operator
-
-# -------------------------------------------------------------------------
-#
-# set up logging
-#
-# -------------------------------------------------------------------------
 import logging
 
 # -------------------------------------------------------------------------
 #
-# Gramps Modules
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gdk
 from gi.repository import Gtk
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import EventType
 from gramps.gen.config import config

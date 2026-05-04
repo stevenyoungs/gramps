@@ -35,7 +35,7 @@ from xml.sax import make_parser, handler, SAXParseException
 
 # -------------------------------------------------------------------------
 #
-# Gtk modules
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import GObject

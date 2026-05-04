@@ -29,15 +29,21 @@
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
-from gi.repository import Gtk
 import cairo
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+
+# -------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+# -------------------------------------------------------------------------
+from gi.repository import Gtk
 
 # -------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 import gramps.gui.widgets.fanchart as fanchart
 import gramps.gui.widgets.fanchartdesc as fanchartdesc
 from gramps.gui.views.navigationview import NavigationView

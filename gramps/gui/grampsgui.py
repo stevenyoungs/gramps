@@ -34,7 +34,7 @@ LOG = logging.getLogger(".grampsgui")
 
 # -------------------------------------------------------------------------
 #
-# Gramps Modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.config import config

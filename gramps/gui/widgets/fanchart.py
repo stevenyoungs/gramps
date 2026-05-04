@@ -37,7 +37,19 @@ import math
 import colorsys
 import pickle
 from html import escape
+
+# -------------------------------------------------------------------------
+#
+# Third-party modules
+#
+# -------------------------------------------------------------------------
 import cairo
+
+# -------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+# -------------------------------------------------------------------------
 from gi.repository import Pango
 from gi.repository import Gdk
 from gi.repository import Gtk

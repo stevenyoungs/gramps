@@ -32,19 +32,13 @@ import threading
 import sys
 import subprocess
 import importlib
-
-# -------------------------------------------------------------------------
-#
-# set up logging
-#
-# -------------------------------------------------------------------------
 import logging
 
 LOG = logging.getLogger(".gui.plug")
 
 # -------------------------------------------------------------------------
 #
-# GTK modules
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk

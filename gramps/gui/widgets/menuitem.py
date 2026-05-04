@@ -32,7 +32,7 @@ _LOG = logging.getLogger(".widgets.menuitem")
 
 # -------------------------------------------------------------------------
 #
-# GTK modules
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import GObject

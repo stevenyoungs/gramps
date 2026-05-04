@@ -21,7 +21,7 @@
 
 # -------------------------------------------------------------------------
 #
-# Standard Python modules
+# Future imports
 #
 # -------------------------------------------------------------------------
 from __future__ import annotations
@@ -36,7 +36,7 @@ from gi.repository import Pango
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from ..managedwindow import ManagedWindow

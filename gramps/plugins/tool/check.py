@@ -37,17 +37,11 @@ import os
 from io import StringIO
 from collections import defaultdict
 import time
-
-# ------------------------------------------------------------------------
-#
-# Set up logging
-#
-# ------------------------------------------------------------------------
 import logging
 
 # -------------------------------------------------------------------------
 #
-# gtk modules
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk

@@ -35,7 +35,6 @@ import re
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-
 from ..lib.date import Date
 from ._dateparser import DateParser
 from ._datedisplay import DateDisplay

@@ -28,14 +28,13 @@ Class handling language-specific selection for date parser and displayer.
 #
 # -------------------------------------------------------------------------
 import os
+import logging
 
 # -------------------------------------------------------------------------
 #
 # set up logging
 #
 # -------------------------------------------------------------------------
-import logging
-
 log = logging.getLogger(".gen.datehandler")
 
 # -------------------------------------------------------------------------

@@ -27,15 +27,20 @@ GrampletView interface.
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
-from gi.repository import Gdk
-from gi.repository import Gtk
-from gi.repository import Pango
 from xml.sax.saxutils import escape
 import time
 import os
 import configparser
-
 import logging
+
+# -------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+# -------------------------------------------------------------------------
+from gi.repository import Gdk
+from gi.repository import Gtk
+from gi.repository import Pango
 
 LOG = logging.getLogger(".")
 

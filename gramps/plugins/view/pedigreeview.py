@@ -33,6 +33,13 @@ import pickle
 
 # -------------------------------------------------------------------------
 #
+# Third-party modules
+#
+# -------------------------------------------------------------------------
+import cairo
+
+# -------------------------------------------------------------------------
+#
 # GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
@@ -40,11 +47,10 @@ from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import GdkPixbuf
 from gi.repository import PangoCairo
-import cairo
 
 # -------------------------------------------------------------------------
 #
-# Gramps Modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.lib import ChildRef, ChildRefType, Family

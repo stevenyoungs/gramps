@@ -35,25 +35,18 @@ unambiguously built using UI controls such as menus and spin buttons.
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
-
-
-# -------------------------------------------------------------------------
-#
-# set up logging
-#
-# -------------------------------------------------------------------------
 import logging
 
 # -------------------------------------------------------------------------
 #
-# GNOME modules
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -65,6 +58,11 @@ from ..display import display_help
 from ..managedwindow import ManagedWindow
 from ..glade import Glade
 
+# -------------------------------------------------------------------------
+#
+# set up logging
+#
+# -------------------------------------------------------------------------
 LOG = logging.getLogger(".EditDate")
 _ = glocale.translation.sgettext
 # -------------------------------------------------------------------------

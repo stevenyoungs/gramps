@@ -30,20 +30,20 @@ Geography for two families
 # -------------------------------------------------------------------------
 import operator
 from math import hypot
-
-# -------------------------------------------------------------------------
-#
-# set up logging
-#
-# -------------------------------------------------------------------------
 import logging
 
 # -------------------------------------------------------------------------
 #
-# Gramps Modules
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import EventRoleType, EventType
 from gramps.gen.config import config

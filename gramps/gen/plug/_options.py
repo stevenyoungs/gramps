@@ -32,12 +32,6 @@ General option handling, including saving and parsing.
 # -------------------------------------------------------------------------
 import os
 import sys
-
-# -------------------------------------------------------------------------
-#
-# SAX interface
-#
-# -------------------------------------------------------------------------
 from xml.sax import make_parser, handler, SAXParseException
 from xml.sax.saxutils import quoteattr
 
